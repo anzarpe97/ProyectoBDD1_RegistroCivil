@@ -1,1 +1,1 @@
-print ("Putos")
+print ("Meloetta tipo planta")
