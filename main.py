@@ -47,6 +47,6 @@ buttonActaDivorcio.grid(row=3,column =0)
 
 buttonActaDefuncion = tk.Button (root, text="\nActa \nde\nDefuncion", image = defuncionImage,compound = tk.TOP, relief= tk.FLAT, background= "WHITE")
 buttonActaDefuncion.configure(height = 125, width = 130, font=("Rubik", 10, "normal"))
-buttonActaDefuncion.grid(row=4,column =0)
+buttonActaDefuncion.grid(row = 4,column = 0)
 
 root.mainloop()
