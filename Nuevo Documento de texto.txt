@@ -1,0 +1,39 @@
+import tkinter as tk
+
+root = tk.Tk()
+
+# Configuracion Ventana
+
+root.geometry("1200x650")
+root.title("Registro Civil")
+root.iconbitmap("Images/pen.ico")
+root.config(background="White")
+#root.resizable(0,0)
+
+buttonActaNacimiento = tk.Button (root, text="Acta \nde Nacimiento")
+buttonActaNacimiento.config(height = 7, width = 13)
+buttonActaNacimiento.grid(row=0,column =0)
+
+buttonCedula = tk.Button (root, text="Cedula")
+buttonCedula.config(height = 7, width = 13)
+buttonCedula.grid(row=1,column =0)
+
+buttonActaMatrimonio = tk.Button (root, text="Acta\nde Matrimonio")
+buttonActaMatrimonio.config(height = 7, width = 13)
+buttonActaMatrimonio.grid(row=2,column =0)
+
+buttonActaDivorcio = tk.Button (root, text="Acta \nde Divorcio")
+buttonActaDivorcio.config(height = 7, width = 13)
+buttonActaDivorcio.grid(row=3,column =0)
+
+buttonActaDefuncion = tk.Button (root, text="Acta \nde Defuncion")
+buttonActaDefuncion.config(height =7, width = 13)
+buttonActaDefuncion.grid(row=4,column =0)
+
+
+dollarPhoto = PhotoImage(file="Dolar.png")
+dollarimage = dollarPhoto.subsample(7, 7)
+callButton = Button(menuFrame, text= "Dolares",image = dollarimage, height = 150, width = 120,compound = TOP,background="WHITE").grid(row = 0, column = 0)
+
+
+root.mainloop()
