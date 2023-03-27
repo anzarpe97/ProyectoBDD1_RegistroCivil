@@ -274,16 +274,111 @@ def actaMatrimonio ():
     
 def actaDivorcio ():
 
-    #--------- NO TOCAR -----------------------------------------------------------
+    #--------- NO TOCAR ------------------------------------------------------------------
     
     frameInicio = tk.Frame(root, background = "#209cb4", height = 656, width = 1057)
     frameInicio.place(x = 143, y = 5)
     
     #---------------------------------------------------------------------------
 
-    inicioLabel = tk.Label(frameInicio, text = "Formulario Acta De Divorcio")
-    inicioLabel.configure(font = ("roboto", 14, "bold"), fg = "#209cb4", background = "WHITE")
-    inicioLabel.place (x = 390, y = 10)
+    DivorcioLabel = tk.Label (frameInicio, text = "Formulario Acta De Divorcio")
+    DivorcioLabel.configure (font = ("roboto", 14, "bold"), fg="#209cb4", background="WHITE")
+    DivorcioLabel.place (x = 390, y = 10)
+
+    # ---- Esposos -------
+
+    PEsposo = tk.Label (frameInicio, text = "Cedula Primer Esposo/a: ")
+    PEsposo.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background="#209cb4")
+    PEsposo.place (x = 80, y = 90)
+
+    PContrayenteE = tk.Entry(frameInicio, relief="flat")
+    PContrayenteE.place (x = 275, y = 93)
+    
+    SEsposo = tk.Label (frameInicio, text = "Cedula Segundo Esposo/a: ")
+    SEsposo.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    SEsposo.place (x = 548, y = 90)
+
+    SEsposoE = tk.Entry(frameInicio, relief = "flat")
+    SEsposoE.place (x = 765, y = 93)
+    
+    # ---- OCUPACION ----
+    
+    DireccionPELabel = tk.Label (frameInicio, text = "Direccion Primer Esposo/a: ")
+    DireccionPELabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    DireccionPELabel.place (x =60, y = 130)
+
+    DireccionPELabeEntry = tk.Entry(frameInicio, relief = "flat")
+    DireccionPELabeEntry.place (x = 275, y = 133)
+
+    OSContrayente = tk.Label (frameInicio, text = "Direccion Segundo Esposo/a: ")
+    OSContrayente.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    OSContrayente.place (x = 530, y = 130)
+
+    OSContrayenteE = tk.Entry(frameInicio, relief = "flat")
+    OSContrayenteE.place (x = 765, y = 133)
+    
+    # ---- DIRECCION CONTRAYENTES -------
+    
+    direccionPLabel = tk.Label (frameInicio, text = "Direccion Primer Contrayente: ")
+    direccionPLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    direccionPLabel.place (x = 35, y = 170)
+
+    direccionPE = tk.Entry(frameInicio, relief = "flat")
+    direccionPE.place (x = 275, y = 174)
+
+    
+    direccionSLabel = tk.Label (frameInicio, text = "Direccion Segundo Contrayente: ")
+    direccionSLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    direccionSLabel.place (x = 530, y = 170)
+
+    direccionSE = tk.Entry(frameInicio, relief = "flat")
+    direccionSE.place (x = 790, y = 174)
+
+    # ---- TESTIGO -----
+    
+    TestigoLabel = tk.Label (frameInicio, text = "Cedula Testigo: ")
+    TestigoLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    TestigoLabel.place (x = 145, y = 210)
+
+    testigoE = tk.Entry(frameInicio, relief = "flat")
+    testigoE.place (x = 275, y = 214)
+
+    direccionTLabel = tk.Label (frameInicio, text = "Direccion Testigo: ")
+    direccionTLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    direccionTLabel.place (x = 643, y = 210)
+
+    direccionTE = tk.Entry(frameInicio, relief = "flat")
+    direccionTE.place (x = 790, y = 214)
+
+    # ---- UBICACION PREFECTURA ------
+
+    estadoLabel = tk.Label (frameInicio, text = "Estado: ")
+    estadoLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    estadoLabel.place (x = 25, y = 260)
+
+    estadoE = tk.Entry(frameInicio, relief = "flat")
+    estadoE.place (x = 103, y = 264)
+
+    parroquiaLabel = tk.Label (frameInicio, text = "Parroquia: ")
+    parroquiaLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    parroquiaLabel.place (x = 260, y = 260)
+
+    parroquiaE = tk.Entry(frameInicio, relief = "flat")
+    parroquiaE.place (x = 350, y = 264)
+
+    municicpioLabel = tk.Label (frameInicio, text = "Municipio: ")
+    municicpioLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    municicpioLabel.place (x = 520, y = 260)
+
+    municicpioE = tk.Entry(frameInicio, relief = "flat")
+    municicpioE.place (x = 610, y = 264)
+
+    prefecturaMLabel = tk.Label (frameInicio, text = "Prefectura: ")
+    prefecturaMLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    prefecturaMLabel.place (x = 770, y = 260)
+    
+    prefecturaME = ttk.Combobox (values = ["Olegario Villalobos", "El Enterrado"])
+    prefecturaME.place(x = 1010, y = 266)
 
 def actaDefuncion ():
 
@@ -297,8 +392,6 @@ def actaDefuncion ():
     inicioLabel = tk.Label(frameInicio, text = "Formulario Acta De Defuncion")
     inicioLabel.configure(font = ("roboto", 14, "bold"), fg = "#209cb4", background = "WHITE")
     inicioLabel.place (x = 390, y = 10)
-
-    # --------------------------------------------------------------------------------
 
     # ------- Cedula Difunto ------------------- 
 
@@ -385,8 +478,8 @@ root.resizable(0,0)
 frameMenu = tk.Frame(root)
 frameMenu.pack(side=tk.LEFT)
 
-#frameInicio = tk.Frame(root,background="#209cb4",height = 666, width = 1062,highlightbackground="WHITE",highlightthickness=5)
-#frameInicio.pack(side=tk.TOP)
+frameInicio = tk.Frame(root,background="WHITE",height = 666, width = 1062,highlightbackground="WHITE",highlightthickness=5)
+frameInicio.pack(side=tk.TOP)
 
 # Imagenes Botones
 
