@@ -1,12 +1,16 @@
 
-import tkinter as tk
+import tkinter as tk 
 from tkinter import ttk
-
+from tkinter import *
 root = tk.Tk()
 
 # ---- Funciones ----
 
 def actaNacimiento ():
+
+    nombre_acta = StringVar()
+    cedula_acta = IntVar()
+    
 
     #--------- NO TOCAR ------------------------------------------------------------------
     
@@ -25,7 +29,7 @@ def actaNacimiento ():
     nombresLabel.configure(font = ("roboto", 12, "bold"), fg="WHITE", background="#209cb4")
     nombresLabel.place (x = 190, y = 90)
 
-    nombresEntry = tk.Entry(frameInicio, relief="flat")
+    nombresEntry = tk.Entry(frameInicio, relief="flat", textvariable= nombre_acta)
     nombresEntry.place (x = 275, y = 93)
     
     apellidosLabel = tk.Label (frameInicio, text = "Apellidos: ")
@@ -43,7 +47,7 @@ def actaNacimiento ():
     cedulaPadreLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     cedulaPadreLabel.place (x = 555, y = 90)
 
-    cedulaPadreEntry = tk.Entry(frameInicio, relief="flat")
+    cedulaPadreEntry = tk.Entry(frameInicio, relief="flat", textvariable=cedula_acta)
     cedulaPadreEntry.place (x = 670, y = 93)
 
     # #MADRE
@@ -79,6 +83,9 @@ def actaNacimiento ():
     
     prefecturaOpcion = ttk.Combobox (values = ["Manzanillo", "Olegario Villalobos", "Delicias", "El Bajo"])
     prefecturaOpcion.place(x = 620, y = 225)
+
+    CargarB = tk.Button(frameInicio, text="Pulsa", command=lambda:print(nombre_acta.get(),cedula_acta.get()))
+    CargarB.place(x=600, y=600)
 
 def cedula ():
 
@@ -271,6 +278,10 @@ def actaMatrimonio ():
     
     prefecturaME = ttk.Combobox (values = ["Olegario Villalobos", "El Enterrado"])
     prefecturaME.place(x = 1010, y = 266)
+
+    hijosParejaLabel = tk.Label(frameInicio, text = "Hijos: ")
+    hijosParejaLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    hijosParejaLabel.place(x = 350, y = 306)
     
 def actaDivorcio ():
 
@@ -301,7 +312,7 @@ def actaDivorcio ():
     SEsposoE = tk.Entry(frameInicio, relief = "flat")
     SEsposoE.place (x = 765, y = 93)
     
-    # ---- OCUPACION ----
+    # ---- DIRECCION ESPOSOS ----
     
     DireccionPELabel = tk.Label (frameInicio, text = "Direccion Primer Esposo/a: ")
     DireccionPELabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
@@ -310,45 +321,44 @@ def actaDivorcio ():
     DireccionPELabeEntry = tk.Entry(frameInicio, relief = "flat")
     DireccionPELabeEntry.place (x = 275, y = 133)
 
-    OSContrayente = tk.Label (frameInicio, text = "Direccion Segundo Esposo/a: ")
-    OSContrayente.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    OSContrayente.place (x = 530, y = 130)
+    DireccionSELabeEntry = tk.Label (frameInicio, text = "Direccion Segundo Esposo/a: ")
+    DireccionSELabeEntry.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    DireccionSELabeEntry.place (x = 530, y = 130)
 
-    OSContrayenteE = tk.Entry(frameInicio, relief = "flat")
-    OSContrayenteE.place (x = 765, y = 133)
+    DireccionSELabeE = tk.Entry(frameInicio, relief = "flat")
+    DireccionSELabeE.place (x = 765, y = 133)
     
-    # ---- DIRECCION CONTRAYENTES -------
+    # ---- CEDULAS ABOGADOS -------
     
-    direccionPLabel = tk.Label (frameInicio, text = "Direccion Primer Contrayente: ")
-    direccionPLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    direccionPLabel.place (x = 35, y = 170)
+    abogadoPLabel = tk.Label (frameInicio, text = "Cedula Abg Primer Esposo/a: ")
+    abogadoPLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    abogadoPLabel.place (x = 43, y = 170)
 
-    direccionPE = tk.Entry(frameInicio, relief = "flat")
-    direccionPE.place (x = 275, y = 174)
+    abogadoPE = tk.Entry(frameInicio, relief = "flat")
+    abogadoPE.place (x = 275, y = 174)
 
+    abogadoSLabel = tk.Label (frameInicio, text = "Cedula Abg Segundo Esposo/a: ")
+    abogadoSLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    abogadoSLabel.place (x = 515, y = 170)
+
+    abogadoSE = tk.Entry(frameInicio, relief = "flat")
+    abogadoSE.place (x = 765, y = 174)
+
+    # -------------- Direccion abogados ----------------------------
     
-    direccionSLabel = tk.Label (frameInicio, text = "Direccion Segundo Contrayente: ")
-    direccionSLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    direccionSLabel.place (x = 530, y = 170)
+    DabogadoPLabel = tk.Label (frameInicio, text = "Direccion Abg Primer Esposo/a: ")
+    DabogadoPLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    DabogadoPLabel.place (x = 24, y = 210)
 
-    direccionSE = tk.Entry(frameInicio, relief = "flat")
-    direccionSE.place (x = 790, y = 174)
+    DabogadoPE = tk.Entry(frameInicio, relief = "flat")
+    DabogadoPE.place (x = 275, y = 214)
 
-    # ---- TESTIGO -----
-    
-    TestigoLabel = tk.Label (frameInicio, text = "Cedula Testigo: ")
-    TestigoLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    TestigoLabel.place (x = 145, y = 210)
+    DabogadoSLabel = tk.Label (frameInicio, text = "Direccion Abg Segundo Esposo/a: ")
+    DabogadoSLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    DabogadoSLabel.place (x = 497, y = 210)
 
-    testigoE = tk.Entry(frameInicio, relief = "flat")
-    testigoE.place (x = 275, y = 214)
-
-    direccionTLabel = tk.Label (frameInicio, text = "Direccion Testigo: ")
-    direccionTLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    direccionTLabel.place (x = 643, y = 210)
-
-    direccionTE = tk.Entry(frameInicio, relief = "flat")
-    direccionTE.place (x = 790, y = 214)
+    DabogadoSE = tk.Entry(frameInicio, relief = "flat")
+    DabogadoSE.place (x = 766, y = 214)
 
     # ---- UBICACION PREFECTURA ------
 
