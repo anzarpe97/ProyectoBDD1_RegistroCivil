@@ -318,60 +318,28 @@ def actaDefuncion ():
     informanteEntry = tk.Entry(frameInicio, relief = "flat")
     informanteEntry.place (x = 750, y = 93)
 
-    # ------------ Relacion Informante -------------
-    
-    RInformanteLabel = tk.Label (frameInicio, text = "Relacion Informante: ")
-    RInformanteLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    RInformanteLabel.place (x = 585, y = 130)
-
-    RInformanteEntry = tk.Entry(frameInicio, relief = "flat")
-    RInformanteEntry.place (x = 750, y = 133)
-
-    # ----------- Causa De Muerte ---------------
-
-    CMuerteLabel = tk.Label (frameInicio, text = "Causa De Muerte: ")
-    CMuerteLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    CMuerteLabel.place (x = 115, y = 130)
-
-    CMuerteEntry = tk.Entry(frameInicio, relief = "flat")
-    CMuerteEntry.place (x = 260, y = 133)
-
-    # ---------- Lugar De muerte ---------------
-
-    LMuerteLabel = tk.Label (frameInicio, text = "Lugar De Defuncion: ")
-    LMuerteLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    LMuerteLabel.place (x = 90, y = 170)
-
-    LMuerteEntry = tk.Entry(frameInicio, relief = "flat")
-    LMuerteEntry.place (x = 260, y = 173)
-
-    # ---------- Fecha de Defuncion -----------
+    # ----------- Fecha De Muerte ---------------
 
     FMuerteLabel = tk.Label (frameInicio, text = "Fecha De Defuncion: ")
     FMuerteLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    FMuerteLabel.place (x = 90, y = 210)#90 220
+    FMuerteLabel.place (x = 90, y = 130)
 
     FMuerteEntry = tk.Entry(frameInicio, relief = "flat")
-    FMuerteEntry.place (x = 260, y = 213) #260 220
+    FMuerteEntry.place (x = 260, y = 133)
 
     FormatoMuLabel = tk.Label(frameInicio, text = "Formato (aa/mm/dd) ")
     FormatoMuLabel.configure(font = ("roboto", 8, "bold"), fg ="WHITE", background="#209cb4")
-    FormatoMuLabel.place (x = 262, y = 233)
+    FormatoMuLabel.place (x = 262, y = 157)
 
-    # ------------- Hora de Defuncion --------
+    # ---------- Lugar De muerte
 
-    HMuerteLabel = tk.Label (frameInicio, text = "Hora De Defuncion: ")
-    HMuerteLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    HMuerteLabel.place (x = 592, y = 170)#90 220
+    LMuerteLabel = tk.Label (frameInicio, text = "Lugar De Defuncion: ")
+    LMuerteLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    LMuerteLabel.place (x = 90, y = 180)
 
-    HMuerteEntry = tk.Entry(frameInicio, relief = "flat")
-    HMuerteEntry.place (x = 750, y = 173) #260 220
+    LMuerteEntry = tk.Entry(frameInicio, relief = "flat")
+    LMuerteEntry.place (x = 260, y = 183)
 
-    FormatoHLabel = tk.Label(frameInicio, text = "Formato (hh/mm/ss) ")
-    FormatoHLabel.configure(font = ("roboto", 8, "bold"), fg ="WHITE", background="#209cb4")
-    FormatoHLabel.place (x = 750, y = 193)
-
-    
 # Configuracion Ventana
 
 root.geometry("1205x666")
