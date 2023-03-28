@@ -1,4 +1,5 @@
 
+import funciones
 import tkinter as tk 
 from tkinter import ttk
 from tkinter import *
@@ -7,9 +8,16 @@ root = tk.Tk()
 # ---- Funciones ----
 
 def actaNacimiento ():
+    
+    # ----- Variables -------------
 
-    nombre_acta = StringVar()
-    cedula_acta = IntVar()
+    #nombre_bebe_acta = StringVar()
+    #apellidos_bebe_acta = StringVar()
+    #sexo_bebe = StringVar()
+    #lugar_nacimiento = StringVar()
+    #cedula_padre_acta = IntVar()
+    #cedula_madre_acta = IntVar()
+    #prefectura = StringVar()
     
 
     #--------- NO TOCAR ------------------------------------------------------------------
@@ -29,7 +37,7 @@ def actaNacimiento ():
     nombresLabel.configure(font = ("roboto", 12, "bold"), fg="WHITE", background="#209cb4")
     nombresLabel.place (x = 190, y = 90)
 
-    nombresEntry = tk.Entry(frameInicio, relief="flat", textvariable= nombre_acta)
+    nombresEntry = tk.Entry(frameInicio, relief="flat")
     nombresEntry.place (x = 275, y = 93)
     
     apellidosLabel = tk.Label (frameInicio, text = "Apellidos: ")
@@ -47,7 +55,7 @@ def actaNacimiento ():
     cedulaPadreLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     cedulaPadreLabel.place (x = 555, y = 90)
 
-    cedulaPadreEntry = tk.Entry(frameInicio, relief="flat", textvariable=cedula_acta)
+    cedulaPadreEntry = tk.Entry(frameInicio, relief="flat")
     cedulaPadreEntry.place (x = 670, y = 93)
 
     # #MADRE
@@ -65,7 +73,7 @@ def actaNacimiento ():
     sexoBebeLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     sexoBebeLabel.place (x = 200, y = 166)
     
-    sexoBebeOpcion = ttk.Combobox (values = ["Maculino", "Femenino"])
+    sexoBebeOpcion = ttk.Combobox (values = ["Masculino", "Femenino"])
     sexoBebeOpcion.place(x = 400,y = 173)
 
     # ---- UBICACION -----
@@ -84,8 +92,9 @@ def actaNacimiento ():
     prefecturaOpcion = ttk.Combobox (values = ["Manzanillo", "Olegario Villalobos", "Delicias", "El Bajo"])
     prefecturaOpcion.place(x = 620, y = 225)
 
-    CargarB = tk.Button(frameInicio, text="Pulsa", command=lambda:print(nombre_acta.get(),cedula_acta.get()))
-    CargarB.place(x=600, y=600)
+    boton = tk.Button(frameInicio, text="pulsar", command = lambda: funciones.imprimir_datos(nombresEntry.get(),apellidosEntry.get(),cedulaPadreEntry.get(),cedulaMadreEntry.get(),sexoBebeOpcion.get(),ubicacionEntry.get()))
+    boton.place(x=300,y=550)
+
 
 def cedula ():
 
@@ -131,7 +140,7 @@ def cedula ():
     nacionalidadlLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     nacionalidadlLabel.place (x = 595, y = 130)
     
-    nacionalidadOpcion = ttk.Combobox (values = ["Venezolano/a", "Extrengero/a"])
+    nacionalidadOpcion = ttk.Combobox (values = ["Venezolano/a", "Extranjero/a"])
     nacionalidadOpcion.place(x = 850, y = 135)
 
     # ----- GENEROS (2) -----
@@ -477,7 +486,17 @@ def actaDefuncion ():
     
 # Configuracion Ventana
 
-root.geometry("1205x666")
+# TAMAÑO Y POSICIONAMIENTO DE LA VENTANA
+
+ancho = 1205
+alto = 666
+
+posicionX = round(ancho/2-ancho/2)
+posicionY = round(alto/2-alto/2)
+
+r = str(posicionX)+"+"+str(posicionY)
+
+root.geometry("1205x666"+"+"+r)
 root.title("Registro Civil")
 root.iconbitmap("Images/ImagenesFunciones/Pen.ico")
 root.config(background="WHITE")
