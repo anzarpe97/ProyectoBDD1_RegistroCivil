@@ -1,5 +1,4 @@
 
-
 def imprimir_datos (nombre,apellido,CPadre,CMadre,sexo,ubicacion):
     
     # Acomodar Nombres
@@ -15,4 +14,5 @@ def imprimir_datos (nombre,apellido,CPadre,CMadre,sexo,ubicacion):
     print (e + " " + str(c) + " " + str(d))
 
     print(sexo)
+    print("Donde Nacio el bebe: " + ubicacion)
 
