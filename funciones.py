@@ -1,18 +1,33 @@
+from tkinter import messagebox as MessageBox
+from tkinter import *
 
-def imprimir_datos (nombre,apellido,CPadre,CMadre,sexo,ubicacion):
+
+def guardarDatosAcNacimiento (nombre, apellido, nombrePadre, CPadre, nombreMadre, CMadre, sexo, ubicacion, prefectura):
     
-    # Acomodar Nombres
+    if nombre == "" or  apellido == "" or sexo == "" or ubicacion == "" or prefectura == "": 
+        
+        MessageBox.showwarning("Datos Incompletos", "Rellena los campos: \n\n- Nombres\n- Apellidos\n- Sexo\n- Lugar De Nacimiento\n- Prefectura\n\nY vuelve a intentarlo.")
+     
+    else:
 
-    nombreF = nombre.title()
-    apellidoF = apellido.title()
+        # Acomodar Nombres
+        nombreF = nombre.title()
+        apellidoF = apellido.title()
+        nombrePadreF =nombrePadre.title()
+        nombreMadreF = nombreMadre.title()
 
-    c = CPadre
-    d = CMadre
-
-    e = nombreF + " " + apellidoF
-
-    print (e + " " + str(c) + " " + str(d))
-
-    print(sexo)
-    print("Donde Nacio el bebe: " + ubicacion)
+        #Diccionario Acta Nacimiento
+        ActaNacimientoDic = {"nombreBebe" : nombreF,
+                "apellidoBebe": apellidoF,
+                "sexoBebe": sexo,
+                "ubicacionParto" : ubicacion,
+                "prefectura" : prefectura,
+                "nombrePadre" : nombrePadreF,
+                "cedulaPadre" : CPadre,
+                "nombreMadre" : nombreMadreF,
+                "cedulaMadre" : CMadre,
+                }
+        
+        print(ActaNacimientoDic)
+    
 

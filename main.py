@@ -1,5 +1,5 @@
-
 import funciones
+
 import tkinter as tk 
 from tkinter import ttk
 from tkinter import *
@@ -12,7 +12,7 @@ def actaNacimiento ():
     
     # ----- Variables -------------
 
-    #nombre_bebe_acta = StringVar()
+    nombre_bebe_acta = StringVar()
     #apellidos_bebe_acta = StringVar()
     #sexo_bebe = StringVar()
     #lugar_nacimiento = StringVar()
@@ -30,23 +30,23 @@ def actaNacimiento ():
     
     inicioLabel = tk.Label(frameInicio, text = "Formulario Acta De Nacimiento")
     inicioLabel.configure(font = ("roboto", 14, "bold"), fg="#209cb4", background="WHITE")
-    inicioLabel.place (x = 390, y = 10)
+    inicioLabel.place (x = 420, y = 10)
 
     # ---- NOMBRES Y APELLIDOS ----
 
     nombresLabel = tk.Label (frameInicio, text = "Nombres: ")
     nombresLabel.configure(font = ("roboto", 12, "bold"), fg="WHITE", background="#209cb4")
-    nombresLabel.place (x = 190, y = 90)
+    nombresLabel.place (x = 60, y = 90)
 
-    nombresEntry = tk.Entry(frameInicio, relief="flat")
-    nombresEntry.place (x = 275, y = 93)
+    nombresEntry = tk.Entry(frameInicio, relief="flat",textvariable=nombre_bebe_acta)
+    nombresEntry.place (x = 142, y = 93)
     
     apellidosLabel = tk.Label (frameInicio, text = "Apellidos: ")
     apellidosLabel.configure(font = ("roboto", 12, "bold"), fg="WHITE", background="#209cb4")
-    apellidosLabel.place (x = 190, y = 130)
+    apellidosLabel.place (x = 60, y = 130)
 
     apellidosEntry= tk.Entry(frameInicio, relief="flat")
-    apellidosEntry.place (x = 275, y = 133)
+    apellidosEntry.place (x = 142, y = 133)
 
     # ---- Cedulas Padres ----
 
@@ -54,61 +54,62 @@ def actaNacimiento ():
 
     cedulaPadreLabel = tk.Label (frameInicio, text = "Cedula Padre: ")
     cedulaPadreLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    cedulaPadreLabel.place (x = 555, y = 90)
+    cedulaPadreLabel.place (x = 380, y = 90)
 
     cedulaPadreEntry = tk.Entry(frameInicio, relief="flat")
-    cedulaPadreEntry.place (x = 670, y = 93)
+    cedulaPadreEntry.place (x = 500, y = 93)
 
     nombrePadreLabel = tk.Label (frameInicio, text = "Nombre Padre: ")
     nombrePadreLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    nombrePadreLabel.place (x = 547, y = 130)
+    nombrePadreLabel.place (x = 373, y = 130)
 
     nombrePadreEntry = tk.Entry(frameInicio, relief="flat")
-    nombrePadreEntry.place (x = 670, y = 133)
+    nombrePadreEntry.place (x = 500, y = 133)
 
     # #MADRE
 
     cedulaMadreLabel = tk.Label (frameInicio, text = "Cedula Madre: ")
     cedulaMadreLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    cedulaMadreLabel.place (x = 550, y = 170)
+    cedulaMadreLabel.place (x = 700, y = 90)
 
     cedulaMadreEntry = tk.Entry(frameInicio, relief="flat")
-    cedulaMadreEntry.place (x = 670, y = 173)
+    cedulaMadreEntry.place (x = 820, y = 93)
 
     nombreMadreLabel = tk.Label (frameInicio, text = "Nombre Madre: ")
     nombreMadreLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    nombreMadreLabel.place (x = 547, y = 210)
+    nombreMadreLabel.place (x = 695, y = 130)
 
     nombreMadreEntry = tk.Entry(frameInicio, relief="flat")
-    nombreMadreEntry.place (x = 670, y = 213)
+    nombreMadreEntry.place (x = 820, y = 133)
 
     # ---- Sexo Bebe (2) -----
 
     sexoBebeLabel = tk.Label (frameInicio, text = "Sexo: ")
-    sexoBebeLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    sexoBebeLabel.place (x = 100, y = 210)#x = 100, y = 210
+    sexoBebeLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    sexoBebeLabel.place (x = 92, y = 170)#x = 100, y = 210
     
-    sexoBebeOpcion = ttk.Combobox (values = ["Masculino", "Femenino"])
-    sexoBebeOpcion.place(x = 275,y = 213)#x = 275, y = 213
+    sexoBebeOpcion = ttk.Combobox (frameInicio,values = ["Masculino", "Femenino"],width=17)
+    sexoBebeOpcion.place (x = 143,y = 173)#x = 275, y = 213
+
+    prefecturaLabel = tk.Label (frameInicio, text = "Prefectura: ")
+    prefecturaLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    prefecturaLabel.place (x = 405, y = 170)
+    
+    prefecturaOpcion = ttk.Combobox (frameInicio,values = ["Manzanillo", "Olegario Villalobos", "Delicias", "El Bajo"],width=17)
+    prefecturaOpcion.place (x = 499, y = 173)
 
     # ---- UBICACION -----
 
     ubicacionLabel = tk.Label (frameInicio, text = "Lugar De Nacimiento: ")
-    ubicacionLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    ubicacionLabel.place (x =101, y = 166)
+    ubicacionLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
+    ubicacionLabel.place (x = 675, y = 170)
 
-    ubicacionEntry = tk.Entry(frameInicio, relief="flat")
-    ubicacionEntry.place (x = 276, y = 169)
+    ubicacionEntry = tk.Entry (frameInicio, relief="flat")
+    ubicacionEntry.place (x = 820, y = 171)
 
-    prefecturaLabel = tk.Label (frameInicio, text = "Prefecturas: ")
-    prefecturaLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    prefecturaLabel.place (x = 370, y = 519)
-    
-    prefecturaOpcion = ttk.Combobox (values = ["Manzanillo", "Olegario Villalobos", "Delicias", "El Bajo"])
-    prefecturaOpcion.place(x = 620, y = 525)
-
-    boton = tk.Button(frameInicio, text="pulsar", command = lambda: funciones.imprimir_datos(nombresEntry.get(),apellidosEntry.get(),cedulaPadreEntry.get(),cedulaMadreEntry.get(),sexoBebeOpcion.get(),ubicacionEntry.get()))
-    boton.place(x=300,y=550)
+    botonAgregar = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat",command=lambda: funciones.guardarDatosAcNacimiento(nombresEntry.get(),apellidosEntry.get(),nombrePadreEntry.get(),cedulaPadreEntry.get(),nombreMadreEntry.get(),cedulaMadreEntry.get(),sexoBebeOpcion.get(),ubicacionEntry.get(),prefecturaOpcion.get()))
+    botonAgregar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonAgregar.place (x = round(1057/2), y = 230)
 
 def cedula ():
 
@@ -545,7 +546,7 @@ defuncionImage = defuncionPhoto.subsample(1, 1)
 
 buttonActaNacimiento = tk.Button (frameMenu, text = "\nActa\nde\nNacimiento", image = nacimientoImage, compound = tk.TOP, background= "#209cb4", relief= tk.FLAT,command=actaNacimiento)
 buttonActaNacimiento.config(height = 125, width = 130, font=("roboto", 10, "normal",),fg="WHITE",activebackground="#71acb7",activeforeground="WHITE")
-buttonActaNacimiento.grid(row=0,column =0)
+buttonActaNacimiento.grid(row = 0,column = 0)
 
 buttonCedula = tk.Button (frameMenu, text = "\nCedula", image = cedulaImage, compound = tk.TOP, background= "#209cb4", relief= tk.FLAT,command=cedula)
 buttonCedula.config (height = 125, width = 130, font=("roboto", 10, "normal"), fg="WHITE",activebackground="#71acb7",activeforeground="WHITE")
