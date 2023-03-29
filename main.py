@@ -9,17 +9,6 @@ root = tk.Tk()
 # ---- Funciones ----
 
 def actaNacimiento ():
-    
-    # ----- Variables -------------
-
-    nombre_bebe_acta = StringVar()
-    #apellidos_bebe_acta = StringVar()
-    #sexo_bebe = StringVar()
-    #lugar_nacimiento = StringVar()
-    #cedula_padre_acta = IntVar()
-    #cedula_madre_acta = IntVar()
-    #prefectura = StringVar()
-    
 
     #--------- NO TOCAR ------------------------------------------------------------------
     
@@ -38,7 +27,7 @@ def actaNacimiento ():
     nombresLabel.configure(font = ("roboto", 12, "bold"), fg="WHITE", background="#209cb4")
     nombresLabel.place (x = 60, y = 90)
 
-    nombresEntry = tk.Entry(frameInicio, relief="flat",textvariable=nombre_bebe_acta)
+    nombresEntry = tk.Entry(frameInicio, relief="flat")
     nombresEntry.place (x = 142, y = 93)
     
     apellidosLabel = tk.Label (frameInicio, text = "Apellidos: ")
@@ -146,8 +135,8 @@ def cedula ():
     EdoCivilLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     EdoCivilLabel.place (x = 600, y = 90)
     
-    EdoCivilOpcion = ttk.Combobox (values = ["Soltero/a", "Casado/a", "Viudo/a"])
-    EdoCivilOpcion.place(x = 850, y = 97)
+    EdoCivilOpcion = ttk.Combobox (frameInicio,values = ["Soltero/a", "Casado/a", "Divorciado","Viudo/a"])
+    EdoCivilOpcion.place(x = 705, y = 93)
 
     # ----- NACIONALIDAD ------
 
@@ -155,8 +144,8 @@ def cedula ():
     nacionalidadlLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     nacionalidadlLabel.place (x = 595, y = 130)
     
-    nacionalidadOpcion = ttk.Combobox (values = ["Venezolano/a", "Extranjero/a"])
-    nacionalidadOpcion.place(x = 850, y = 135)
+    nacionalidadOpcion = ttk.Combobox (frameInicio,values = ["Venezolano/a", "Extranjero/a"])
+    nacionalidadOpcion.place(x = 705, y = 133)
     #putita
     # ----- GENEROS (2) -----
 
@@ -164,8 +153,8 @@ def cedula ():
     generoLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     generoLabel.place (x = 637, y = 170)
     
-    generoOpcion = ttk.Combobox (values = ["Hombre", "Mujer", "No-Binario"])
-    generoOpcion.place(x = 850, y = 177)
+    generoOpcion = ttk.Combobox (frameInicio,values = ["Hombre", "Mujer", "No-Binario"])
+    generoOpcion.place(x = 705, y = 173)
 
     # ----- FECHAS DE EMISION Y VENCIMIENTO -------
 
@@ -241,7 +230,7 @@ def actaMatrimonio ():
 
     OSContrayente = tk.Label (frameInicio, text = "Ocupacion S Contrayente: ")
     OSContrayente.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
-    OSContrayente.place (x = 378, y = 130)
+    OSContrayente.place (x = 378, y = 133)
 
     OSContrayenteE = tk.Entry(frameInicio, relief = "flat")
     OSContrayenteE.place (x = 550, y = 133)
@@ -297,21 +286,54 @@ def actaMatrimonio ():
 
     parroquiaLabel = tk.Label (frameInicio, text = "Parroquia: ")
     parroquiaLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
-    parroquiaLabel.place (x = 260, y = 260)
+    parroquiaLabel.place (x = 477, y = 210)
 
     parroquiaE = tk.Entry(frameInicio, relief = "flat")
-    parroquiaE.place (x = 350, y = 264)
+    parroquiaE.place (x = 550, y = 213)
 
     municicpioLabel = tk.Label (frameInicio, text = "Municipio: ")
     municicpioLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
-    #municicpioLabel.place (x = 520, y = 260)
+    municicpioLabel.place (x = 791, y = 210)
 
     municicpioE = tk.Entry(frameInicio, relief = "flat")
-    #municicpioE.place (x = 610, y = 264)
+    municicpioE.place (x = 865, y = 213)
 
     hijosParejaLabel = tk.Label(frameInicio, text = "Hijos: ")
     hijosParejaLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
-    #hijosParejaLabel.place(x = 350, y = 306)
+    hijosParejaLabel.place(x = 158, y = 250)
+
+    hijosParejaE = tk.Entry(frameInicio, relief = "flat")
+    hijosParejaE.place (x = 200, y = 253)
+
+    PContrayente = tk.Label (frameInicio, text = "Cedula P Contrayente: ")
+    PContrayente.configure(font = ("roboto", 10, "bold"), fg = "WHITE", background="#209cb4")
+    PContrayente.place (x = 50, y = 90)
+    
+    PContrayenteE = tk.Entry(frameInicio, relief="flat")
+    PContrayenteE.place (x =200, y = 93)
+    
+    # --------------------------------------------------------------------------------------------------------------------
+
+    AbogPContrayenteLabel = tk.Label (frameInicio, text = "Cedula Abog Contrayentes: ")
+    AbogPContrayenteLabel.configure(font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
+    AbogPContrayenteLabel.place (x = 365, y = 250)
+
+    AbogPContrayenteLabelE = tk.Entry(frameInicio, relief = "flat")
+    AbogPContrayenteLabelE.place (x = 550, y = 252)
+
+    dirAbogPLabel = tk.Label (frameInicio, text = "Dir Abg Contrayentes: ")
+    dirAbogPLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
+    dirAbogPLabel.place (x = 710,y = 250)
+
+    dirAbogPE = tk.Entry(frameInicio, relief = "flat")
+    dirAbogPE.place (x = 865, y = 250)
+
+    dirAbogSLabel = tk.Label (frameInicio, text = "Cedula Abog P Contrayente: ")
+    dirAbogSLabel.configure(font = ("roboto", 10, "bold"), fg = "WHITE", background="#209cb4")
+    #dirAbogSLabel.place (x = 15, y = 290)
+    
+    dirAbogSE = tk.Entry(frameInicio, relief="flat")
+    #dirAbogSE.place (x =200, y = 293)
     
 def actaDivorcio ():
 
@@ -503,8 +525,7 @@ def actaDefuncion ():
     FormatoHLabel = tk.Label(frameInicio, text = "Formato (hh/mm/ss) ")
     FormatoHLabel.configure(font = ("roboto", 8, "bold"), fg ="WHITE", background="#209cb4")
     FormatoHLabel.place (x = 750, y = 193)
-
-#putita    
+  
 # Configuracion Ventana
 
 # TAMAÑO Y POSICIONAMIENTO DE LA VENTANA

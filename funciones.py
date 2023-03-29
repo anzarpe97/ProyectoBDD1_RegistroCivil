@@ -11,12 +11,14 @@ def guardarDatosAcNacimiento (nombre, apellido, nombrePadre, CPadre, nombreMadre
     else:
 
         # Acomodar Nombres
+
         nombreF = nombre.title()
         apellidoF = apellido.title()
         nombrePadreF =nombrePadre.title()
         nombreMadreF = nombreMadre.title()
 
         #Diccionario Acta Nacimiento
+
         ActaNacimientoDic = {"nombreBebe" : nombreF,
                 "apellidoBebe": apellidoF,
                 "sexoBebe": sexo,
@@ -29,5 +31,7 @@ def guardarDatosAcNacimiento (nombre, apellido, nombrePadre, CPadre, nombreMadre
                 }
         
         print(ActaNacimientoDic)
+
+        MessageBox.showinfo(message="Resgistro Creado satisfactoriamente.", title="Registro Civil")
     
 
