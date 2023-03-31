@@ -170,7 +170,7 @@ def cedula ():
     NumCedulsEntry = tk.Entry(frameInicio, relief = "flat")
     NumCedulsEntry.place (x = 220, y = 130)
 
-        # FECHA DE EMISION
+    # FECHA DE EMISION
 
     FEmisionLabel = tk.Label (frameInicio, text = "Fecha Emision: ")
     FEmisionLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
@@ -483,87 +483,111 @@ def actaDivorcio ():
 
 def actaDefuncion ():
 
-    #--------- NO TOCAR -----------------------------------------------------------
+    """
+    
+    `id_acta_defuncion` int(11) NOT NULL,
+  `a_nacimiento_fallecido` int(11) NOT NULL COMMENT 'cedula fallecido',
+  `fallecido_nombres` varchar(50) NOT NULL COMMENT 'nombres del fallecido',
+  `fallecido_apellidos` varchar(50) NOT NULL COMMENT 'apellidos del fallecido',
+  `edad_fallecido` int(11) NOT NULL COMMENT 'edad del fallecido',
+  `sexo_fallecido` varchar(10) NOT NULL COMMENT 'sexo del fallecido',
+  `estado_civil_f` varchar(20) NOT NULL COMMENT 'estado civil del fallecido',
+  `fecha_defuncion` date NOT NULL,
+  `hora_defuncion` time NOT NULL,
+  `lugar_defuncion` varchar(50) NOT NULL,
+  `causa_muerte` varchar(100) NOT NULL,
+  `c_informante` int(11) NOT NULL COMMENT 'cedula del informante',
+  `informante_nombre` varchar(50) NOT NULL,
+  `informante_apellido` varchar(50) NOT NULL,
+  `relacion_informante` varchar(50) NOT NULL,
+  `c_padre` int(11) NOT NULL COMMENT 'cedula del padre',
+  `padre_nombres` varchar(50) NOT NULL COMMENT 'nombres del padre',
+  `padre_apellidos` varchar(50) NOT NULL COMMENT 'apellidos del padre',
+  `c_madre` int(11) NOT NULL COMMENT 'cedula de la madre',
+  `madre_nombres` varchar(50) NOT NULL COMMENT 'nombres de la madre',
+  `madre_apellidos` varchar(50) NOT NULL COMMENT 'apellidos de la madre'
+    
+    """
+
+
+    # NO TOCAR 
     
     frameInicio = tk.Frame(root, background = "#209cb4", height = 656, width = 1057)
     frameInicio.place(x = 143, y = 5)
-    
-    #---------------------------------------------------------------------------
 
     inicioLabel = tk.Label(frameInicio, text = "Formulario Acta De Defuncion")
     inicioLabel.configure(font = ("roboto", 14, "bold"), fg = "#209cb4", background = "WHITE")
     inicioLabel.place (x = 390, y = 10)
 
-    # ------- Cedula Difunto ------------------- 
+    #  ACTA DE NACIMIENTO DEL MUELTO
 
-    difuntoLabel = tk.Label (frameInicio, text = "Cedula Difunto: ")
+    difuntoLabel = tk.Label (frameInicio, text = "Acta Nacimiento Difunto: ")
     difuntoLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    difuntoLabel.place (x = 130, y = 90)
+    difuntoLabel.place (x = 30, y = 90)
 
     difuntoEntry = tk.Entry(frameInicio, relief = "flat")
-    difuntoEntry.place (x = 260, y = 93)
+    difuntoEntry.place (x = 225, y = 94)
 
-    # ----------- Informante --------------------
+    # CAUSA DE MUELTE
+
+    CMuerteLabel = tk.Label (frameInicio, text = "Causa De Muerte: ")
+    CMuerteLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    CMuerteLabel.place (x = 410, y = 90)
+
+    CMuerteEntry = tk.Entry(frameInicio, relief = "flat")
+    CMuerteEntry.place (x = 555, y = 93)
+
+    # LUGAR DE MUELTE
+
+    LMuerteLabel = tk.Label (frameInicio, text = "Lugar De Defuncion: ")
+    LMuerteLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    LMuerteLabel.place (x = 735, y = 90)
+
+    LMuerteEntry = tk.Entry(frameInicio, relief = "flat")
+    LMuerteEntry.place (x = 900, y = 93)
+
+    # INFORMANTE
 
     informanteLabel = tk.Label (frameInicio, text = "Cedula Informante: ")
     informanteLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    informanteLabel.place (x = 595, y = 90)
+    informanteLabel.place (x = 70, y = 130)
 
     informanteEntry = tk.Entry(frameInicio, relief = "flat")
-    informanteEntry.place (x = 750, y = 93)
+    informanteEntry.place (x = 225, y = 133)
 
     # ------------ Relacion Informante -------------
     
     RInformanteLabel = tk.Label (frameInicio, text = "Relacion Informante: ")
     RInformanteLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    RInformanteLabel.place (x = 585, y = 130)
+    #RInformanteLabel.place (x = 585, y = 130)
 
     RInformanteEntry = tk.Entry(frameInicio, relief = "flat")
-    RInformanteEntry.place (x = 750, y = 133)
-
-    # ----------- Causa De Muerte ---------------
-
-    CMuerteLabel = tk.Label (frameInicio, text = "Causa De Muerte: ")
-    CMuerteLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    CMuerteLabel.place (x = 115, y = 130)
-
-    CMuerteEntry = tk.Entry(frameInicio, relief = "flat")
-    CMuerteEntry.place (x = 260, y = 133)
-
-    # ---------- Lugar De muerte ---------------
-
-    LMuerteLabel = tk.Label (frameInicio, text = "Lugar De Defuncion: ")
-    LMuerteLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    LMuerteLabel.place (x = 90, y = 170)
-
-    LMuerteEntry = tk.Entry(frameInicio, relief = "flat")
-    LMuerteEntry.place (x = 260, y = 173)
-
+    #RInformanteEntry.place (x = 750, y = 133)
     # ---------- Fecha de Defuncion -----------
 
     FMuerteLabel = tk.Label (frameInicio, text = "Fecha De Defuncion: ")
     FMuerteLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    FMuerteLabel.place (x = 90, y = 210)#90 220
+    #FMuerteLabel.place (x = 90, y = 210)#90 220
 
     FMuerteEntry = tk.Entry(frameInicio, relief = "flat")
-    FMuerteEntry.place (x = 260, y = 213) #260 220
+    #FMuerteEntry.place (x = 260, y = 213) #260 220
 
     FormatoMuLabel = tk.Label(frameInicio, text = "Formato (aa/mm/dd) ")
     FormatoMuLabel.configure(font = ("roboto", 8, "bold"), fg ="WHITE", background="#209cb4")
-    FormatoMuLabel.place (x = 262, y = 233)
+    #FormatoMuLabel.place (x = 262, y = 233)
 
     # ------------- Hora de Defuncion --------
 
     HMuerteLabel = tk.Label (frameInicio, text = "Hora De Defuncion: ")
     HMuerteLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    HMuerteLabel.place (x = 592, y = 170)#90 220
+    #HMuerteLabel.place (x = 592, y = 170)#90 220
 
     HMuerteEntry = tk.Entry(frameInicio, relief = "flat")
-    HMuerteEntry.place (x = 750, y = 173) #260 220
+    #HMuerteEntry.place (x = 750, y = 173) #260 220
 
     FormatoHLabel = tk.Label(frameInicio, text = "Formato (hh/mm/ss) ")
     FormatoHLabel.configure(font = ("roboto", 8, "bold"), fg ="WHITE", background="#209cb4")
-    FormatoHLabel.place (x = 750, y = 193)
+    #FormatoHLabel.place (x = 750, y = 193)
   
 # Configuracion Ventana
 
