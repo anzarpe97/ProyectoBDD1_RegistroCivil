@@ -484,29 +484,7 @@ def actaDivorcio ():
 def actaDefuncion ():
 
     """
-    
-    `id_acta_defuncion` int(11) NOT NULL,
-  `a_nacimiento_fallecido` int(11) NOT NULL COMMENT 'cedula fallecido',
-  `fallecido_nombres` varchar(50) NOT NULL COMMENT 'nombres del fallecido',
-  `fallecido_apellidos` varchar(50) NOT NULL COMMENT 'apellidos del fallecido',
-  `edad_fallecido` int(11) NOT NULL COMMENT 'edad del fallecido',
-  `sexo_fallecido` varchar(10) NOT NULL COMMENT 'sexo del fallecido',
   `estado_civil_f` varchar(20) NOT NULL COMMENT 'estado civil del fallecido',
-  `fecha_defuncion` date NOT NULL,
-  `hora_defuncion` time NOT NULL,
-  `lugar_defuncion` varchar(50) NOT NULL,
-  `causa_muerte` varchar(100) NOT NULL,
-  `c_informante` int(11) NOT NULL COMMENT 'cedula del informante',
-  `informante_nombre` varchar(50) NOT NULL,
-  `informante_apellido` varchar(50) NOT NULL,
-  `relacion_informante` varchar(50) NOT NULL,
-  `c_padre` int(11) NOT NULL COMMENT 'cedula del padre',
-  `padre_nombres` varchar(50) NOT NULL COMMENT 'nombres del padre',
-  `padre_apellidos` varchar(50) NOT NULL COMMENT 'apellidos del padre',
-  `c_madre` int(11) NOT NULL COMMENT 'cedula de la madre',
-  `madre_nombres` varchar(50) NOT NULL COMMENT 'nombres de la madre',
-  `madre_apellidos` varchar(50) NOT NULL COMMENT 'apellidos de la madre'
-    
     """
 
 
@@ -550,44 +528,45 @@ def actaDefuncion ():
 
     informanteLabel = tk.Label (frameInicio, text = "Cedula Informante: ")
     informanteLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    informanteLabel.place (x = 70, y = 130)
+    informanteLabel.place (x = 73, y = 130)
 
     informanteEntry = tk.Entry(frameInicio, relief = "flat")
     informanteEntry.place (x = 225, y = 133)
 
-    # ------------ Relacion Informante -------------
+    # RELACION INFORMANTE
     
     RInformanteLabel = tk.Label (frameInicio, text = "Relacion Informante: ")
-    RInformanteLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    #RInformanteLabel.place (x = 585, y = 130)
+    RInformanteLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
+    RInformanteLabel.place (x = 413, y = 130)
 
     RInformanteEntry = tk.Entry(frameInicio, relief = "flat")
-    #RInformanteEntry.place (x = 750, y = 133)
-    # ---------- Fecha de Defuncion -----------
+    RInformanteEntry.place (x = 555, y = 133)
 
-    FMuerteLabel = tk.Label (frameInicio, text = "Fecha De Defuncion: ")
+    # FECHA DE DEFUNCION
+
+    FMuerteLabel = tk.Label (frameInicio, text = "Fecha Defuncion: ")
     FMuerteLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    #FMuerteLabel.place (x = 90, y = 210)#90 220
+    FMuerteLabel.place (x = 760, y = 130)
 
     FMuerteEntry = tk.Entry(frameInicio, relief = "flat")
-    #FMuerteEntry.place (x = 260, y = 213) #260 220
+    FMuerteEntry.place (x = 900, y = 133)
 
     FormatoMuLabel = tk.Label(frameInicio, text = "Formato (aa/mm/dd) ")
     FormatoMuLabel.configure(font = ("roboto", 8, "bold"), fg ="WHITE", background="#209cb4")
-    #FormatoMuLabel.place (x = 262, y = 233)
+    FormatoMuLabel.place (x = 902, y = 153)
 
-    # ------------- Hora de Defuncion --------
+    # HORA DE DEFUNCION
 
     HMuerteLabel = tk.Label (frameInicio, text = "Hora De Defuncion: ")
     HMuerteLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    #HMuerteLabel.place (x = 592, y = 170)#90 220
+    HMuerteLabel.place (x = 743, y = 190)
 
     HMuerteEntry = tk.Entry(frameInicio, relief = "flat")
-    #HMuerteEntry.place (x = 750, y = 173) #260 220
+    HMuerteEntry.place (x = 900, y = 193)
 
     FormatoHLabel = tk.Label(frameInicio, text = "Formato (hh/mm/ss) ")
     FormatoHLabel.configure(font = ("roboto", 8, "bold"), fg ="WHITE", background="#209cb4")
-    #FormatoHLabel.place (x = 750, y = 193)
+    FormatoHLabel.place (x = 902, y = 213)
   
 # Configuracion Ventana
 
@@ -596,10 +575,10 @@ def actaDefuncion ():
 ancho = 1205
 alto = 666
 
-posicionX = round(ancho/2-ancho/2)
-posicionY = round(alto/2-alto/2)
+posicionX = round(ancho/2 - ancho/2)
+posicionY = round(alto/2 - alto/2)
 
-r = str(posicionX)+"+"+str(posicionY)
+r = str (posicionX) + "+" + str (posicionY)
 
 root.geometry("1205x666"+"+"+r)
 root.title("Registro Civil")
