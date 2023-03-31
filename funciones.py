@@ -1,6 +1,8 @@
 from tkinter import messagebox as MessageBox
 from tkinter import *
+from DBC import DAO
 
+Consul = DAO()    
 
 def guardarDatosAcNacimiento (nombre, apellido, nombrePadre, CPadre, nombreMadre, CMadre, sexo, ubicacion, prefectura):
     
