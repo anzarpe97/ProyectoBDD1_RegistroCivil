@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-03-2023 a las 20:48:50
+-- Tiempo de generación: 30-03-2023 a las 18:17:03
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -33,7 +33,7 @@ CREATE TABLE `abogados` (
   `tlf_abogado` varchar(30) NOT NULL,
   `nombres_abogado` varchar(50) NOT NULL,
   `apellido_abogado` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -148,6 +148,7 @@ CREATE TABLE `acta_matrimonio` (
 --
 
 CREATE TABLE `acta_nacimiento` (
+  
   `nro_acta` int(11) NOT NULL,
   `nombres` varchar(50) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
@@ -164,7 +165,8 @@ CREATE TABLE `acta_nacimiento` (
   `nombre_municipio` varchar(50) NOT NULL,
   `nombre_parroquia` varchar(50) NOT NULL,
   `direccio_prefectura` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Acta de nacimiento';
+
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'Acta de nacimiento';
 
 -- --------------------------------------------------------
 
@@ -198,6 +200,16 @@ CREATE TABLE `prefecturas` (
   `parroquia` varchar(50) NOT NULL,
   `direccion` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `prefecturas`
+--
+
+INSERT INTO `prefecturas` (`id_prefecturas`, `nombre_registro`, `estado`, `municipio`, `parroquia`, `direccion`) VALUES
+(1, 'Registro Civil Parroquial Coquivacoa ', 'Zulia', 'Maracaibo', 'Coquivacoa', 'Av. 6 entre calles 54B y 55 urbanización zapara, entre los edificios zapara y el CDI'),
+(2, 'Registro Civil Parroquial Chiquinquirá', 'Zulia', 'Maracaibo', 'Chiquinquirá', 'Calle 95 del saladillo detrás de panorama.'),
+(3, 'Registro Civil Parroquial Cacique Mara', 'Zulia', 'Maracaibo', 'Cacique Mara', 'Av. 41 entre calles 92A y 93, sector cañada honda, diagonal al colegio consuelo nava'),
+(4, 'Registro Civil Olegario Villalobos', 'Zulia', 'Maracaibo', 'Olegario Villalobos', 'Plaza de la República, av. 78 Dr. Portillo, calle 77 (detrás de la concha acústica)');
 
 --
 -- Índices para tablas volcadas
@@ -295,7 +307,7 @@ ALTER TABLE `acta_nacimiento`
 -- AUTO_INCREMENT de la tabla `prefecturas`
 --
 ALTER TABLE `prefecturas`
-  MODIFY `id_prefecturas` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key';
+  MODIFY `id_prefecturas` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
