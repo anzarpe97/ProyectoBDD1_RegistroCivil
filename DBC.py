@@ -21,19 +21,8 @@ class DAO ():
 
             print("Error al conectar la base de datos: {0}".format(ex))
 
-    def listaTablas (self):
+    def listaTablas (self,datos):
 
-        if self.connection.is_connected():
-        
-            try:
+        self.datos = datos
 
-                cursor = self.connection.cursor()
-                cursor.execute("SELECT * FROM acta_nacimiento ORDER BY nombres ASC")
-
-                result = cursor.fetchall()
-
-                return result
-
-            except Error as ex:
-
-                print("Error al conectar la base de datos: {0}".format(ex))
+        print(datos)

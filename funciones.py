@@ -2,38 +2,47 @@ from tkinter import messagebox as MessageBox
 from tkinter import *
 from DBC import DAO
 
-Consul = DAO()    
+consul = DAO()    
 
-def guardarDatosAcNacimiento (nombre, apellido, nombrePadre, CPadre, nombreMadre, CMadre, sexo, ubicacion, prefectura):
+def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre, lugarNacimiento):
     
-    if nombre == "" or  apellido == "" or sexo == "" or ubicacion == "" or prefectura == "": 
+    if nombre == "" or  apellido == "" or sexo == "" or lugarNacimiento == "" or FechaNacimiento == "" or horaNacimiento == "": 
         
         MessageBox.showwarning("Datos Incompletos", "Rellena los campos: \n\n- Nombres\n- Apellidos\n- Sexo\n- Lugar De Nacimiento\n- Prefectura\n\nY vuelve a intentarlo.")
      
     else:
 
+        flag = True
         # Acomodar Nombres
 
-        nombreF = nombre.title()
-        apellidoF = apellido.title()
-        nombrePadreF =nombrePadre.title()
-        nombreMadreF = nombreMadre.title()
+        nombre = nombre.title()
+        apellido = apellido.title()
 
-        #Diccionario Acta Nacimiento
+        nombrePadre = nombrePadre.title()
+        apellidoPadre = apellidoPadre.title() 
 
-        ActaNacimientoDic = {"nombreBebe" : nombreF,
-                "apellidoBebe": apellidoF,
-                "sexoBebe": sexo,
-                "ubicacionParto" : ubicacion,
-                "prefectura" : prefectura,
-                "nombrePadre" : nombrePadreF,
-                "cedulaPadre" : CPadre,
-                "nombreMadre" : nombreMadreF,
-                "cedulaMadre" : CMadre,
-                }
-        
-        print(ActaNacimientoDic)
+        nombreMadre = nombreMadre.title()
+        apellidoMadre = apellidoMadre.title()
 
-        MessageBox.showinfo(message="Resgistro Creado satisfactoriamente.", title="Registro Civil")
+        lugarNacimiento = lugarNacimiento.title()
+        try:
+
+            cedulaPadre = int(cedulaPadre)
+            cedulaMadre = int(cedulaMadre)
+            flag= True
+
+        except ValueError:
+             
+             MessageBox.showwarning("Datos Incompletos","Debes ingresar un valor numerico en los campos: \n- Cedula Padre\n- Cedula Madre\n\n- Intentelo Nuevamente")
+             flag =False
+
+        # Diccionario Acta Nacimiento
+
+        if flag == True:
+
+            datosActaNacimiento = [nombre, apellido, FechaNacimiento, horaNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre, lugarNacimiento]
+            consul.listaTablas(datosActaNacimiento)
+
+            MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
     
 

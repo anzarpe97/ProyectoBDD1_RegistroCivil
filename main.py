@@ -135,9 +135,9 @@ def actaNacimiento ():
     FormatoHNLabel.configure(font = ("roboto", 8, "bold"), fg ="WHITE", background="#209cb4")
     FormatoHNLabel.place (x = 504, y = 233)
 
-    botonAgregar = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat",command=lambda: funciones.guardarDatosAcNacimiento(nombresEntry.get(),apellidosEntry.get(),nombrePadreEntry.get(),cedulaPadreEntry.get(),nombreMadreEntry.get(),cedulaMadreEntry.get(),sexoBebeOpcion.get(),ubicacionEntry.get(),prefecturaOpcion.get()))
+    botonAgregar = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat",command=lambda: funciones.guardarDatosAcNacimiento(nombresEntry.get(),apellidosEntry.get(),FechaNacimientoEntry.get(),horaNacimientoEntry.get(),sexoBebeOpcion.get(),cedulaPadreEntry.get(), nombrePadreEntry.get(),apellidoPadreEntry.get(),cedulaMadreEntry.get(),nombreMadreEntry.get(),apellidoMadreEntry.get(),ubicacionEntry.get()))
     botonAgregar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    #botonAgregar.place (x = round(1057/2), y = 230)   
+    botonAgregar.place (x = round(1057/2), y = 300)   
 
 def cedula ():
 
