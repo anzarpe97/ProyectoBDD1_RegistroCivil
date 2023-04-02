@@ -22,7 +22,5 @@ class DAO ():
             print("Error al conectar la base de datos: {0}".format(ex))
 
     def listaTablas (self,datos):
-
-        self.datos = datos
-
         print(datos)
+       

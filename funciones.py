@@ -8,7 +8,7 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
     
     if nombre == "" or  apellido == "" or sexo == "" or lugarNacimiento == "" or FechaNacimiento == "" or horaNacimiento == "": 
         
-        MessageBox.showwarning("Datos Incompletos", "Rellena los campos: \n\n- Nombres\n- Apellidos\n- Sexo\n- Lugar De Nacimiento\n- Prefectura\n\nY vuelve a intentarlo.")
+        MessageBox.showwarning("Datos Incompletos", "Rellena los campos: \n\n- Nombres\n- Apellidos\n- Sexo\n- Lugar De Nacimiento\n- Hora De nacimiento\n- Fecha de Nacimiento\n\nY vuelve a intentarlo.")
      
     else:
 
@@ -25,6 +25,7 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
         apellidoMadre = apellidoMadre.title()
 
         lugarNacimiento = lugarNacimiento.title()
+        
         try:
 
             cedulaPadre = int(cedulaPadre)
@@ -38,11 +39,14 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
 
         # Diccionario Acta Nacimiento
 
-        if flag == True:
+        if flag == True :
 
             datosActaNacimiento = [nombre, apellido, FechaNacimiento, horaNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre, lugarNacimiento]
             consul.listaTablas(datosActaNacimiento)
 
             MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
     
-
+def guardarCedulaIdentidad (numCedula,numActaNacimiento,estadoCivil,sexo,fechaEmision,fechaVencimiento,nacionlidad):
+    
+    pass
+    
