@@ -9,6 +9,28 @@ root = tk.Tk()
 # FUNCIONES
 
 def actaNacimiento ():
+    """
+    
+    `nro_acta` int(11) NOT NULL,                    # AUTOINCREMENTABLE
+    `nombres` varchar(50) NOT NULL,                 # LISTO
+    `apellidos` varchar(50) NOT NULL,               # LISTO
+    `fecha_nacimiento` date NOT NULL,               # LISTO
+    `hora_nacimiento` time NOT NULL,                # LISTO
+    `sexo` varchar(10) NOT NULL,                    # LISTO
+    `cedula_padre` int(11) NOT NULL,                # LISTO
+    `nombre_padre` varchar(50) NOT NULL,            # LISTO
+    `apellido_padre` varchar(50) NOT NULL,          # LISTO
+    `cedula_madre` int(11) NOT NULL,                # LISTO
+    `nombre_madre` varchar(50) NOT NULL,            # LISTO 
+    `apellido_madre` varchar(50) NOT NULL,          # LISTO
+    `id_prefectura` int(11) NOT NULL,               # LISTO
+    `nombre_registro_civil` varchar(100) NOT NULL,  # LLAVE FORANEA
+    `dir_registro_nmbr` varchar(50) NOT NULL,       # LLAVE FORANEA
+    `dir_registro_aplld` varchar(50) NOT NULL       # LLAVE FORANEA
+  
+    """
+
+    nombrepadre = tk.StringVar()
 
     # NO TOCAR
     
@@ -61,7 +83,7 @@ def actaNacimiento ():
     nombrePadreLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     nombrePadreLabel.place (x = 368, y = 130)
 
-    nombrePadreEntry = tk.Entry(frameInicio, relief="flat")
+    nombrePadreEntry = tk.Entry(frameInicio, relief="flat", textvariable = nombrepadre)
     nombrePadreEntry.place (x = 500, y = 133)
 
     # APELLIDO PADRE
@@ -135,11 +157,44 @@ def actaNacimiento ():
     FormatoHNLabel.configure(font = ("roboto", 8, "bold"), fg ="WHITE", background="#209cb4")
     FormatoHNLabel.place (x = 504, y = 233)
 
-    botonAgregar = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat",command=lambda: funciones.guardarDatosAcNacimiento(nombresEntry.get(),apellidosEntry.get(),FechaNacimientoEntry.get(),horaNacimientoEntry.get(),sexoBebeOpcion.get(),cedulaPadreEntry.get(), nombrePadreEntry.get(),apellidoPadreEntry.get(),cedulaMadreEntry.get(),nombreMadreEntry.get(),apellidoMadreEntry.get(),ubicacionEntry.get()))
+    # PREFECTURAS 
+    
+    prefecturaLabel = tk.Label (frameInicio, text = "Registro Civil: ")
+    prefecturaLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    prefecturaLabel.place (x = 25, y = 260)#x = 100, y = 240
+    
+    prefecturaOpcion = ttk.Combobox (frameInicio,values = ["Coquivacoa", "Chiquinquira", "Cacique Mara", "Olegarios Villalobos"],width=17)
+    prefecturaOpcion.place (x = 141,y = 263)#x = 275, y = 213
+
+    # BOTON AGREGAR 
+    
+    botonAgregar = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat",command=lambda: funciones.guardarDatosAcNacimiento(nombresEntry.get(),apellidosEntry.get(),FechaNacimientoEntry.get(),horaNacimientoEntry.get(),sexoBebeOpcion.get(),cedulaPadreEntry.get(), nombrePadreEntry.get(),apellidoPadreEntry.get(),cedulaMadreEntry.get(),nombreMadreEntry.get(),apellidoMadreEntry.get(),ubicacionEntry.get(),prefecturaOpcion.get()))
     botonAgregar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
     botonAgregar.place (x = round(1057/2), y = 300)   
 
+    MostrarActa = ttk.Treeview(frameInicio)
+
+    MostrarActa.insert("", END,text="Nombres")   
+
+
+    MostrarActa.place(x=400,y=400)
+    
+
 def cedula ():
+
+    """
+        `n_cedula` int(11) NOT NULL COMMENT,       # LISTO
+        `acta_nacimiento` int(11) NOT NULL,        # LISTO
+        `nombres` varchar(50) NOT NULL,            # LLAVE FORANEA 
+        `apellidos` varchar(50) NOT NULL,          # LLAVE FORANEA
+        `estado_civil` varchar(20) NOT NULL,       # LISTO
+        `sexo` varchar(10) NOT NULL,               # LISTO
+        `fecha_emision` date NOT NULL,             # LISTO
+        `fecha_vencimiento` date NOT NULL,         # LISTO
+        `nacionalidad` varchar(50) NOT NULL        # LISTO
+    
+    """
+
 
     # NO TOCAR
 
@@ -222,12 +277,34 @@ def cedula ():
     
     generoOpcion = ttk.Combobox (frameInicio,values = ["Hombre", "Mujer", "No-Binario"])
     generoOpcion.place(x = 830, y = 173)
-    
-    #botonAgregarCedula = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat",command=lambda: funciones.guardarDatosAcNacimiento()))
-    #botonAgregarCedula.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    #botonAgregarCedula.place (x = round(1057/2), y = 300)
+
 
 def actaMatrimonio ():
+
+    """
+    `nro_acta`                     # AUTO
+    `fecha_acta`                   # LISTO
+     `id_contrayente1`             # LISTO 
+    `nmbr_contrayente1`            # LLAVE FORANEA
+    `aplldo_contrayente1`          # LLAVE FORANEA
+    `id_contrayente2`              # LISTO
+    `nmbr_contrayente2`            # LLAVE FORANEA
+    `aplldo_contrayente2`          # LLAVE FORANEA
+    `id_registrador_civil`         # LISTO
+    `nmbr_registrador`             # LLAVE FORANEA
+    `aplldo_registrador`           # LLAVE FORANEA
+    `id_testigo1`                  # LISTO
+    `nmbr_testigo1`                # LLAVE FORANEA
+    `apllido_testigo1`             # LLAVE FORANEA
+    `id_testigo2`                  # LISTO
+    `nmbr_testigo2`                # # LLAVE FORANEA
+    `apllido_testigo2`             # LLAVE FORANEA
+    `id_prefectura`                # LISTO
+    `nombre_registro_civil`        # LLAVE FORANEA
+    `dir_registro_nmbr`            # LLAVE FORANEA
+    `dir_registro_aplld`           # LLAVE FORANEA
+    
+    """
 
     # NO TOCAR
     
@@ -298,14 +375,32 @@ def actaMatrimonio ():
     direccionSE = tk.Entry(frameInicio, relief = "flat")
     direccionSE.place (x = 900, y = 133)
 
-    # TESTIGO 
+    # TESTIGO 1
     
-    TestigoLabel = tk.Label (frameInicio, text = "Cedula Testigo: ")
+    TestigoLabel = tk.Label (frameInicio, text = "Cedula P Testigo: ")
     TestigoLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
-    TestigoLabel.place (x = 95, y = 170)
+    TestigoLabel.place (x = 82, y = 170)
 
     testigoE = tk.Entry(frameInicio, relief = "flat")
     testigoE.place (x = 200, y = 173)
+    
+    # TESTIGO 2
+    
+    TestigoDosLabel = tk.Label (frameInicio, text = "Cedula S Testigo: ")
+    TestigoDosLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
+    TestigoDosLabel.place (x = 435, y = 170)#x = 425, y = 170
+
+    testigoDosEntry = tk.Entry(frameInicio, relief = "flat")
+    testigoDosEntry.place (x = 555, y = 173)#x = 555, y = 173
+    
+    # REGISTRADOR
+    
+    registradorLabel = tk.Label (frameInicio, text = "Cedula Registrador: ")
+    registradorLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background="#209cb4")
+    registradorLabel.place (x = 768, y = 170)
+    
+    registradorEntry = tk.Entry(frameInicio, relief = "flat")
+    registradorEntry.place (x = 900, y = 173)
     
     # FECHA DEL CASAMIENTO
     
@@ -318,85 +413,47 @@ def actaMatrimonio ():
 
     FormatoFLabel = tk.Label(frameInicio, text = "Formato (aa-mm-dd) ")
     FormatoFLabel.configure(font = ("roboto", 8, "bold"), fg = "WHITE", background = "#209cb4")
-    FormatoFLabel.place(x = 202, y = 233)
+    FormatoFLabel.place(x = 200, y = 233)
     
-    AbogPContrayenteLabel = tk.Label (frameInicio, text = "Cedula Abog Contrayentes: ")
-    AbogPContrayenteLabel.configure(font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
-    #AbogPContrayenteLabel.place (x = 365, y = 250)
-
-    AbogPContrayenteLabelE = tk.Entry(frameInicio, relief = "flat")
-    #AbogPContrayenteLabelE.place (x = 550, y = 252)
-
-
-    prefecturaMLabel = tk.Label (frameInicio, text = "Prefectura: ")
-    prefecturaMLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
-    #prefecturaMLabel.place (x = 788, y = 170)
+    # PREFECTURAS 
     
-    prefecturaME = ttk.Combobox (frameInicio, values = ["Olegario Villalobos", "El Enterrado"],width=17)
-    #prefecturaME.place(x = 865, y = 170)
-
-    # ---- UBICACION PREFECTURA ------
-
-    estadoLabel = tk.Label (frameInicio, text = "Estado: ")
-    estadoLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
-    #estadoLabel.place (x = 147, y = 210)
-
-    estadoE = tk.Entry(frameInicio, relief = "flat")
-    #estadoE.place (x = 200, y = 213)# OPContrayente.place (x = 25, y = 130)
-
-    parroquiaLabel = tk.Label (frameInicio, text = "Parroquia: ")
-    parroquiaLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
-    #parroquiaLabel.place (x = 477, y = 210)
-
-    parroquiaE = tk.Entry(frameInicio, relief = "flat")
-    #parroquiaE.place (x = 550, y = 213)
-
-    municicpioLabel = tk.Label (frameInicio, text = "Municipio: ")
-    municicpioLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
-    #municicpioLabel.place (x = 791, y = 210)
-
-    municicpioE = tk.Entry(frameInicio, relief = "flat")
-    #municicpioE.place (x = 865, y = 213)
-
-    hijosParejaLabel = tk.Label(frameInicio, text = "Hijos: ")
-    hijosParejaLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
-    #hijosParejaLabel.place(x = 158, y = 250)
-
-    hijosParejaE = tk.Entry(frameInicio, relief = "flat")
-    #hijosParejaE.place (x = 200, y = 253)
-
-    PContrayente = tk.Label (frameInicio, text = "Cedula P Contrayente: ")
-    PContrayente.configure(font = ("roboto", 10, "bold"), fg = "WHITE", background="#209cb4")
-    #PContrayente.place (x = 50, y = 90)
+    prefecturasLabel = tk.Label (frameInicio, text = "Registro Civil: ")
+    prefecturasLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
+    prefecturasLabel.place (x = 460, y = 210)
     
-    PContrayenteE = tk.Entry(frameInicio, relief="flat")
-    #PContrayenteE.place (x =200, y = 93)
+    prefecturasOpcion = ttk.Combobox (frameInicio,values = ["Coquivacoa", "Chiquinquira", "Cacique Mara", "Oregarios Villalobos"], width=17)
+    prefecturasOpcion.place (x = 555,y = 210)
     
-    # --------------------------------------------------------------------------------------------------------------------
-
-    AbogPContrayenteLabel = tk.Label (frameInicio, text = "Cedula Abog Contrayentes: ")
-    AbogPContrayenteLabel.configure(font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
-    #AbogPContrayenteLabel.place (x = 365, y = 250)
-
-    AbogPContrayenteLabelE = tk.Entry(frameInicio, relief = "flat")
-    #AbogPContrayenteLabelE.place (x = 550, y = 252)
-
-    dirAbogPLabel = tk.Label (frameInicio, text = "Dir Abg Contrayentes: ")
-    dirAbogPLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
-    #dirAbogPLabel.place (x = 710,y = 250)
-
-    dirAbogPE = tk.Entry(frameInicio, relief = "flat")
-    #dirAbogPE.place (x = 865, y = 250)
-
-    dirAbogSLabel = tk.Label (frameInicio, text = "Cedula Abog P Contrayente: ")
-    dirAbogSLabel.configure(font = ("roboto", 10, "bold"), fg = "WHITE", background="#209cb4")
-    #dirAbogSLabel.place (x = 15, y = 290)
-    
-    dirAbogSE = tk.Entry(frameInicio, relief="flat")
-    #dirAbogSE.place (x =200, y = 293)
     
 def actaDivorcio ():
 
+    """
+    `n_acta`                  # AUTO INCREMENTO
+    `c_conyuge1`              # LISTO
+    `conyuge1_nombres`        # LLAVE FORANEA
+    `conyuge1_apellidos`      # LLAVE FORANEA
+    `c_conyuge2`              # LISTO
+    `conyuge2_nombres`        # LLAVE FORANEA
+    `conyuge2_apellidos`      # LLAVE FORANEA
+    `id_ab_conyuge1`          # LISTO
+    `nombres_ab_conyuge1`     # LLAVE FORANEA
+    `apellidos_ab_conyuge1    # LLAVE FORANEA
+    `id_ab_conyuge2`          # LISTO
+    `nombres_ab_conyuge2`     # LLAVE FORANEA
+    `apellidos_ab_conyuge2`   # LLAVE FORANEA
+    `id_hijo1`                # LISTO
+    `nombres_hijo1`           # LLAVE FORANEA
+    `apellidos_hijo1`         # LLAVE FORANEA
+    `id_hijo2`                # LISTO
+    `nombres_hijo2`           # LLAVE FORANEA
+    `apellidos_hijo2`         # LLAVE FORANEA
+    `id_prefectura`           # LISTO
+    `nombre_registro_civil`   # LLAVE FORANEA
+    `dir_registro_nmbr`       # LLAVE FORANEA
+    `dir_registro_aplld       # LLAVE FORANEA
+    
+    """
+    
     #--------- NO TOCAR ------------------------------------------------------------------
     
     frameInicio = tk.Frame(root, background = "#209cb4", height = 656, width = 1057)
@@ -405,20 +462,6 @@ def actaDivorcio ():
     DivorcioLabel = tk.Label (frameInicio, text = "Formulario Acta De Divorcio")
     DivorcioLabel.configure (font = ("roboto", 14, "bold"), fg="#209cb4", background="WHITE")
     DivorcioLabel.place (x = 390, y = 10)
-    
-    
-    """
-  `id_hijo1` int(11) DEFAULT NULL COMMENT 'acta de nacimiento hijo 1',
-  `nombres_hijo1` varchar(50) DEFAULT NULL COMMENT 'nombres hijo 1',
-  `apellidos_hijo1` varchar(50) DEFAULT NULL COMMENT 'apellidos hijo 1',
-  `id_hijo2` int(11) DEFAULT NULL COMMENT 'acta de nacimiento hijo 2',
-  `nombres_hijo2` varchar(50) DEFAULT NULL COMMENT 'nombres hijo 2',
-  `apellidos_hijo2` varchar(50) DEFAULT NULL COMMENT 'apellidos hijo 2',
-  `id_prefectura` int(11) NOT NULL COMMENT 'id de la prefectura/registro',
-  `nombre_registro_civil` varchar(100) NOT NULL COMMENT 'nombre de la prefectura/registro',
-  `dir_registro_nmbr` varchar(50) NOT NULL,
-  `dir_registro_aplld` varchar(50) NOT NULL
-    """
     
     # NUMERO ACTA MATRIMONIO
     
@@ -442,10 +485,10 @@ def actaDivorcio ():
     
     SEsposo = tk.Label (frameInicio, text = "Cedula S Esposo/a: ")
     SEsposo.configure(font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
-    SEsposo.place (x = 410, y =130)
+    SEsposo.place (x = 430, y =130)
 
     SEsposoE = tk.Entry(frameInicio, relief = "flat")
-    SEsposoE.place (x = 540, y = 133)
+    SEsposoE.place (x = 560, y = 133)
     
     # DIRECCION PRIMER ESPOSX
     
@@ -460,10 +503,10 @@ def actaDivorcio ():
 
     DireccionSELabeEntry = tk.Label (frameInicio, text = "Direccion S Esposo/a: ")
     DireccionSELabeEntry.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
-    DireccionSELabeEntry.place (x = 396, y = 170)
+    DireccionSELabeEntry.place (x = 416, y = 170)
 
     DireccionSELabeE = tk.Entry(frameInicio, relief = "flat")
-    DireccionSELabeE.place (x = 540, y = 173)
+    DireccionSELabeE.place (x = 560, y = 173)
     
     #ABOGADO PRIMER ESPOSX
     
@@ -478,65 +521,62 @@ def actaDivorcio ():
 
     abogadoSLabel = tk.Label (frameInicio, text = "Cedula Abg S Esposo/a: ")
     abogadoSLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
-    abogadoSLabel.place (x = 382, y = 210)
+    abogadoSLabel.place (x = 402, y = 210)
 
     abogadoSE = tk.Entry(frameInicio, relief = "flat")
-    abogadoSE.place (x = 540, y = 213)
+    abogadoSE.place (x = 560, y = 213)
+
+    # HIJOS
+        
+    hijoUnoLabel = tk.Label (frameInicio, text = "Acta Nacimiento Hijo/a: ")
+    hijoUnoLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
+    hijoUnoLabel.place (x = 750, y = 130)
+
+    hijoUnoEntry = tk.Entry(frameInicio, relief = "flat")
+    hijoUnoEntry.place (x = 910, y = 133)
     
-    abogadoSLabel = tk.Label (frameInicio, text = "Cedula Abg S Esposo/a: ")
-    abogadoSLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
-    abogadoSLabel.place (x = 382, y = 210)
+    hijoDosLabel = tk.Label (frameInicio, text = "Acta Nacimiento Hijo/a: ")
+    hijoDosLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
+    hijoDosLabel.place (x = 750, y = 170)
 
-    abogadoSE = tk.Entry(frameInicio, relief = "flat")
-    abogadoSE.place (x = 540, y = 213)
+    hijoDosEntry = tk.Entry(frameInicio, relief = "flat")
+    hijoDosEntry.place (x = 910, y = 173)
     
-    """ 
+    # PREFECTURAS 
     
-    DabogadoPLabel = tk.Label (frameInicio, text = "Direccion Abg Primer Esposo/a: ")
-    DabogadoPLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    DabogadoPLabel.place (x = 24, y = 210)
-
-    DabogadoPE = tk.Entry(frameInicio, relief = "flat")
-    DabogadoPE.place (x = 275, y = 214)
-
-    DabogadoSLabel = tk.Label (frameInicio, text = "Direccion Abg Segundo Esposo/a: ")
-    DabogadoSLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    DabogadoSLabel.place (x = 497, y = 210)
-
-    DabogadoSE = tk.Entry(frameInicio, relief = "flat")
-    DabogadoSE.place (x = 766, y = 214)
-
-    # ---- UBICACION PREFECTURA ------
-
-    estadoLabel = tk.Label (frameInicio, text = "Estado: ")
-    estadoLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    estadoLabel.place (x = 25, y = 260)
-
-    estadoE = tk.Entry(frameInicio, relief = "flat")
-    estadoE.place (x = 103, y = 264)
-
-    parroquiaLabel = tk.Label (frameInicio, text = "Parroquia: ")
-    parroquiaLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    parroquiaLabel.place (x = 260, y = 260)
-
-    parroquiaE = tk.Entry(frameInicio, relief = "flat")
-    parroquiaE.place (x = 350, y = 264)
-
-    municicpioLabel = tk.Label (frameInicio, text = "Municipio: ")
-    municicpioLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    municicpioLabel.place (x = 520, y = 260)
-
-    municicpioE = tk.Entry(frameInicio, relief = "flat")
-    municicpioE.place (x = 610, y = 264)
-
-    prefecturaMLabel = tk.Label (frameInicio, text = "Prefectura: ")
-    prefecturaMLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    prefecturaMLabel.place (x = 770, y = 260)
+    prefecturasLabel = tk.Label (frameInicio, text = "Registro Civil: ")
+    prefecturasLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
+    prefecturasLabel.place (x = 813, y = 210)
     
-    prefecturaME = ttk.Combobox (values = ["Olegario Villalobos", "El Enterrado"])
-    prefecturaME.place(x = 1010, y = 266)"""
+    prefecturasOpcion = ttk.Combobox (frameInicio,values = ["Coquivacoa", "Chiquinquira", "Cacique Mara", "Oregarios Villalobos"], width=17)
+    prefecturasOpcion.place (x = 910,y = 210)
+    
 
 def actaDefuncion ():
+
+    """
+    
+    `id_acta_defuncion`         # AUTO
+    `a_nacimiento_fallecido     # LISTO
+    `fallecido_nombres`         # LLAVE FORANEA
+    `fallecido_apellidos`       # LLAVE FORANEA
+    `edad_fallecido`            # LLAVE FORANEA
+    `sexo_fallecido`            # LLAVE FORANEA
+    `estado_civil_f`            # LISTO
+    `fecha_defuncion`           # LISTO
+    `hora_defuncion`            # LISTO
+    `lugar_defuncion`           # LISTO
+    `causa_muerte`              # LISTO
+    `c_informante`              # LISTO
+    `informante_nombre`         # LLAVE FORANEA
+    `informante_apellido`       # LLAVE FORANEA
+    `relacion_informante`       # LISTO
+    `madre_nombres`             # LLAVE FORANEA
+    `madre_apellidos`           # LLAVE FORANEA
+    `padre_nombres`             # LLAVE FORANEA
+    `padre_apellidos`           # LLAVE FORANEA
+    
+    """
 
     # NO TOCAR 
     

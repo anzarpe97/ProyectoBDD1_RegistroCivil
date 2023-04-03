@@ -4,7 +4,7 @@ from DBC import DAO
 
 consul = DAO()    
 
-def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre, lugarNacimiento):
+def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre, lugarNacimiento, prefectura):
     
     if nombre == "" or  apellido == "" or sexo == "" or lugarNacimiento == "" or FechaNacimiento == "" or horaNacimiento == "": 
         
@@ -27,9 +27,38 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
         lugarNacimiento = lugarNacimiento.title()
         
         try:
+            if cedulaPadre != "":
+                
+                cedulaPadre = int(cedulaPadre)
+            
+            if cedulaPadre == "":
 
-            cedulaPadre = int(cedulaPadre)
-            cedulaMadre = int(cedulaMadre)
+                    cedulaPadre = 0
+            
+            if cedulaMadre != "":
+                
+                cedulaMadre = int(cedulaMadre)
+            
+            if cedulaMadre == "":
+
+                    cedulaMadre = 0
+
+            if prefectura == "Coquivacoa":
+                
+                prefectura = 1
+                
+            elif prefectura == "Chiquinquira":
+                
+                prefectura = 2
+                    
+            elif prefectura ==  "Cacique Mara":
+                
+                prefectura = 3
+                
+            elif prefectura == "Olegarios Villalobos":
+                
+                prefectura = 4
+
             flag= True
 
         except ValueError:
@@ -41,12 +70,12 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
 
         if flag == True :
 
-            datosActaNacimiento = [nombre, apellido, FechaNacimiento, horaNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre, lugarNacimiento]
-            consul.listaTablas(datosActaNacimiento)
-
+            datosActaNacimiento = [nombre, apellido, FechaNacimiento, horaNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre,prefectura]
+            print(datosActaNacimiento)
+            consul.insertarActaNacimiento(datosActaNacimiento)
             MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
     
-def guardarCedulaIdentidad (numCedula,numActaNacimiento,estadoCivil,sexo,fechaEmision,fechaVencimiento,nacionlidad):
+#def guardarCedulaIdentidad (numCedula,numActaNacimiento,estadoCivil,sexo,fechaEmision,fechaVencimiento,nacionlidad):
     
-    pass
+ #   pass
     

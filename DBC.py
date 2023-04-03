@@ -21,6 +21,17 @@ class DAO ():
 
             print("Error al conectar la base de datos: {0}".format(ex))
 
-    def listaTablas (self,datos):
-        print(datos)
-       
+    def insertarActaNacimiento (self,DAN):
+
+        if  self.connection.is_connected():
+
+            cursor = self.connection.cursor()
+            sql = "INSERT INTO acta_nacimiento (nro_acta, nombres, apellidos, fecha_nacimiento, hora_nacimiento, sexo, cedula_padre, nombre_padre, apellido_padre, cedula_madre,nombre_madre, apellido_madre,id_prefectura) VALUES (null,'{0}', '{1}', '{2}', '{3}', '{4}', {5}, '{6}', '{7}', {8}, '{9}', '{10}', '{11}')"
+            cursor.execute(sql.format(DAN[0],DAN[1],DAN[2],DAN[3],DAN[4],DAN[5],DAN[6],DAN[7],DAN[8],DAN[9],DAN[10],DAN[11]))
+            self.connection.commit()
+
+        else: 
+             
+            print("Puto")
+
+        
