@@ -1,9 +1,11 @@
 import funciones
+from DBC import DAO
 
 import tkinter as tk 
 from tkinter import ttk
 from tkinter import *
 
+a = DAO()
 root = tk.Tk()
 
 # FUNCIONES
@@ -172,13 +174,9 @@ def actaNacimiento ():
     botonAgregar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
     botonAgregar.place (x = round(1057/2), y = 300)   
 
-    MostrarActa = ttk.Treeview(frameInicio)
-
-    MostrarActa.insert("", END,text="Nombres")   
-
-
-    MostrarActa.place(x=400,y=400)
-    
+    boton = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat",command=lambda: a.traerDatos())
+    boton.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    boton.place (x = round(1057/2), y = 500)  
 
 def cedula ():
 
@@ -222,8 +220,8 @@ def cedula ():
     NumCedulaLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     NumCedulaLabel.place (x = 64, y = 127)
 
-    NumCedulsEntry = tk.Entry(frameInicio, relief = "flat")
-    NumCedulsEntry.place (x = 220, y = 130)
+    NumCedulaEntry = tk.Entry(frameInicio, relief = "flat")
+    NumCedulaEntry.place (x = 220, y = 130)
 
     # FECHA DE EMISION
 
@@ -277,7 +275,10 @@ def cedula ():
     
     generoOpcion = ttk.Combobox (frameInicio,values = ["Hombre", "Mujer", "No-Binario"])
     generoOpcion.place(x = 830, y = 173)
-
+                                                                                                                        #fechaEmision,fechaVencimiento,nacionlidad
+    botonAgregarCedula = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat",command=lambda: funciones.guardarCedulaIdentidad(NumCedulaEntry.get(),numActaNacimientoE.get(),EdoCivilOpcion.get()  ,generoOpcion.get(),FEmisionEntry.get(),FVencimientoEntry.get(), nacionalidadOpcion.get()))
+    botonAgregarCedula.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonAgregarCedula.place (x = round(1057/2), y = 300)
 
 def actaMatrimonio ():
 
@@ -428,9 +429,6 @@ def actaMatrimonio ():
 def actaDivorcio ():
 
     """
-    `n_acta`                  # AUTO INCREMENTO
-    `c_conyuge1`              # LISTO
-    `conyuge1_nombres`        # LLAVE FORANEA
     `conyuge1_apellidos`      # LLAVE FORANEA
     `c_conyuge2`              # LISTO
     `conyuge2_nombres`        # LLAVE FORANEA

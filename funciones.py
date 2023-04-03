@@ -33,7 +33,7 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
             
             if cedulaPadre == "":
 
-                    cedulaPadre = 0
+                cedulaPadre = 0
             
             if cedulaMadre != "":
                 
@@ -41,7 +41,7 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
             
             if cedulaMadre == "":
 
-                    cedulaMadre = 0
+                cedulaMadre = 0
 
             if prefectura == "Coquivacoa":
                 
@@ -71,11 +71,34 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
         if flag == True :
 
             datosActaNacimiento = [nombre, apellido, FechaNacimiento, horaNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre,prefectura]
-            print(datosActaNacimiento)
+
+            consul.traerDatos(datosActaNacimiento)
+
             consul.insertarActaNacimiento(datosActaNacimiento)
             MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
     
-#def guardarCedulaIdentidad (numCedula,numActaNacimiento,estadoCivil,sexo,fechaEmision,fechaVencimiento,nacionlidad):
+def guardarCedulaIdentidad (numCedula,numActaNacimiento,estadoCivil,sexo,fechaEmision,fechaVencimiento,nacionlidad):
     
- #   pass
+    flag = True
+
+    if numCedula == "" or numActaNacimiento== "" or estadoCivil== "" or sexo == ""  or fechaEmision == "" or fechaVencimiento == "" or nacionlidad == "":
+ 
+        MessageBox.showwarning("Datos Incompletos", "Rellena los campos: \n\n- Numero Acta Nacimiento\n- Numero de Cedula\n- Fecha Emision\n- Fecha Vencimiento\n- Estado Civil\n- Nacionalidad\n- Genero \n\nY vuelve a intentarlo.")
     
+    try:
+         
+        numCedula = int(numCedula)
+        numActaNacimiento = int (numActaNacimiento)
+
+    except ValueError:
+             
+            MessageBox.showwarning("Datos Incompletos","Debes ingresar un valor numerico en los campos: \n- Cedula Padre\n- Cedula Madre\n\n- Intentelo Nuevamente")
+            flag =False
+
+    if flag == True :
+
+            datosCedula = [numCedula, numActaNacimiento, estadoCivil, sexo, fechaEmision, fechaVencimiento, nacionlidad]
+            print(datosCedula)
+            consul.insertarCedula (datosCedula)
+            
+            MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
