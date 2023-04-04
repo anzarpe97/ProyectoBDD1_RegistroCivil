@@ -21,21 +21,17 @@ class DAO ():
 
             print("Error al conectar la base de datos: {0}".format(ex))
 
-    def traerDatos(self):
+    def traerDatos(self,idPrefectura):
         
         if self.connection.is_connected():
 
             cursor = self.connection.cursor()
 
-            sql = "SELECT nombre_registro, director_nombre, director_apellido FROM prefecturas WHERE id_prefecturas = 4"
+            sql = "SELECT nombre_registro, director_nombre, director_apellido FROM prefecturas WHERE id_prefecturas = {0}"
             
-            cursor.execute(sql)
+            cursor.execute(sql.format(idPrefectura))
             
             datosPrefecturas = cursor.fetchone()
-            
-            print(datosPrefecturas[0])
-            print(datosPrefecturas[1])
-            print(datosPrefecturas[2])
             
             return datosPrefecturas
     
@@ -43,14 +39,11 @@ class DAO ():
 
         if  self.connection.is_connected():
 
-            cursor = self.connection.cursor()
-            sql = "INSERT INTO acta_nacimiento (nro_acta, nombres, apellidos, fecha_nacimiento, hora_nacimiento, sexo, cedula_padre, nombre_padre, apellido_padre, cedula_madre,nombre_madre, apellido_madre,id_prefectura, nombre_registro_civil, dir_registro_nmbr, dir_registro_aplld) VALUES (null,'{0}', '{1}', '{2}', '{3}', '{4}', {5}, '{6}', '{7}', {8}, '{9}', '{10}', '{11}')"
-            cursor.execute(sql.format(DAN[0],DAN[1],DAN[2],DAN[3],DAN[4],DAN[5],DAN[6],DAN[7],DAN[8],DAN[9],DAN[10],DAN[11]))
+            cursor = self.connection.cursor()  #nro_acta, nombres, apellidos, fecha_nacimiento, hora_nacimiento, lugar_nacimiento, sexo, cedula_padre, nombre_padre, apellido_padre, cedula_madre, nombre_madre, apellido_madre, id_prefectura, nombre_registro_civil, dir_registro_nmbr, dir_registro_aplld
+            sql = "INSERT INTO acta_nacimiento(nro_acta, nombres, apellidos, fecha_nacimiento, hora_nacimiento, lugar_nacimiento, sexo, cedula_padre, nombre_padre, apellido_padre, cedula_madre, nombre_madre, apellido_madre, id_prefectura, nombre_registro_civil, dir_registro_nmbr, dir_registro_aplld) VALUES (null,'{0}','{1}','{2}','{3}','{4}','{5}',{6},'{7}','{8}',{9},'{10}','{11}',{12},'{13}','{14}','{15}')"
+            cursor.execute(sql.format(DAN[0], DAN[1], DAN[2], DAN[3], DAN[4], DAN[5], DAN[6], DAN[7], DAN[8], DAN[9], DAN[10], DAN[11],DAN[12],DAN[13],DAN[14],DAN[15]))
             self.connection.commit()
 
-        else: 
-             
-            print("Puto")
 
     def insertarCedula (self,DC):
 

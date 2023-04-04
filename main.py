@@ -169,8 +169,8 @@ def actaNacimiento ():
     prefecturaOpcion.place (x = 141,y = 263)#x = 275, y = 213
 
     # BOTON AGREGAR 
-    
-    botonAgregar = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat",command=lambda: funciones.guardarDatosAcNacimiento(nombresEntry.get(),apellidosEntry.get(),FechaNacimientoEntry.get(),horaNacimientoEntry.get(),sexoBebeOpcion.get(),cedulaPadreEntry.get(), nombrePadreEntry.get(),apellidoPadreEntry.get(),cedulaMadreEntry.get(),nombreMadreEntry.get(),apellidoMadreEntry.get(),ubicacionEntry.get(),prefecturaOpcion.get()))
+                                                                                                                                                     #nombres,         apellidos,           fecha_nacimien,           hora_nacimiento,             lugar_nacimiento,    sexo,                 cedulapadre,              nombrepadre,          apellidopadre,             cedulamadre,          nombremadre,           apellidomadre,    prefectura
+    botonAgregar = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat",command=lambda: funciones.guardarDatosAcNacimiento(nombresEntry.get(),apellidosEntry.get(),FechaNacimientoEntry.get(),horaNacimientoEntry.get(), ubicacionEntry.get(), sexoBebeOpcion.get(), cedulaPadreEntry.get(), nombrePadreEntry.get(),apellidoPadreEntry.get(),cedulaMadreEntry.get(),nombreMadreEntry.get(),apellidoMadreEntry.get(),prefecturaOpcion.get()))
     botonAgregar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
     botonAgregar.place (x = round(1057/2), y = 300)   
 

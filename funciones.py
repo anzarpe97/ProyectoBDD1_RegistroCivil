@@ -3,8 +3,8 @@ from tkinter import *
 from DBC import DAO
 
 consul = DAO()    
-
-def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre, lugarNacimiento, prefectura):
+                            #nombres, apellidos, fecha_nacimien, hora_nacimiento,lugar_nacimiento, sexo, cedulapadre, nombrepadre, apellidopadre, cedulamadre, nombremadre, apellidomadre, prefectura
+def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento, lugarNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre,  prefectura):
     
     if nombre == "" or  apellido == "" or sexo == "" or lugarNacimiento == "" or FechaNacimiento == "" or horaNacimiento == "": 
         
@@ -27,54 +27,58 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
         lugarNacimiento = lugarNacimiento.title()
         
         try:
-            if cedulaPadre != "":
-                
-                cedulaPadre = int(cedulaPadre)
             
-            if cedulaPadre == "":
+            cedulaPadre = int(cedulaPadre)
+            cedulaMadre = int(cedulaMadre)
 
-                cedulaPadre = 0
-            
-            if cedulaMadre != "":
+            if cedulaMadre == "" or cedulaPadre == "":
+                  
+                if cedulaPadre == "":
+                    cedulaPadre = 0
                 
-                cedulaMadre = int(cedulaMadre)
-            
-            if cedulaMadre == "":
-
-                cedulaMadre = 0
-
-            if prefectura == "Coquivacoa":
-                
-                prefectura = 1
-                
-            elif prefectura == "Chiquinquira":
-                
-                prefectura = 2
+                else:
+                    cedulaMadre = 0 
                     
-            elif prefectura ==  "Cacique Mara":
-                
-                prefectura = 3
-                
-            elif prefectura == "Olegarios Villalobos":
-                
-                prefectura = 4
-
             flag= True
+            
 
         except ValueError:
              
-             MessageBox.showwarning("Datos Incompletos","Debes ingresar un valor numerico en los campos: \n- Cedula Padre\n- Cedula Madre\n\n- Intentelo Nuevamente")
-             flag =False
+            MessageBox.showwarning("Datos Incompletos","Debes ingresar un valor numerico en los campos: \n- Cedula Padre\n- Cedula Madre\n\n- Intentelo Nuevamente")
+            flag =False
+             
+            
+
+        if prefectura == "Coquivacoa":
+                
+                prefectura = 1
+                
+        elif prefectura == "Chiquinquira":
+                
+                prefectura = 2
+                    
+        elif prefectura ==  "Cacique Mara":
+                
+                prefectura = 3
+                
+        elif prefectura == "Olegarios Villalobos":
+                
+                prefectura = 4
 
         # Diccionario Acta Nacimiento
-
+        
         if flag == True :
 
-            datosActaNacimiento = [nombre, apellido, FechaNacimiento, horaNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre,prefectura]
+            datosPrefectura = consul.traerDatos(prefectura)
 
-            consul.traerDatos(datosActaNacimiento)
+            nombrePrefectura = datosPrefectura[0]
+            nombreDir = datosPrefectura[1]
+            apellidoDir = datosPrefectura[2]
+                                #(nombres, apellidos, fechanacimiento, horanacimiento, lugar_nacimiento, sexo, cedulapadre, nombrepadre, apellidopadre, cedulamadre, nombremadre, apellidomadre, prefectura, nombreregistrocivil, dirregistro_nmbr,dir_registroaplld)
+            datosActaNacimiento = [nombre, apellido, FechaNacimiento, horaNacimiento, lugarNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre,  prefectura,nombrePrefectura,nombreDir,apellidoDir]
 
             consul.insertarActaNacimiento(datosActaNacimiento)
+
             MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
     
 def guardarCedulaIdentidad (numCedula,numActaNacimiento,estadoCivil,sexo,fechaEmision,fechaVencimiento,nacionlidad):

@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-04-2023 a las 03:51:52
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
+-- Tiempo de generación: 03-04-2023 a las 22:54:28
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -31,7 +32,7 @@ CREATE TABLE `abogados` (
   `id_abogado` int(11) NOT NULL COMMENT 'Primary Key',
   `nombres_abogado` varchar(50) NOT NULL,
   `apellido_abogado` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `abogados`
@@ -66,7 +67,7 @@ CREATE TABLE `acta_defuncion` (
   `madre_apellidos` varchar(50) DEFAULT NULL COMMENT 'apellidos de la madre',
   `padre_nombres` varchar(50) DEFAULT NULL,
   `padre_apellidos` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -98,7 +99,7 @@ CREATE TABLE `acta_divorcio` (
   `nombre_registro_civil` varchar(100) NOT NULL COMMENT 'nombre de la prefectura/registro',
   `dir_registro_nmbr` varchar(50) NOT NULL,
   `dir_registro_aplld` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -128,7 +129,7 @@ CREATE TABLE `acta_matrimonio` (
   `nombre_registro_civil` varchar(100) NOT NULL,
   `dir_registro_nmbr` varchar(50) NOT NULL,
   `dir_registro_aplld` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -142,6 +143,7 @@ CREATE TABLE `acta_nacimiento` (
   `apellidos` varchar(50) NOT NULL,
   `fecha_nacimiento` date NOT NULL,
   `hora_nacimiento` time NOT NULL,
+  `lugar_nacimiento` varchar(50) NOT NULL,
   `sexo` varchar(10) NOT NULL,
   `cedula_padre` int(11) NOT NULL,
   `nombre_padre` varchar(50) NOT NULL,
@@ -153,14 +155,14 @@ CREATE TABLE `acta_nacimiento` (
   `nombre_registro_civil` varchar(100) NOT NULL,
   `dir_registro_nmbr` varchar(50) NOT NULL,
   `dir_registro_aplld` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Acta de nacimiento';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Acta de nacimiento';
 
 --
 -- Volcado de datos para la tabla `acta_nacimiento`
 --
 
-INSERT INTO `acta_nacimiento` (`nro_acta`, `nombres`, `apellidos`, `fecha_nacimiento`, `hora_nacimiento`, `sexo`, `cedula_padre`, `nombre_padre`, `apellido_padre`, `cedula_madre`, `nombre_madre`, `apellido_madre`, `id_prefectura`, `nombre_registro_civil`, `dir_registro_nmbr`, `dir_registro_aplld`) VALUES
-(2, 'Miguel Alfonso', 'Quiroz Manga', '2002-09-25', '09:15:00', 'Masculino', 0, 'Jhonnys Alfonso', 'Quiroz Cardozo', 0, 'Belkys Maribel', 'Manga Vanegas', 2, 'Registro Civil Parroquial Chiquinquirá', 'NULL', 'NULL');
+INSERT INTO `acta_nacimiento` (`nro_acta`, `nombres`, `apellidos`, `fecha_nacimiento`, `hora_nacimiento`, `lugar_nacimiento`, `sexo`, `cedula_padre`, `nombre_padre`, `apellido_padre`, `cedula_madre`, `nombre_madre`, `apellido_madre`, `id_prefectura`, `nombre_registro_civil`, `dir_registro_nmbr`, `dir_registro_aplld`) VALUES
+(2, 'Miguel Alfonso', 'Quiroz Manga', '2002-09-25', '09:15:00', '', 'Masculino', 0, 'Jhonnys Alfonso', 'Quiroz Cardozo', 0, 'Belkys Maribel', 'Manga Vanegas', 2, 'Registro Civil Parroquial Chiquinquirá', 'NULL', 'NULL');
 
 -- --------------------------------------------------------
 
@@ -178,7 +180,7 @@ CREATE TABLE `cedula` (
   `fecha_emision` date NOT NULL,
   `fecha_vencimiento` date NOT NULL,
   `nacionalidad` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `cedula`
@@ -202,7 +204,7 @@ CREATE TABLE `prefecturas` (
   `direccion` varchar(100) NOT NULL,
   `director_nombre` varchar(50) NOT NULL,
   `director_apellido` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `prefecturas`
