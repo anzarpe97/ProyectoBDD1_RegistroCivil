@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-04-2023 a las 22:54:28
+-- Tiempo de generación: 05-04-2023 a las 19:59:39
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `registrocivilbdd`
+-- Base de datos: `proyecto`
 --
 
 -- --------------------------------------------------------
@@ -33,13 +33,6 @@ CREATE TABLE `abogados` (
   `nombres_abogado` varchar(50) NOT NULL,
   `apellido_abogado` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `abogados`
---
-
-INSERT INTO `abogados` (`id_abogado`, `nombres_abogado`, `apellido_abogado`) VALUES
-(30237967, 'Miguel Alfonso', 'Quiroz Manga');
 
 -- --------------------------------------------------------
 
@@ -151,18 +144,8 @@ CREATE TABLE `acta_nacimiento` (
   `cedula_madre` int(11) NOT NULL,
   `nombre_madre` varchar(50) NOT NULL,
   `apellido_madre` varchar(50) NOT NULL,
-  `id_prefectura` int(11) NOT NULL,
-  `nombre_registro_civil` varchar(100) NOT NULL,
-  `dir_registro_nmbr` varchar(50) NOT NULL,
-  `dir_registro_aplld` varchar(50) NOT NULL
+  `id_prefectura` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Acta de nacimiento';
-
---
--- Volcado de datos para la tabla `acta_nacimiento`
---
-
-INSERT INTO `acta_nacimiento` (`nro_acta`, `nombres`, `apellidos`, `fecha_nacimiento`, `hora_nacimiento`, `lugar_nacimiento`, `sexo`, `cedula_padre`, `nombre_padre`, `apellido_padre`, `cedula_madre`, `nombre_madre`, `apellido_madre`, `id_prefectura`, `nombre_registro_civil`, `dir_registro_nmbr`, `dir_registro_aplld`) VALUES
-(2, 'Miguel Alfonso', 'Quiroz Manga', '2002-09-25', '09:15:00', '', 'Masculino', 0, 'Jhonnys Alfonso', 'Quiroz Cardozo', 0, 'Belkys Maribel', 'Manga Vanegas', 2, 'Registro Civil Parroquial Chiquinquirá', 'NULL', 'NULL');
 
 -- --------------------------------------------------------
 
@@ -181,13 +164,6 @@ CREATE TABLE `cedula` (
   `fecha_vencimiento` date NOT NULL,
   `nacionalidad` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `cedula`
---
-
-INSERT INTO `cedula` (`n_cedula`, `acta_nacimiento`, `nombres`, `apellidos`, `estado_civil`, `sexo`, `fecha_emision`, `fecha_vencimiento`, `nacionalidad`) VALUES
-(30237967, 2, 'Miguel Alfonso', 'Quiroz Manga', 'Soltero', 'Masculino', '2013-04-23', '2023-04-23', 'Venezolano');
 
 -- --------------------------------------------------------
 
@@ -264,7 +240,7 @@ ALTER TABLE `acta_matrimonio`
 --
 ALTER TABLE `acta_nacimiento`
   ADD PRIMARY KEY (`nro_acta`),
-  ADD KEY `id_prefectura` (`id_prefectura`);
+  ADD UNIQUE KEY `id_prefectura` (`id_prefectura`) USING BTREE;
 
 --
 -- Indices de la tabla `cedula`
@@ -289,7 +265,7 @@ ALTER TABLE `prefecturas`
 -- AUTO_INCREMENT de la tabla `acta_defuncion`
 --
 ALTER TABLE `acta_defuncion`
-  MODIFY `id_acta_defuncion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_acta_defuncion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `acta_divorcio`
@@ -301,7 +277,7 @@ ALTER TABLE `acta_divorcio`
 -- AUTO_INCREMENT de la tabla `acta_nacimiento`
 --
 ALTER TABLE `acta_nacimiento`
-  MODIFY `nro_acta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `nro_acta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `prefecturas`

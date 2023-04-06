@@ -5,34 +5,11 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import *
 
-a = DAO()
 root = tk.Tk()
 
 # FUNCIONES
 
 def actaNacimiento ():
-    """
-    
-    `nro_acta` int(11) NOT NULL,                    # AUTOINCREMENTABLE
-    `nombres` varchar(50) NOT NULL,                 # LISTO
-    `apellidos` varchar(50) NOT NULL,               # LISTO
-    `fecha_nacimiento` date NOT NULL,               # LISTO
-    `hora_nacimiento` time NOT NULL,                # LISTO
-    `sexo` varchar(10) NOT NULL,                    # LISTO
-    `cedula_padre` int(11) NOT NULL,                # LISTO
-    `nombre_padre` varchar(50) NOT NULL,            # LISTO
-    `apellido_padre` varchar(50) NOT NULL,          # LISTO
-    `cedula_madre` int(11) NOT NULL,                # LISTO
-    `nombre_madre` varchar(50) NOT NULL,            # LISTO 
-    `apellido_madre` varchar(50) NOT NULL,          # LISTO
-    `id_prefectura` int(11) NOT NULL,               # LISTO
-    `nombre_registro_civil` varchar(100) NOT NULL,  # LLAVE FORANEA
-    `dir_registro_nmbr` varchar(50) NOT NULL,       # LLAVE FORANEA
-    `dir_registro_aplld` varchar(50) NOT NULL       # LLAVE FORANEA
-  
-    """
-
-    nombrepadre = tk.StringVar()
 
     # NO TOCAR
     
@@ -85,7 +62,7 @@ def actaNacimiento ():
     nombrePadreLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     nombrePadreLabel.place (x = 368, y = 130)
 
-    nombrePadreEntry = tk.Entry(frameInicio, relief="flat", textvariable = nombrepadre)
+    nombrePadreEntry = tk.Entry(frameInicio, relief="flat")
     nombrePadreEntry.place (x = 500, y = 133)
 
     # APELLIDO PADRE
@@ -137,15 +114,6 @@ def actaNacimiento ():
     FormatoHNLabel.configure(font = ("roboto", 8, "bold"), fg ="WHITE", background="#209cb4")
     FormatoHNLabel.place (x = 140, y = 233)
 
-    #  UBICACION 
-
-    ubicacionLabel = tk.Label (frameInicio, text = "Lugar Nacimiento: ")
-    ubicacionLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    ubicacionLabel.place (x = 675, y = 210)
-
-    ubicacionEntry = tk.Entry (frameInicio, relief="flat")
-    ubicacionEntry.place (x = 820, y = 213)
-
     # HORA DE NACIMIENTO
 
     horaNacimientoLabel = tk.Label (frameInicio, text = "Hora Nacimiento: ")
@@ -159,6 +127,15 @@ def actaNacimiento ():
     FormatoHNLabel.configure(font = ("roboto", 8, "bold"), fg ="WHITE", background="#209cb4")
     FormatoHNLabel.place (x = 504, y = 233)
 
+    #  UBICACION 
+
+    ubicacionLabel = tk.Label (frameInicio, text = "Lugar Nacimiento: ")
+    ubicacionLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    ubicacionLabel.place (x = 675, y = 210)
+
+    ubicacionEntry = tk.Entry (frameInicio, relief="flat")
+    ubicacionEntry.place (x = 820, y = 213)
+
     # PREFECTURAS 
     
     prefecturaLabel = tk.Label (frameInicio, text = "Registro Civil: ")
@@ -169,30 +146,16 @@ def actaNacimiento ():
     prefecturaOpcion.place (x = 141,y = 263)#x = 275, y = 213
 
     # BOTON AGREGAR 
-                                                                                                                                                     #nombres,         apellidos,           fecha_nacimien,           hora_nacimiento,             lugar_nacimiento,    sexo,                 cedulapadre,              nombrepadre,          apellidopadre,             cedulamadre,          nombremadre,           apellidomadre,    prefectura
-    botonAgregar = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat",command=lambda: funciones.guardarDatosAcNacimiento(nombresEntry.get(),apellidosEntry.get(),FechaNacimientoEntry.get(),horaNacimientoEntry.get(), ubicacionEntry.get(), sexoBebeOpcion.get(), cedulaPadreEntry.get(), nombrePadreEntry.get(),apellidoPadreEntry.get(),cedulaMadreEntry.get(),nombreMadreEntry.get(),apellidoMadreEntry.get(),prefecturaOpcion.get()))
+    
+    botonAgregar = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat", command = lambda: funciones.guardarDatosAcNacimiento(nombresEntry.get(),apellidosEntry.get(),FechaNacimientoEntry.get(),horaNacimientoEntry.get(), ubicacionEntry.get(), sexoBebeOpcion.get(), cedulaPadreEntry.get(), nombrePadreEntry.get(),apellidoPadreEntry.get(),cedulaMadreEntry.get(),nombreMadreEntry.get(),apellidoMadreEntry.get(),prefecturaOpcion.get()))
     botonAgregar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonAgregar.place (x = round(1057/2), y = 300)   
+    botonAgregar.place (x = round(1057/2), y = 300)
 
-    boton = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat",command=lambda: a.traerDatos())
+    boton = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat", command = lambda: funciones.consultarActaNacimiento())
     boton.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    boton.place (x = round(1057/2), y = 500)  
+    boton.place (x = 100, y = 300)
 
 def cedula ():
-
-    """
-        `n_cedula` int(11) NOT NULL COMMENT,       # LISTO
-        `acta_nacimiento` int(11) NOT NULL,        # LISTO
-        `nombres` varchar(50) NOT NULL,            # LLAVE FORANEA 
-        `apellidos` varchar(50) NOT NULL,          # LLAVE FORANEA
-        `estado_civil` varchar(20) NOT NULL,       # LISTO
-        `sexo` varchar(10) NOT NULL,               # LISTO
-        `fecha_emision` date NOT NULL,             # LISTO
-        `fecha_vencimiento` date NOT NULL,         # LISTO
-        `nacionalidad` varchar(50) NOT NULL        # LISTO
-    
-    """
-
 
     # NO TOCAR
 
@@ -218,45 +181,42 @@ def cedula ():
     
     NumCedulaLabel = tk.Label(frameInicio, text = "Numero De Cedula: ")
     NumCedulaLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    NumCedulaLabel.place (x = 64, y = 127)
+    NumCedulaLabel.place (x =390, y = 90)
 
     NumCedulaEntry = tk.Entry(frameInicio, relief = "flat")
-    NumCedulaEntry.place (x = 220, y = 130)
+    NumCedulaEntry.place (x = 545, y = 93)
 
     # FECHA DE EMISION
 
     FEmisionLabel = tk.Label (frameInicio, text = "Fecha Emision: ")
     FEmisionLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    FEmisionLabel.place (x = 400, y = 90)
+    FEmisionLabel.place (x = 705, y = 90)
 
     FEmisionEntry = tk.Entry(frameInicio, relief = "flat")
-    FEmisionEntry.place (x = 525, y = 93)
+    FEmisionEntry.place (x = 830, y = 92)
 
     FormatoELabel = tk.Label(frameInicio, text = "Formato (aa/mm/dd) ")
     FormatoELabel.configure(font = ("roboto", 8, "bold"), fg = "WHITE", background = "#209cb4")
-    FormatoELabel.place (x = 525, y = 70)
+    #FormatoELabel.place ()
 
-    # FECHA DE VENCIMIENTO
-
-    FVencimientoLabel = tk.Label (frameInicio, text = "Fecha Vencimiento: ")
-    FVencimientoLabel.configure(font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
-    FVencimientoLabel.place (x = 392, y = 130)
-
-    FVencimientoEntry = tk.Entry(frameInicio, relief = "flat")
-    FVencimientoEntry.place (x = 525, y = 132)
-
-    FormatoELabel = tk.Label(frameInicio, text = "Formato (aa/mm/dd) ")
-    FormatoELabel.configure(font = ("roboto", 8, "bold"), fg = "WHITE", background = "#209cb4")
-    FormatoELabel.place(x = 529, y = 155)
     
     # ESTADO CIVIL
     
     EdoCivilLabel = tk.Label (frameInicio, text = "Estado Civil: ")
     EdoCivilLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    EdoCivilLabel.place (x = 725, y = 90)
+    EdoCivilLabel.place (x = 117, y = 127)#
     
-    EdoCivilOpcion = ttk.Combobox (frameInicio,values = ["Soltero/a", "Casado/a", "Divorciado","Viudo/a"])
-    EdoCivilOpcion.place(x = 830, y = 92)
+    EdoCivilOpcion = ttk.Combobox (frameInicio,values = ["Soltero/a", "Casado/a", "Divorciado","Viudo/a"],width=17)
+    EdoCivilOpcion.place(x = 220, y = 130)#
+
+    #  GENEROS
+
+    generoLabel = tk.Label (frameInicio, text = "Genero: ")
+    generoLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    generoLabel.place (x =478, y = 130)
+    
+    generoOpcion = ttk.Combobox (frameInicio,values = ["Hombre", "Mujer", "No-Binario"],width=17)
+    generoOpcion.place(x = 545, y = 133)
 
     # NACIONALIDAD 
 
@@ -264,19 +224,12 @@ def cedula ():
     nacionalidadlLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     nacionalidadlLabel.place (x = 718, y = 130)
     
-    nacionalidadOpcion = ttk.Combobox (frameInicio,values = ["Venezolano/a", "Extranjero/a"])
+    nacionalidadOpcion = ttk.Combobox (frameInicio,values = ["Venezolano/a", "Extranjero/a"],width=17)
     nacionalidadOpcion.place(x = 830, y = 133)
 
-    #  GENEROS
-
-    generoLabel = tk.Label (frameInicio, text = "Genero: ")
-    generoLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    generoLabel.place (x = 763, y = 170)
     
-    generoOpcion = ttk.Combobox (frameInicio,values = ["Hombre", "Mujer", "No-Binario"])
-    generoOpcion.place(x = 830, y = 173)
                                                                                                                         #fechaEmision,fechaVencimiento,nacionlidad
-    botonAgregarCedula = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat",command=lambda: funciones.guardarCedulaIdentidad(NumCedulaEntry.get(),numActaNacimientoE.get(),EdoCivilOpcion.get()  ,generoOpcion.get(),FEmisionEntry.get(),FVencimientoEntry.get(), nacionalidadOpcion.get()))
+    botonAgregarCedula = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat",command=lambda: funciones.guardarCedulaIdentidad(NumCedulaEntry.get(),numActaNacimientoE.get(),EdoCivilOpcion.get(),generoOpcion.get(),FEmisionEntry.get(), nacionalidadOpcion.get()))
     botonAgregarCedula.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
     botonAgregarCedula.place (x = round(1057/2), y = 300)
 
@@ -425,7 +378,6 @@ def actaMatrimonio ():
     prefecturasOpcion = ttk.Combobox (frameInicio,values = ["Coquivacoa", "Chiquinquira", "Cacique Mara", "Oregarios Villalobos"], width=17)
     prefecturasOpcion.place (x = 555,y = 210)
     
-    
 def actaDivorcio ():
 
     """
@@ -549,32 +501,7 @@ def actaDivorcio ():
     prefecturasOpcion = ttk.Combobox (frameInicio,values = ["Coquivacoa", "Chiquinquira", "Cacique Mara", "Oregarios Villalobos"], width=17)
     prefecturasOpcion.place (x = 910,y = 210)
     
-
 def actaDefuncion ():
-
-    """
-    
-    `id_acta_defuncion`         # AUTO
-    `a_nacimiento_fallecido     # LISTO
-    `fallecido_nombres`         # LLAVE FORANEA
-    `fallecido_apellidos`       # LLAVE FORANEA
-    `edad_fallecido`            # LLAVE FORANEA
-    `sexo_fallecido`            # LLAVE FORANEA
-    `estado_civil_f`            # LISTO
-    `fecha_defuncion`           # LISTO
-    `hora_defuncion`            # LISTO
-    `lugar_defuncion`           # LISTO
-    `causa_muerte`              # LISTO
-    `c_informante`              # LISTO
-    `informante_nombre`         # LLAVE FORANEA
-    `informante_apellido`       # LLAVE FORANEA
-    `relacion_informante`       # LISTO
-    `madre_nombres`             # LLAVE FORANEA
-    `madre_apellidos`           # LLAVE FORANEA
-    `padre_nombres`             # LLAVE FORANEA
-    `padre_apellidos`           # LLAVE FORANEA
-    
-    """
 
     # NO TOCAR 
     
