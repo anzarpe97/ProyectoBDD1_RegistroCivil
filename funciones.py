@@ -3,7 +3,7 @@ from tkinter import *
 from DBC import DAO
 
 consul = DAO()    
-                            #nombres, apellidos, fecha_nacimien, hora_nacimiento,lugar_nacimiento, sexo, cedulapadre, nombrepadre, apellidopadre, cedulamadre, nombremadre, apellidomadre, prefectura
+
 def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento, lugarNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre,  prefectura):
     
     if nombre == "" or  apellido == "" or sexo == "" or lugarNacimiento == "" or FechaNacimiento == "" or horaNacimiento == "": 
@@ -49,6 +49,19 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
                 mes = int (mes)
                 anio = int (anio)
 
+                if dia < 1 or dia > 31:
+                    MessageBox.showwarning("Formato Incorrecto","- El dia que ingreso no es valido \n\n- Intentelo Nuevamente")
+                    flag = False
+
+                if mes < 1 or mes > 12:
+                    
+                    MessageBox.showwarning("Formato Incorrecto","- El mes que ingreso no es valido \n\n- Intentelo Nuevamente")
+                    flag = False
+
+                if mes == 2 and dia > 28:
+                    MessageBox.showwarning("Formato Incorrecto","El mes de febrero solo llega hasta el dia 28\n\n- Intentelo Nuevamente")
+                    flag = False
+
             except ValueError:
                 
                 MessageBox.showwarning("Formato Incorrecto","-El formato que ha ingresado es incorrecto, debe ingresar la fecha en el formato: \n\n             DD-MM-AAAA\n\n- Intentelo Nuevamente")
@@ -79,6 +92,8 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
                 
                 MessageBox.showwarning("Datos Incompletos","Debes ingresar un valor numerico en los campos: \n- Cedula Padre\n- Cedula Madre\n\n- Intentelo Nuevamente")
                 flag =False 
+
+        # ESCOJEMOS LA PREFECTURA ID
 
         if flag == True:
 
@@ -112,8 +127,8 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
             consul.insertarActaNacimiento(datosActaNacimiento)
 
             MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
-    
-def guardarCedulaIdentidad (numCedula,numActaNacimiento,estadoCivil,sexo,fechaEmision,nacionlidad):
+                     
+def guardarCedulaIdentidad (numCedula,numActaNacimiento,nombres,apellidos,estadoCivil,sexo,fechaEmision,nacionlidad):
     
     flag = True
     
@@ -136,6 +151,11 @@ def guardarCedulaIdentidad (numCedula,numActaNacimiento,estadoCivil,sexo,fechaEm
                 flag = False
 
             
+        if flag == True:
+             
+             nombres = nombres.title()
+             apellidos = apellidos.title()
+
             # Acomodar Fecha
 
         if flag == True:
@@ -167,7 +187,7 @@ def guardarCedulaIdentidad (numCedula,numActaNacimiento,estadoCivil,sexo,fechaEm
         if flag == True:
 
 
-                datosCedula = [numCedula, numActaNacimiento, estadoCivil, sexo, fechaEmision, fechaVencimiento, nacionlidad]
+                datosCedula = [numCedula,numActaNacimiento, nombres,apellidos, estadoCivil, sexo, fechaEmision, fechaVencimiento, nacionlidad]
             
                 consul.insertarCedula (datosCedula)
                     
@@ -175,17 +195,112 @@ def guardarCedulaIdentidad (numCedula,numActaNacimiento,estadoCivil,sexo,fechaEm
 
 def guardarActaMatrimonio (fechaActa, Pcontrayente, PDireccion, POcupacion, SContrayente, SDireccion, SOcupacion, registradorCivil, PTestigo, STestigo, prefectura):
      
-    DatosActaMatrimonio =[fechaActa, Pcontrayente, PDireccion, POcupacion, SContrayente, SDireccion, SOcupacion, registradorCivil, PTestigo, STestigo, prefectura]
-     
-    consul.insertarCedula (DatosActaMatrimonio)
+    flag = True
+    
+    # VERIFICAMOS SI LOS DATOS IMPORTANTES SE INGRESARON
+
+    if fechaActa == "" or Pcontrayente == 0 or PDireccion == "" or POcupacion == "" or SContrayente == 0 or SDireccion == "" or SOcupacion == "" or registradorCivil == 0 or  PTestigo == 0 or STestigo == 0:
+ 
+        MessageBox.showwarning("Datos Incompletos","Debes ingresar un valor numerico en los campos: \n- Numero Acta Nacimiento\n- Numero Cedula\n- Fecha Emision\n- Fecha Vencimiento\n- Estado Civil\n- Nacionalidad\n- Genero\n\n- Intentelo Nuevamente")
+    
+    else: 
+        
+        try:
+
+            Pcontrayente = int (Pcontrayente)
+            SContrayente = int (SContrayente)
+            registradorCivil = int (registradorCivil)
+            PTestigo = int (PTestigo)
+            STestigo = int (STestigo)
+
+
+        except ValueError:
                 
-    MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
+                MessageBox.showwarning("Datos Incompletos","- Debes ingresar valores numericos en los campos: \n\n Cedula P contrayente \nCedula S Contrayente \n Cedula Registrador Civil \nPrimer Testigo \nSegundo Testigo")
+                flag = False
+
+        # ACOMODAR TEXTO INGRESADO            
+        
+        if flag == True:
+             
+            PDireccion = PDireccion.title()
+            POcupacion = POcupacion.title()
+            SDireccion = SDireccion.title()
+            SOcupacion = SOcupacion.title
+
+        # Acomodar Fecha
+
+        if flag == True:
+
+            dia = fechaActa[0:2]
+            mes = fechaActa[3:5]
+            anio = fechaActa[6:10]
+
+            fechaActa = anio + "-" + mes +"-"+ dia
+    
+            try:
+                    
+                dia = int(dia)
+                mes = int (mes)
+                anio = int (anio)
+
+                anio = anio + 10
+
+                fechaVencimiento = str(anio) + "-" + str (mes)+ "-" + str (dia)
+
+            except ValueError:
+                    
+                MessageBox.showwarning("Formato Incorrecto","-El formato que ha ingresado es incorrecto, debe ingresar la fecha en el formato: \n\n             DD-MM-AAAA\n\n- Intentelo Nuevamente")
+                    
+                flag = False
+
+            #
+
+        if flag == True:
+
+            if prefectura == "Coquivacoa":
+                    
+                    prefectura = 1
+                    
+            elif prefectura == "Chiquinquira":
+                    
+                    prefectura = 2
+                        
+            elif prefectura ==  "Cacique Mara":
+                    
+                    prefectura = 3
+                    
+            elif prefectura == "Olegarios Villalobos":
+                    
+                    prefectura = 4
+            
+            else:
+                
+                flag = False
+                MessageBox.showinfo(message = "- Haz ingresado una prefectura Incorrecta\n\n- Vuelve a intentarlo", title = "Registro Civil")
+
+        if flag == True:
+             
+            DatosActaMatrimonio =[fechaActa, Pcontrayente, PDireccion, POcupacion, SContrayente, SDireccion, SOcupacion, registradorCivil, PTestigo, STestigo, prefectura]
+     
+            consul.insertarCedula (DatosActaMatrimonio)
+                
+            MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
 
 # CONSULTAS
 
 def consultarActaNacimiento ():
      
     datos = consul.consultaActaNacimiento()
-    print(len(datos))
+
     return datos
 
+def consultarCedulas ():
+     
+    dato = consul.ConsultaCedula()
+
+    return dato 
+
+def prueba(fechaActa, Pcontrayente, PDireccion, POcupacion, SContrayente, SDireccion, SOcupacion, registradorCivil, PTestigo, STestigo, prefectura):
+     
+    print(fechaActa, Pcontrayente, PDireccion, POcupacion, SContrayente, SDireccion, SOcupacion, registradorCivil, PTestigo, STestigo, prefectura)

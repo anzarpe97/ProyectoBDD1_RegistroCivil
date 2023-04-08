@@ -28,6 +28,7 @@ class DAO ():
             cursor = self.connection.cursor(buffered=True)  #nro_acta, nombres, apellidos, fecha_nacimiento, hora_nacimiento, lugar_nacimiento, sexo, cedula_padre, nombre_padre, apellido_padre, cedula_madre, nombre_madre, apellido_madre, id_prefectura
             
             sql = "INSERT INTO acta_nacimiento(nro_acta, nombres, apellidos, fecha_nacimiento, hora_nacimiento, lugar_nacimiento, sexo, cedula_padre, nombre_padre, apellido_padre, cedula_madre, nombre_madre, apellido_madre, id_prefecturas) VALUES (null,'{0}','{1}','{2}','{3}','{4}','{5}',{6},'{7}','{8}',{9},'{10}','{11}',{12})"
+            
             cursor.execute(sql.format(DAN[0], DAN[1], DAN[2], DAN[3], DAN[4], DAN[5], DAN[6], DAN[7], DAN[8], DAN[9], DAN[10], DAN[11],DAN[12]))
             
             self.connection.commit()
@@ -38,11 +39,11 @@ class DAO ():
 
             cursor = self.connection.cursor()
             
-            sql = "INSERT INTO cedula(n_cedula, acta_nacimiento, estado_civil, sexo, fecha_emision, fecha_vencimiento, nacionalidad) VALUES ({0}, {1},'{2}','{3}','{4}','{5}','{6}')"
+            sql = "INSERT INTO cedula(n_cedula, acta_nacimiento, nombres, apellidos, estado_civil, sexo, fecha_emision, fecha_vencimiento, nacionalidad) VALUES ({0}, {1},'{2}','{3}','{4}','{5}','{6}','{7}','{8}')"
 
             #sql = "INSERT INTO cedula (n_cedula,acta_nacimiento, estado_civil, sexo, fecha_emision, fecha_vencimiento, nacionalidad) VALUES ({0}, {1}, '{2}', '{3}', '{4}', '{5}', '{6}')"
             
-            cursor.execute(sql.format(DC[0],DC[1],DC[2],DC[3],DC[4],DC[5],DC[6]))
+            cursor.execute(sql.format(DC[0],DC[1],DC[2],DC[3],DC[4],DC[5],DC[6],DC[7],DC[8]))
 
             self.connection.commit()
 
@@ -50,8 +51,8 @@ class DAO ():
 
         cursor = self.connection.cursor(buffered=True)  
                                                                                            
-        sql = "INSERT INTO acta_matrimonio(nuro_acta, fecha_acta, id_contrayente1, direccion_cont1, ocupacion_cont1, id_contrayente2, direccion_cont2, ocupacion_cont2, id_registrador_civil, id_testigo1, id_testigo2, id_prefecturas) VALUES (null,'{0}',{1},'{2}','{3}',{4},'{5}','{6}',{7},{8},{9},{10})"
-        cursor.execute (sql.format(DAM[0], DAM[1], DAM[2], DAM[3], DAM[4], DAM[5], DAM[6], DAM[7], DAM[8], DAM[9], DAM[10], DAM[11]))
+        sql = "INSERT INTO acta_matrimonio (nro_acta, fecha_acta, id_contrayente1, ocupacion_contrayente_1, direccion_contrayente_1, id_contrayente2, ocupacion_contrayente_2, direccion_contrayente_2, id_registrador_civil, id_testigo1, id_testigo2, id_prefectura) VALUES (null,'{0}', {1}, '{2}', '{3}', {4}, '{5}', '{6}', {7}, {8}, {9}, {10})"
+        cursor.execute (sql.format(DAM[0], DAM[1], DAM[2], DAM[3], DAM[4], DAM[5], DAM[6], DAM[7], DAM[8], DAM[9], DAM[10]))
             
         self.connection.commit()
 
@@ -73,4 +74,14 @@ class DAO ():
 
     def ConsultaCedula (self):
 
-        pass        
+        if  self.connection.is_connected():
+
+            cursor = self.connection.cursor(buffered=True)  
+            
+            sql = "SELECT c.n_cedula, c.acta_nacimiento, c.nombres, c.apellidos, c.estado_civil, c.sexo, c.fecha_emision, c.fecha_vencimiento, c.nacionalidad FROM cedula c JOIN acta_nacimiento a ON c.acta_nacimiento = a.nro_acta"
+
+            cursor.execute(sql)
+            
+            myresult = cursor.fetchall()
+            
+            return myresult   
