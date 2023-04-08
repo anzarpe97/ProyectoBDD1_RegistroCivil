@@ -1,5 +1,4 @@
 import funciones
-from DBC import DAO
 
 import tkinter as tk 
 from tkinter import ttk
@@ -9,7 +8,119 @@ root = tk.Tk()
 
 # FUNCIONES
 
+def MostrarDatosAC(frameInicio):
+
+
+    Vscrollbar = ttk.Scrollbar(orient=tk.HORIZONTAL)
+
+    DatosActa = ttk.Treeview(frameInicio,columns=("#1","#2","#3","#4","#5","#6","#7","#8","#9","#10","#11","#12","#13","#14","#15","#16","#17","#18","#19"),yscrollcommand=Vscrollbar.set)
+    Vscrollbar.config(command=DatosActa.xview)
+    Vscrollbar.place(x=163,y=637,width=1000) 
+
+    DatosActa.column("#0", width=120,anchor="center")
+    DatosActa.column("#1", width=120)
+    DatosActa.column("#2", width=120)
+    DatosActa.column("#3", width=120)
+    DatosActa.column("#4", width=120)
+    DatosActa.column("#5", width=120)
+    DatosActa.column("#6", width=120)
+    DatosActa.column("#7", width=120)
+    DatosActa.column("#8", width=120)
+    DatosActa.column("#9", width=120)
+    DatosActa.column("#10", width=120)
+    DatosActa.column("#11", width=120)
+    DatosActa.column("#12", width=120)
+    DatosActa.column("#13", width=250)
+    DatosActa.column("#14", width=120)
+    DatosActa.column("#15", width=120)
+    DatosActa.column("#16", width=120)
+    DatosActa.column("#17", width=450)
+    DatosActa.column("#18", width=120)
+    DatosActa.column("#19", width=120)
+
+    DatosActa.heading("#0", text = "Num Acta", anchor="center")
+    DatosActa.heading("#1", text = "Nombre Bebe", anchor="center")
+    DatosActa.heading("#2", text ="Apellido Bebe", anchor="center")
+    DatosActa.heading("#3", text = "Fecha Nacimiento", anchor="center")
+    DatosActa.heading("#4", text = "Hora Nacimiento", anchor="center")
+    DatosActa.heading("#5", text = "Lugar Nacimiento", anchor="center")
+    DatosActa.heading("#6", text = "Sexo Bebe", anchor="center")
+    DatosActa.heading("#7", text = "Cedula Padre", anchor="center")
+    DatosActa.heading("#8", text = "Nombre Padre", anchor="center")
+    DatosActa.heading("#9", text = "Apellido Padre", anchor="center")
+    DatosActa.heading("#10", text = "Cedula Madre", anchor="center")
+    DatosActa.heading("#11", text = "Nombre Madre", anchor="center")
+    DatosActa.heading("#12", text = "Apellido Madre", anchor="center")
+    DatosActa.heading("#13", text = "Registro Civil", anchor="center")
+    DatosActa.heading("#14", text = "Estado", anchor="center")
+    DatosActa.heading("#15", text = "Ciudad", anchor="center")
+    DatosActa.heading("#16", text = "Parroquia", anchor="center")
+    DatosActa.heading("#17", text = "Direccion Registo Civil", anchor="center")
+    DatosActa.heading("#18", text = "Nombre Director", anchor="center")
+    DatosActa.heading("#19", text = "Apellido Director", anchor="center")
+
+
+    DAN = funciones.consultarActaNacimiento()
+
+    for x in DAN:
+        #cedulaPadre = 7, nombrePadre = 8, apellidoPadre = 9, cedulaMadre = 10, nombreMadre = 11, apellidoMadre = 12,  prefectura = 13]
+        
+        DatosActa.insert("", END, text = x[0], values = (x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17], x[18], x[19]))
+        
+    DatosActa.place(x=20,y=350,width=1000,height=280)
+
+def MostrarDatosC (frameInicio): 
+
+    Vscrollbar = ttk.Scrollbar(orient=tk.HORIZONTAL)
+
+    DatoActa = ttk.Treeview(frameInicio,columns=("#1","#2","#3","#4","#5","#6","#7","#8","#9","#10"),yscrollcommand=Vscrollbar.set)
+    Vscrollbar.config(command=DatoActa.xview)
+    Vscrollbar.place(x=163,y=637,width=1000) 
+
+    DatoActa.column("#0", width=120,anchor="center")
+    DatoActa.column("#1", width=120)
+    DatoActa.column("#2", width=120)
+    DatoActa.column("#3", width=120)
+    DatoActa.column("#4", width=120)
+    DatoActa.column("#5", width=120)
+    DatoActa.column("#6", width=120)
+    DatoActa.column("#7", width=120)
+    DatoActa.column("#8", width=120)
+    DatoActa.column("#9", width=120)
+    DatoActa.column("#10", width=120)
+
+
+    DatoActa.heading("#0", text = "Cedula", anchor="center")
+    DatoActa.heading("#1", text = "Nombres", anchor="center")
+    DatoActa.heading("#2", text = "Apellidos", anchor="center")
+    DatoActa.heading("#3", text = "Fecha Nacimiento", anchor="center")
+    DatoActa.heading("#4", text = "Estado Civil", anchor="center")
+    DatoActa.heading("#5", text = "Genero", anchor="center")
+    DatoActa.heading("#6", text = "Fecha Emision", anchor="center")
+    DatoActa.heading("#7", text = "Fecha Vencimiento", anchor="center")
+    DatoActa.heading("#8", text = "Nacionalidad", anchor="center")
+    DatoActa.heading("#9", text = "Nombre Director", anchor="center")
+    DatoActa.heading("#10", text = "Apellido Director", anchor="center")
+
+    DatoActa.place(x=20,y=350,width=1000,height=280)
+
 def actaNacimiento ():
+
+    # VARIABLES
+
+    nombres = StringVar ()
+    apellidos = StringVar ()
+    sexoBebe = StringVar ()
+    cedulaPadre = IntVar ()
+    nombrePadre = StringVar ()
+    apellidoPadre = StringVar ()
+    cedulaMadre = IntVar ()
+    nombreMadre = StringVar ()
+    apellidoMadre = StringVar ()
+    fechaNacimiento = StringVar ()
+    horaNacimiento = StringVar ()
+    ubicacion = StringVar ()
+    prefectura =StringVar ()
 
     # NO TOCAR
     
@@ -26,7 +137,7 @@ def actaNacimiento ():
     nombresLabel.configure(font = ("roboto", 12, "bold"), fg="WHITE", background="#209cb4")
     nombresLabel.place (x = 60, y = 90)
 
-    nombresEntry = tk.Entry(frameInicio, relief="flat")
+    nombresEntry = tk.Entry(frameInicio, relief="flat",textvariable = nombres)
     nombresEntry.place (x = 142, y = 93)
     
     # APELLIDO BEBE
@@ -35,7 +146,7 @@ def actaNacimiento ():
     apellidosLabel.configure(font = ("roboto", 12, "bold"), fg="WHITE", background="#209cb4")
     apellidosLabel.place (x = 60, y = 130)
 
-    apellidosEntry= tk.Entry(frameInicio, relief="flat")
+    apellidosEntry= tk.Entry(frameInicio, relief="flat", textvariable = apellidos)
     apellidosEntry.place (x = 142, y = 133)
 
     # SEXO BEBE
@@ -44,7 +155,7 @@ def actaNacimiento ():
     sexoBebeLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     sexoBebeLabel.place (x = 92, y = 170)#x = 100, y = 210
     
-    sexoBebeOpcion = ttk.Combobox (frameInicio,values = ["Masculino", "Femenino"],width=17)
+    sexoBebeOpcion = ttk.Combobox (frameInicio,values = ["Masculino", "Femenino"],width=17,textvariable=sexoBebe)
     sexoBebeOpcion.place (x = 141,y = 173)#x = 275, y = 213
 
     # CEDULA PADRE
@@ -53,7 +164,7 @@ def actaNacimiento ():
     cedulaPadreLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     cedulaPadreLabel.place (x = 380, y = 90)
 
-    cedulaPadreEntry = tk.Entry(frameInicio, relief="flat")
+    cedulaPadreEntry = tk.Entry(frameInicio, relief="flat",textvariable=cedulaPadre)
     cedulaPadreEntry.place (x = 500, y = 93)
 
     # NOMBRE PADRE
@@ -62,7 +173,7 @@ def actaNacimiento ():
     nombrePadreLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     nombrePadreLabel.place (x = 368, y = 130)
 
-    nombrePadreEntry = tk.Entry(frameInicio, relief="flat")
+    nombrePadreEntry = tk.Entry(frameInicio, relief="flat",textvariable = nombrePadre)
     nombrePadreEntry.place (x = 500, y = 133)
 
     # APELLIDO PADRE
@@ -71,7 +182,7 @@ def actaNacimiento ():
     apellidoPadreLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     apellidoPadreLabel.place (x = 368, y = 170)
 
-    apellidoPadreEntry = tk.Entry(frameInicio, relief="flat")
+    apellidoPadreEntry = tk.Entry(frameInicio, relief="flat",textvariable=apellidoPadre)
     apellidoPadreEntry.place (x = 500, y = 173)
 
     # CEDULA MADRE
@@ -80,7 +191,7 @@ def actaNacimiento ():
     cedulaMadreLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     cedulaMadreLabel.place (x = 700, y = 90)
 
-    cedulaMadreEntry = tk.Entry(frameInicio, relief="flat")
+    cedulaMadreEntry = tk.Entry(frameInicio, relief="flat",textvariable= cedulaMadre)
     cedulaMadreEntry.place (x = 820, y = 93)
 
     # NOMBRE MADRE
@@ -89,7 +200,7 @@ def actaNacimiento ():
     nombreMadreLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     nombreMadreLabel.place (x = 685, y = 130)
 
-    nombreMadreEntry = tk.Entry(frameInicio, relief="flat")
+    nombreMadreEntry = tk.Entry(frameInicio, relief="flat",textvariable=nombreMadre)
     nombreMadreEntry.place (x = 820, y = 133)
 
     # APELLIDO MADRE
@@ -98,7 +209,7 @@ def actaNacimiento ():
     apellidoMadreLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     apellidoMadreLabel.place (x = 685, y = 170)
 
-    apellidoMadreEntry = tk.Entry(frameInicio, relief="flat")
+    apellidoMadreEntry = tk.Entry(frameInicio, relief="flat",textvariable=apellidoMadre)
     apellidoMadreEntry.place (x = 820, y = 173)
 
     # FECHA DE NACIMIENTO
@@ -107,10 +218,10 @@ def actaNacimiento ():
     FechaNacimientoLabel.configure(font = ("roboto", 11, "bold"), fg = "WHITE", background = "#209cb4")
     FechaNacimientoLabel.place (x = 7, y = 210)
 
-    FechaNacimientoEntry = tk.Entry(frameInicio, relief="flat")
+    FechaNacimientoEntry = tk.Entry(frameInicio, relief="flat",textvariable=fechaNacimiento)
     FechaNacimientoEntry.place (x = 142, y = 213)
 
-    FormatoHNLabel = tk.Label(frameInicio, text = "Formato (aaaa-mm-dd) ")
+    FormatoHNLabel = tk.Label(frameInicio, text = "Formato (dd-mm-aaaa) ")
     FormatoHNLabel.configure(font = ("roboto", 8, "bold"), fg ="WHITE", background="#209cb4")
     FormatoHNLabel.place (x = 140, y = 233)
 
@@ -120,7 +231,7 @@ def actaNacimiento ():
     horaNacimientoLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     horaNacimientoLabel.place (x = 362, y = 210)
 
-    horaNacimientoEntry = tk.Entry(frameInicio, relief="flat")
+    horaNacimientoEntry = tk.Entry(frameInicio, relief="flat",textvariable=horaNacimiento)
     horaNacimientoEntry.place (x = 500, y = 213)
 
     FormatoHNLabel = tk.Label(frameInicio, text = "Formato (hh:mm:ss) ")
@@ -133,7 +244,7 @@ def actaNacimiento ():
     ubicacionLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     ubicacionLabel.place (x = 675, y = 210)
 
-    ubicacionEntry = tk.Entry (frameInicio, relief="flat")
+    ubicacionEntry = tk.Entry (frameInicio, relief="flat",textvariable=ubicacion)
     ubicacionEntry.place (x = 820, y = 213)
 
     # PREFECTURAS 
@@ -142,20 +253,29 @@ def actaNacimiento ():
     prefecturaLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     prefecturaLabel.place (x = 25, y = 260)#x = 100, y = 240
     
-    prefecturaOpcion = ttk.Combobox (frameInicio,values = ["Coquivacoa", "Chiquinquira", "Cacique Mara", "Olegarios Villalobos"],width=17)
+    prefecturaOpcion = ttk.Combobox (frameInicio,values = ["Coquivacoa", "Chiquinquira", "Cacique Mara", "Olegarios Villalobos"], textvariable= prefectura,width = 17)
     prefecturaOpcion.place (x = 141,y = 263)#x = 275, y = 213
 
     # BOTON AGREGAR 
-    
-    botonAgregar = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat", command = lambda: funciones.guardarDatosAcNacimiento(nombresEntry.get(),apellidosEntry.get(),FechaNacimientoEntry.get(),horaNacimientoEntry.get(), ubicacionEntry.get(), sexoBebeOpcion.get(), cedulaPadreEntry.get(), nombrePadreEntry.get(),apellidoPadreEntry.get(),cedulaMadreEntry.get(),nombreMadreEntry.get(),apellidoMadreEntry.get(),prefecturaOpcion.get()))
-    botonAgregar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonAgregar.place (x = round(1057/2), y = 300)
 
-    boton = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat", command = lambda: funciones.consultarActaNacimiento())
-    boton.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    boton.place (x = 100, y = 300)
+    botonAgregar = tk.Button (frameInicio, text = "Guardar", height = 1, width = 9,relief="flat", command = lambda: funciones.guardarDatosAcNacimiento(nombres.get(),apellidos.get(),fechaNacimiento.get(),horaNacimiento.get(), ubicacion.get(), sexoBebe.get(), cedulaPadre.get(), nombrePadre.get(),apellidoPadre.get(),cedulaMadre.get(),nombreMadre.get(),apellidoMadre.get(),prefectura.get()))
+    botonAgregar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonAgregar.place (x = round(1057/2), y = 315)
+
+    botonActualizar = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat", command = lambda: MostrarDatosAC(frameInicio))
+    botonActualizar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonActualizar.place (x = 400, y = 315)
 
 def cedula ():
+
+    # Variables
+
+    numCedula = IntVar()
+    numActaNacimiento = IntVar()
+    EstadoCivil = StringVar()
+    genero = StringVar()
+    nacionalidad = StringVar()
+    fechaEmision= StringVar()
 
     # NO TOCAR
 
@@ -164,18 +284,18 @@ def cedula ():
     
     # TITULO 
     
-    cedulaLabel = tk.Label(frameInicio, text = "Formulario Cedula")
-    cedulaLabel.configure(font = ("roboto", 14, "bold"), fg="#209cb4", background="WHITE")
-    cedulaLabel.place (x = 450, y = 10)
+    numCedulaLabel = tk.Label(frameInicio, text = "Formulario Cedula")
+    numCedulaLabel.configure(font = ("roboto", 14, "bold"), fg="#209cb4", background="WHITE")
+    numCedulaLabel.place (x = 450, y = 10)
 
     # NUMERO DE ACTA DE NACIMIENTO 
 
-    numActaNacimiento = tk.Label(frameInicio, text = "Numero Acta Nacimiento: ")
-    numActaNacimiento.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
-    numActaNacimiento.place (x = 18, y = 90)
+    numActaNacimientoLabel = tk.Label(frameInicio, text = "Numero Acta Nacimiento: ")
+    numActaNacimientoLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    numActaNacimientoLabel.place (x = 18, y = 90)
 
-    numActaNacimientoE = tk.Entry(frameInicio, relief = "flat")
-    numActaNacimientoE.place (x = 220, y = 93)
+    numActaNacimientoEntry = tk.Entry(frameInicio, relief = "flat",textvariable=numActaNacimiento)
+    numActaNacimientoEntry.place (x = 220, y = 93)
     
     # NUMERO DE CEDULA 
     
@@ -183,7 +303,7 @@ def cedula ():
     NumCedulaLabel.configure(font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     NumCedulaLabel.place (x =390, y = 90)
 
-    NumCedulaEntry = tk.Entry(frameInicio, relief = "flat")
+    NumCedulaEntry = tk.Entry(frameInicio, relief = "flat", textvariable=numCedula)
     NumCedulaEntry.place (x = 545, y = 93)
 
     # FECHA DE EMISION
@@ -192,22 +312,21 @@ def cedula ():
     FEmisionLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     FEmisionLabel.place (x = 705, y = 90)
 
-    FEmisionEntry = tk.Entry(frameInicio, relief = "flat")
+    FEmisionEntry = tk.Entry(frameInicio, relief = "flat",textvariable=fechaEmision)
     FEmisionEntry.place (x = 830, y = 92)
 
-    FormatoELabel = tk.Label(frameInicio, text = "Formato (aa/mm/dd) ")
+    FormatoELabel = tk.Label(frameInicio, text = "Formato (dd-mm-aaaa) ")
     FormatoELabel.configure(font = ("roboto", 8, "bold"), fg = "WHITE", background = "#209cb4")
-    #FormatoELabel.place ()
+    FormatoELabel.place(x = 825, y=70)
 
-    
     # ESTADO CIVIL
     
     EdoCivilLabel = tk.Label (frameInicio, text = "Estado Civil: ")
     EdoCivilLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     EdoCivilLabel.place (x = 117, y = 127)#
     
-    EdoCivilOpcion = ttk.Combobox (frameInicio,values = ["Soltero/a", "Casado/a", "Divorciado","Viudo/a"],width=17)
-    EdoCivilOpcion.place(x = 220, y = 130)#
+    EdoCivilOpcion = ttk.Combobox (frameInicio,values = ["Soltero/a", "Casado/a", "Divorciado","Viudo/a"],textvariable=EstadoCivil,width=17)
+    EdoCivilOpcion.place(x = 220, y = 130)
 
     #  GENEROS
 
@@ -215,7 +334,7 @@ def cedula ():
     generoLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     generoLabel.place (x =478, y = 130)
     
-    generoOpcion = ttk.Combobox (frameInicio,values = ["Hombre", "Mujer", "No-Binario"],width=17)
+    generoOpcion = ttk.Combobox (frameInicio,values = ["Hombre", "Mujer", "No-Binario"], textvariable=genero, width=17)
     generoOpcion.place(x = 545, y = 133)
 
     # NACIONALIDAD 
@@ -224,41 +343,20 @@ def cedula ():
     nacionalidadlLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
     nacionalidadlLabel.place (x = 718, y = 130)
     
-    nacionalidadOpcion = ttk.Combobox (frameInicio,values = ["Venezolano/a", "Extranjero/a"],width=17)
+    nacionalidadOpcion = ttk.Combobox (frameInicio,values = ["Venezolano/a", "Extranjero/a"], textvariable = nacionalidad,width=17)
     nacionalidadOpcion.place(x = 830, y = 133)
 
-    
-                                                                                                                        #fechaEmision,fechaVencimiento,nacionlidad
-    botonAgregarCedula = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat",command=lambda: funciones.guardarCedulaIdentidad(NumCedulaEntry.get(),numActaNacimientoE.get(),EdoCivilOpcion.get(),generoOpcion.get(),FEmisionEntry.get(), nacionalidadOpcion.get()))
+    botonAgregarCedula = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat",command = lambda: funciones.guardarCedulaIdentidad(numCedula.get(), numActaNacimiento.get(),EstadoCivil.get(),genero.get(),fechaEmision.get(), nacionalidad.get()))
     botonAgregarCedula.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonAgregarCedula.place (x = round(1057/2), y = 300)
+    botonAgregarCedula.place (x = 550, y = 180)
+
+    botonConsultaCedula = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat",command = lambda: MostrarDatosC(frameInicio))
+    botonConsultaCedula.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonConsultaCedula.place (x = 400, y = 180)
 
 def actaMatrimonio ():
 
-    """
-    `nro_acta`                     # AUTO
-    `fecha_acta`                   # LISTO
-     `id_contrayente1`             # LISTO 
-    `nmbr_contrayente1`            # LLAVE FORANEA
-    `aplldo_contrayente1`          # LLAVE FORANEA
-    `id_contrayente2`              # LISTO
-    `nmbr_contrayente2`            # LLAVE FORANEA
-    `aplldo_contrayente2`          # LLAVE FORANEA
-    `id_registrador_civil`         # LISTO
-    `nmbr_registrador`             # LLAVE FORANEA
-    `aplldo_registrador`           # LLAVE FORANEA
-    `id_testigo1`                  # LISTO
-    `nmbr_testigo1`                # LLAVE FORANEA
-    `apllido_testigo1`             # LLAVE FORANEA
-    `id_testigo2`                  # LISTO
-    `nmbr_testigo2`                # # LLAVE FORANEA
-    `apllido_testigo2`             # LLAVE FORANEA
-    `id_prefectura`                # LISTO
-    `nombre_registro_civil`        # LLAVE FORANEA
-    `dir_registro_nmbr`            # LLAVE FORANEA
-    `dir_registro_aplld`           # LLAVE FORANEA
-    
-    """
+    PContrayenteC = IntVar()
 
     # NO TOCAR
     
@@ -279,7 +377,7 @@ def actaMatrimonio ():
     PContrayente.configure(font = ("roboto", 10, "bold"), fg = "WHITE", background="#209cb4")
     PContrayente.place (x = 50, y = 90)
     
-    PContrayenteE = tk.Entry(frameInicio, relief="flat")
+    PContrayenteE = tk.Entry(frameInicio, relief="flat",textvariable=PContrayenteC)
     PContrayenteE.place (x =200, y = 93)
     
     # OCUPACION PRIMER CONTRAYENTE
@@ -377,6 +475,10 @@ def actaMatrimonio ():
     
     prefecturasOpcion = ttk.Combobox (frameInicio,values = ["Coquivacoa", "Chiquinquira", "Cacique Mara", "Oregarios Villalobos"], width=17)
     prefecturasOpcion.place (x = 555,y = 210)
+
+    botonAgregarActaMatrimonio = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat", command = lambda: funciones.guardarActaMatrimonio(FActaMatrimonioEntry.get(),PContrayenteC.get(),direccionPE.get(),OPContrayenteE.get(),SContrayenteE.get(),direccionSE.get(),OSContrayenteE.get(),registradorEntry.get(),testigoE.get(),testigoDosEntry.get(),prefecturasOpcion.get()))
+    botonAgregarActaMatrimonio.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonAgregarActaMatrimonio.place (x = round(1057/2), y = 300)
     
 def actaDivorcio ():
 
@@ -566,7 +668,7 @@ def actaDefuncion ():
     FMuerteEntry = tk.Entry(frameInicio, relief = "flat")
     FMuerteEntry.place (x = 900, y = 133)
 
-    FormatoMuLabel = tk.Label(frameInicio, text = "Formato (aa-mm-dd) ")
+    FormatoMuLabel = tk.Label(frameInicio, text = "Formato: dd-mm-aaaa ")
     FormatoMuLabel.configure(font = ("roboto", 8, "bold"), fg ="WHITE", background="#209cb4")
     FormatoMuLabel.place (x = 902, y = 153)
     
@@ -588,9 +690,22 @@ def actaDefuncion ():
     HMuerteEntry = tk.Entry(frameInicio, relief = "flat")
     HMuerteEntry.place (x = 900, y = 183)
 
-    FormatoHLabel = tk.Label(frameInicio, text = "Formato (hh:mm:ss) ")
+    FormatoHLabel = tk.Label(frameInicio, text = "Formato: hh:mm:ss ")
     FormatoHLabel.configure(font = ("roboto", 8, "bold"), fg ="WHITE", background="#209cb4")
     FormatoHLabel.place (x = 902, y = 203)
+
+    #FECHA EXPEDICION ACTA  
+
+    FActaLabel = tk.Label (frameInicio, text = "Fecha Expedicion Acta: ")
+    FActaLabel.configure (font = ("roboto", 11, "bold"), fg = "WHITE", background = "#209cb4")
+    FActaLabel.place (x = 385, y = 170)
+
+    FActaEntry = tk.Entry(frameInicio, relief = "flat")
+    FActaEntry.place (x = 555, y = 173)
+
+    FActaFLabel = tk.Label(frameInicio, text = "Formato: dd-mm-aaaa")
+    FActaFLabel.configure(font = ("roboto", 8, "bold"), fg ="WHITE", background="#209cb4")
+    FActaFLabel.place (x = 555, y = 193)
   
 # Configuracion Ventana
 

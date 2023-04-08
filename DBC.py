@@ -25,9 +25,9 @@ class DAO ():
 
         if  self.connection.is_connected():
 
-            cursor = self.connection.cursor(buffered=True)  #nro_acta, nombres, apellidos, fecha_nacimiento, hora_nacimiento, lugar_nacimiento, sexo, cedula_padre, nombre_padre, apellido_padre, cedula_madre, nombre_madre, apellido_madre, id_prefectura, nombre_registro_civil, dir_registro_nmbr, dir_registro_aplld
+            cursor = self.connection.cursor(buffered=True)  #nro_acta, nombres, apellidos, fecha_nacimiento, hora_nacimiento, lugar_nacimiento, sexo, cedula_padre, nombre_padre, apellido_padre, cedula_madre, nombre_madre, apellido_madre, id_prefectura
             
-            sql = "INSERT INTO acta_nacimiento(nro_acta, nombres, apellidos, fecha_nacimiento, hora_nacimiento, lugar_nacimiento, sexo, cedula_padre, nombre_padre, apellido_padre, cedula_madre, nombre_madre, apellido_madre, id_prefectura) VALUES (null,'{0}','{1}','{2}','{3}','{4}','{5}',{6},'{7}','{8}',{9},'{10}','{11}',{12})"
+            sql = "INSERT INTO acta_nacimiento(nro_acta, nombres, apellidos, fecha_nacimiento, hora_nacimiento, lugar_nacimiento, sexo, cedula_padre, nombre_padre, apellido_padre, cedula_madre, nombre_madre, apellido_madre, id_prefecturas) VALUES (null,'{0}','{1}','{2}','{3}','{4}','{5}',{6},'{7}','{8}',{9},'{10}','{11}',{12})"
             cursor.execute(sql.format(DAN[0], DAN[1], DAN[2], DAN[3], DAN[4], DAN[5], DAN[6], DAN[7], DAN[8], DAN[9], DAN[10], DAN[11],DAN[12]))
             
             self.connection.commit()
@@ -46,6 +46,15 @@ class DAO ():
 
             self.connection.commit()
 
+    def insertarActaMatrimonio(self,DAM):
+
+        cursor = self.connection.cursor(buffered=True)  
+                                                                                           
+        sql = "INSERT INTO acta_matrimonio(nuro_acta, fecha_acta, id_contrayente1, direccion_cont1, ocupacion_cont1, id_contrayente2, direccion_cont2, ocupacion_cont2, id_registrador_civil, id_testigo1, id_testigo2, id_prefecturas) VALUES (null,'{0}',{1},'{2}','{3}',{4},'{5}','{6}',{7},{8},{9},{10})"
+        cursor.execute (sql.format(DAM[0], DAM[1], DAM[2], DAM[3], DAM[4], DAM[5], DAM[6], DAM[7], DAM[8], DAM[9], DAM[10], DAM[11]))
+            
+        self.connection.commit()
+
     # CONSULTAS DE TABLAS
 
     def consultaActaNacimiento (self):
@@ -58,12 +67,10 @@ class DAO ():
 
             cursor.execute(sql)
             
-            #self.connection.commit()
+            myresult = cursor.fetchall()
+            
+            return myresult
 
-            myresult = cursor.fetchallD()
+    def ConsultaCedula (self):
 
-            for x in myresult:
-                
-                print(x)
-
-        
+        pass        

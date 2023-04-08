@@ -14,6 +14,8 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
 
         flag = True
 
+        # ACOMODAMOS lOS NOMBRES
+
         if flag == True:
         
         # Acomodar Nombres
@@ -28,6 +30,8 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
             apellidoMadre = apellidoMadre.title()
 
             lugarNacimiento = lugarNacimiento.title()
+
+        # ACOMODAMOS LA FECHA
 
         if flag == True:
 
@@ -51,6 +55,8 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
                 
                 flag = False
         
+        # VERIFICAMOS SI LA CEDULAS SON TIPO INT
+
         if flag == True:
 
             try:
@@ -74,21 +80,28 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
                 MessageBox.showwarning("Datos Incompletos","Debes ingresar un valor numerico en los campos: \n- Cedula Padre\n- Cedula Madre\n\n- Intentelo Nuevamente")
                 flag =False 
 
-        if prefectura == "Coquivacoa":
-                
-                prefectura = 1
-                
-        elif prefectura == "Chiquinquira":
-                
-                prefectura = 2
+        if flag == True:
+
+            if prefectura == "Coquivacoa":
                     
-        elif prefectura ==  "Cacique Mara":
+                    prefectura = 1
+                    
+            elif prefectura == "Chiquinquira":
+                    
+                    prefectura = 2
+                        
+            elif prefectura ==  "Cacique Mara":
+                    
+                    prefectura = 3
+                    
+            elif prefectura == "Olegarios Villalobos":
+                    
+                    prefectura = 4
+            
+            else:
                 
-                prefectura = 3
-                
-        elif prefectura == "Olegarios Villalobos":
-                
-                prefectura = 4
+                flag = False
+                MessageBox.showinfo(message = "- Haz ingresado una prefectura Incorrecta\n\n- Vuelve a intentarlo", title = "Registro Civil")
 
         # Diccionario Acta Nacimiento
         
@@ -103,66 +116,76 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
 def guardarCedulaIdentidad (numCedula,numActaNacimiento,estadoCivil,sexo,fechaEmision,nacionlidad):
     
     flag = True
+    
+    # VERIFICAMOS SI LOS DATOS IMPORTANTES SE INGRESARON
 
     if numCedula == "" or numActaNacimiento== "" or estadoCivil== "" or sexo == ""  or fechaEmision == ""  or nacionlidad == "":
  
         MessageBox.showwarning("Datos Incompletos","Debes ingresar un valor numerico en los campos: \n- Numero Acta Nacimiento\n- Numero Cedula\n- Fecha Emision\n- Fecha Vencimiento\n- Estado Civil\n- Nacionalidad\n- Genero\n\n- Intentelo Nuevamente")
     
-    try:
-         
-        numCedula = int(numCedula)
-        numActaNacimiento = int (numActaNacimiento)
-
-    except ValueError:
-             
-            MessageBox.showwarning("Datos Incompletos","- Debes ingresar valores numericos en los campos: \n\n- Numero Acta Nacimiento\n- Numero Cedula")
-            flag = False
-
-         
-         # Acomodar Fecha
-
-    if flag == True:
-
-            # Acomodar Fecha
-
-        dia = fechaEmision[0:2]
-        mes = fechaEmision[3:5]
-        anio = fechaEmision[6:10]
-
-        fechaEmision = anio + "-" + mes +"-"+ dia
- 
+    else: 
+        
         try:
-                
-            dia = int(dia)
-            mes = int (mes)
-            anio = int (anio)
-
-            anio = anio + 10
-
-            fechaVencimiento = str(anio) + "-" + str (mes)+ "-" + str (dia)
+            
+            numCedula = int(numCedula)
+            numActaNacimiento = int (numActaNacimiento)
 
         except ValueError:
                 
-            MessageBox.showwarning("Formato Incorrecto","-El formato que ha ingresado es incorrecto, debe ingresar la fecha en el formato: \n\n             DD-MM-AAAA\n\n- Intentelo Nuevamente")
-                
-            flag = False
+                MessageBox.showwarning("Datos Incompletos","- Debes ingresar valores numericos en los campos: \n\n- Numero Acta Nacimiento\n- Numero Cedula")
+                flag = False
 
-        
-        
-
-    if flag == True:
-
-
-            datosCedula = [numCedula, numActaNacimiento, estadoCivil, sexo, fechaEmision, fechaVencimiento, nacionlidad]
             
-            print(datosCedula)
-        
-            consul.insertarCedula (datosCedula)
+            # Acomodar Fecha
+
+        if flag == True:
+
+                # Acomodar Fecha
+
+            dia = fechaEmision[0:2]
+            mes = fechaEmision[3:5]
+            anio = fechaEmision[6:10]
+
+            fechaEmision = anio + "-" + mes +"-"+ dia
+    
+            try:
+                    
+                dia = int(dia)
+                mes = int (mes)
+                anio = int (anio)
+
+                anio = anio + 10
+
+                fechaVencimiento = str(anio) + "-" + str (mes)+ "-" + str (dia)
+
+            except ValueError:
+                    
+                MessageBox.showwarning("Formato Incorrecto","-El formato que ha ingresado es incorrecto, debe ingresar la fecha en el formato: \n\n             DD-MM-AAAA\n\n- Intentelo Nuevamente")
+                    
+                flag = False
+
+        if flag == True:
+
+
+                datosCedula = [numCedula, numActaNacimiento, estadoCivil, sexo, fechaEmision, fechaVencimiento, nacionlidad]
+            
+                consul.insertarCedula (datosCedula)
+                    
+                MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
+
+def guardarActaMatrimonio (fechaActa, Pcontrayente, PDireccion, POcupacion, SContrayente, SDireccion, SOcupacion, registradorCivil, PTestigo, STestigo, prefectura):
+     
+    DatosActaMatrimonio =[fechaActa, Pcontrayente, PDireccion, POcupacion, SContrayente, SDireccion, SOcupacion, registradorCivil, PTestigo, STestigo, prefectura]
+     
+    consul.insertarCedula (DatosActaMatrimonio)
                 
-            MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
+    MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
 
 # CONSULTAS
 
 def consultarActaNacimiento ():
      
-    consul.consultaActaNacimiento()
+    datos = consul.consultaActaNacimiento()
+    print(len(datos))
+    return datos
+

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-04-2023 a las 19:59:39
+-- Tiempo de generación: 07-04-2023 a las 04:18:27
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `proyecto`
+-- Base de datos: `RegistroCivilBDD`
 --
 
 -- --------------------------------------------------------
@@ -102,7 +102,7 @@ CREATE TABLE `acta_divorcio` (
 
 CREATE TABLE `acta_matrimonio` (
   `nro_acta` int(11) NOT NULL,
-  `fecha_acta` date NOT NULL,
+  `fecha_acta` date NOT NULL COMMENT 'gfyg',
   `id_contrayente1` int(11) NOT NULL,
   `nmbr_contrayente1` varchar(50) NOT NULL COMMENT 'nombre de contrayente 1',
   `aplldo_contrayente1` varchar(50) NOT NULL COMMENT 'apellidos del contrayente 1',
@@ -172,7 +172,7 @@ CREATE TABLE `cedula` (
 --
 
 CREATE TABLE `prefecturas` (
-  `id_prefecturas` int(11) NOT NULL COMMENT 'Primary Key',
+  `id_prefectura` int(11) NOT NULL COMMENT 'Primary Key',
   `nombre_registro` varchar(100) NOT NULL COMMENT 'nombre de la prefectura o oficina de registro',
   `estado` varchar(50) NOT NULL,
   `municipio` varchar(50) NOT NULL,
@@ -186,7 +186,7 @@ CREATE TABLE `prefecturas` (
 -- Volcado de datos para la tabla `prefecturas`
 --
 
-INSERT INTO `prefecturas` (`id_prefecturas`, `nombre_registro`, `estado`, `municipio`, `parroquia`, `direccion`, `director_nombre`, `director_apellido`) VALUES
+INSERT INTO `prefecturas` (`id_prefectura`, `nombre_registro`, `estado`, `municipio`, `parroquia`, `direccion`, `director_nombre`, `director_apellido`) VALUES
 (1, 'Registro Civil Parroquial Coquivacoa ', 'Zulia', 'Maracaibo', 'Coquivacoa', 'Av. 6 entre calles 54B y 55 urbanización zapara, entre los edificios zapara y el CDI', 'Jose', 'Perez'),
 (2, 'Registro Civil Parroquial Chiquinquirá', 'Zulia', 'Maracaibo', 'Chiquinquirá', 'Calle 95 del saladillo detrás de panorama.', 'Carlos', 'Rodriguez'),
 (3, 'Registro Civil Parroquial Cacique Mara', 'Zulia', 'Maracaibo', 'Cacique Mara', 'Av. 41 entre calles 92A y 93, sector cañada honda, diagonal al colegio consuelo nava', 'Antonio', 'Banderas'),
@@ -228,11 +228,6 @@ ALTER TABLE `acta_divorcio`
 --
 ALTER TABLE `acta_matrimonio`
   ADD PRIMARY KEY (`nro_acta`),
-  ADD KEY `id_contrayente1` (`id_contrayente1`),
-  ADD KEY `id_contrayente2` (`id_contrayente2`),
-  ADD KEY `abogado_contrayente1` (`id_registrador_civil`),
-  ADD KEY `abogado_contrayente2` (`id_testigo2`),
-  ADD KEY `id_testigo1` (`id_testigo1`),
   ADD KEY `prefectura` (`id_prefectura`);
 
 --
@@ -240,7 +235,7 @@ ALTER TABLE `acta_matrimonio`
 --
 ALTER TABLE `acta_nacimiento`
   ADD PRIMARY KEY (`nro_acta`),
-  ADD UNIQUE KEY `id_prefectura` (`id_prefectura`) USING BTREE;
+  ADD KEY `id_prefectura` (`id_prefectura`) USING BTREE;
 
 --
 -- Indices de la tabla `cedula`
@@ -255,7 +250,7 @@ ALTER TABLE `cedula`
 -- Indices de la tabla `prefecturas`
 --
 ALTER TABLE `prefecturas`
-  ADD PRIMARY KEY (`id_prefecturas`);
+  ADD PRIMARY KEY (`id_prefectura`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -277,13 +272,13 @@ ALTER TABLE `acta_divorcio`
 -- AUTO_INCREMENT de la tabla `acta_nacimiento`
 --
 ALTER TABLE `acta_nacimiento`
-  MODIFY `nro_acta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `nro_acta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `prefecturas`
 --
 ALTER TABLE `prefecturas`
-  MODIFY `id_prefecturas` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=5;
+  MODIFY `id_prefectura` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
@@ -305,7 +300,7 @@ ALTER TABLE `acta_defuncion`
 -- Filtros para la tabla `acta_divorcio`
 --
 ALTER TABLE `acta_divorcio`
-  ADD CONSTRAINT `acta_divorcio_ibfk_10` FOREIGN KEY (`id_prefectura`) REFERENCES `prefecturas` (`id_prefecturas`),
+  ADD CONSTRAINT `acta_divorcio_ibfk_10` FOREIGN KEY (`id_prefectura`) REFERENCES `prefecturas` (`id_prefectura`),
   ADD CONSTRAINT `acta_divorcio_ibfk_2` FOREIGN KEY (`c_conyuge1`) REFERENCES `cedula` (`n_cedula`),
   ADD CONSTRAINT `acta_divorcio_ibfk_3` FOREIGN KEY (`c_conyuge2`) REFERENCES `cedula` (`n_cedula`),
   ADD CONSTRAINT `acta_divorcio_ibfk_6` FOREIGN KEY (`id_ab_conyuge1`) REFERENCES `abogados` (`id_abogado`),
@@ -322,13 +317,13 @@ ALTER TABLE `acta_matrimonio`
   ADD CONSTRAINT `acta_matrimonio_ibfk_6` FOREIGN KEY (`id_registrador_civil`) REFERENCES `abogados` (`id_abogado`),
   ADD CONSTRAINT `acta_matrimonio_ibfk_7` FOREIGN KEY (`id_testigo2`) REFERENCES `abogados` (`id_abogado`),
   ADD CONSTRAINT `acta_matrimonio_ibfk_8` FOREIGN KEY (`id_testigo1`) REFERENCES `cedula` (`n_cedula`),
-  ADD CONSTRAINT `acta_matrimonio_ibfk_9` FOREIGN KEY (`id_prefectura`) REFERENCES `prefecturas` (`id_prefecturas`);
+  ADD CONSTRAINT `acta_matrimonio_ibfk_9` FOREIGN KEY (`id_prefectura`) REFERENCES `prefecturas` (`id_prefectura`);
 
 --
 -- Filtros para la tabla `acta_nacimiento`
 --
 ALTER TABLE `acta_nacimiento`
-  ADD CONSTRAINT `acta_nacimiento_ibfk_1` FOREIGN KEY (`id_prefectura`) REFERENCES `prefecturas` (`id_prefecturas`);
+  ADD CONSTRAINT `acta_nacimiento_ibfk_1` FOREIGN KEY (`id_prefectura`) REFERENCES `prefecturas` (`id_prefectura`);
 
 --
 -- Filtros para la tabla `cedula`
