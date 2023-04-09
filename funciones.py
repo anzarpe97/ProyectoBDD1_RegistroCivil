@@ -368,11 +368,18 @@ def consultarActaNacimiento ():
 
     return datos
 
+
 def consultarCedulas ():
      
     dato = consul.ConsultaCedula()
 
     return dato 
+
+def consultarActaMatrimonio():
+     
+    dato = consul.ConsultaMatrimonio()
+
+    return dato
 
 def consultarActaDeuncion():
      

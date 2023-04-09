@@ -95,6 +95,20 @@ class DAO ():
             
             return myresult   
 
+    def ConsultaMatrimonio (self):
+
+        if  self.connection.is_connected():
+
+            cursor = self.connection.cursor(buffered=True)  
+            
+            sql = "SELECT a.nro_acta, a.fecha_acta, a.id_contrayente1, c1.nombres, c1.apellidos, a.ocupacion_contrayente1, a.direccion_contrayente1,a.id_contrayente2, c2.nombres, c2.apellidos, a.ocupacion_contrayente2, a.direccion_contrayente2, a.id_registrador_civil, c3.nombres, c3.apellidos, a.id_testigo1, c4.nombres, c4.apellidos, a.id_testigo2, c5.nombres, c5.apellidos, p.nombre_registro, p.estado, p.municipio, p.parroquia, p.direccion, p.director_nombre, p.director_apellido FROM acta_matrimonio a JOIN cedula c1 ON a.id_contrayente1 = c1.n_cedula JOIN cedula c2 ON a.id_contrayente2 = c2.n_cedula JOIN cedula c3 ON a.id_registrador_civil = c3.n_cedula JOIN cedula c4 ON a.id_testigo1 = c4.n_cedula JOIN cedula c5 ON a.id_testigo2 = c5.n_cedula JOIN prefecturas p ON a.id_prefectura = p.id_prefectura"
+
+            cursor.execute(sql)
+            
+            myresult = cursor.fetchall()
+            
+            return myresult
+
     def consultarAD (self):
 
         if  self.connection.is_connected():

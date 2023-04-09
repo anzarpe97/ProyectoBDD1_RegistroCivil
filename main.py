@@ -8,8 +8,7 @@ root = tk.Tk()
 
 # FUNCIONES
 
-
-# MOSTRAR DATOS
+# MOSTRAR DATOS ACTA NACIMIENTO
 
 def MostrarDatosAC (frameInicio):
 
@@ -71,6 +70,8 @@ def MostrarDatosAC (frameInicio):
         
     DatosActa.place(x = 20, y = 350, width = 1000, height = 280)
 
+#MOSTRAR DATOS CEDULA
+
 def MostrarDatosC (frameInicio): 
 
     Vscrollbar = ttk.Scrollbar (orient = tk.HORIZONTAL)
@@ -105,43 +106,105 @@ def MostrarDatosC (frameInicio):
 
         DatoCedula.insert("", END, text = x[0], values = (x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8]))
 
-    DatoCedula.place(x = 20, y = 350, width = 1000, height = 280)
+    DatoCedula.place(x = 20, y = 310, width = 1000, height = 320)
+
+# MOSTRAR DATOS ACTA DE MATRIMONIO
 
 def MostrarDatosAM (frameInicio):
     
     Vscrollbar = ttk.Scrollbar (orient = tk.HORIZONTAL)
 
-    DatoCedula = ttk.Treeview (frameInicio, columns = ("#1","#2","#3","#4","#5","#6","#7","#8"), yscrollcommand = Vscrollbar.set)
-    Vscrollbar.config (command = DatoCedula.xview)
+    DatoActaMatrimonio = ttk.Treeview (frameInicio, columns = ("#1","#2","#3","#4","#5","#6","#7","#8","#9","#10","#11","#12","#13","#14","#15","#16","#17","#18","#19","#20","#21","#22","#23","#24","#25","#26","#27"), yscrollcommand = Vscrollbar.set)
+    Vscrollbar.config (command = DatoActaMatrimonio.xview)
     Vscrollbar.place (x = 163, y = 637, width = 1000) 
 
-    DatoCedula.column("#0", width = 120)
-    DatoCedula.column("#1", width = 120)
-    DatoCedula.column("#2", width = 120)
-    DatoCedula.column("#3", width = 120)
-    DatoCedula.column("#4", width = 120)
-    DatoCedula.column("#5", width = 120)
-    DatoCedula.column("#6", width = 120)
-    DatoCedula.column("#7", width = 120)
-    DatoCedula.column("#8", width = 120)
+    DatoActaMatrimonio.column("#0", width = 200)
+    DatoActaMatrimonio.column("#1", width = 120)
+    DatoActaMatrimonio.column("#2", width = 120)
+    DatoActaMatrimonio.column("#3", width = 120)
+    DatoActaMatrimonio.column("#4", width = 120)
+    DatoActaMatrimonio.column("#5", width = 120)
+    DatoActaMatrimonio.column("#6", width = 120)
+    DatoActaMatrimonio.column("#7", width = 120)
+    DatoActaMatrimonio.column("#8", width = 120)
+    DatoActaMatrimonio.column("#9", width = 120)
+    DatoActaMatrimonio.column("#10", width = 120)
+    DatoActaMatrimonio.column("#11", width = 120)
+    DatoActaMatrimonio.column("#12", width = 120)
+    DatoActaMatrimonio.column("#13", width = 120)
+    DatoActaMatrimonio.column("#14", width = 120)
+    DatoActaMatrimonio.column("#15", width = 120)
+    DatoActaMatrimonio.column("#16", width = 120)
+    DatoActaMatrimonio.column("#17", width = 120)
+    DatoActaMatrimonio.column("#18", width = 120)
+    DatoActaMatrimonio.column("#19", width = 120)
+    DatoActaMatrimonio.column("#20", width = 120)
+    DatoActaMatrimonio.column("#21", width = 120)
+    DatoActaMatrimonio.column("#22", width = 120)
+    DatoActaMatrimonio.column("#23", width = 120)
+    DatoActaMatrimonio.column("#24", width = 120)
+    DatoActaMatrimonio.column("#25", width = 120)
+    DatoActaMatrimonio.column("#26", width = 120)
+    DatoActaMatrimonio.column("#27", width = 120)
 
-    DatoCedula.heading("#0", text = "Cedula", anchor = "center")
-    DatoCedula.heading("#1", text = "Nombres", anchor = "center")
-    DatoCedula.heading("#2", text = "Apellidos", anchor = "center")
-    DatoCedula.heading("#3", text = "Estado Civil", anchor = "center")
-    DatoCedula.heading("#4", text = "Genero", anchor = "center")
-    DatoCedula.heading("#5", text = "Fecha Nacimiento", anchor = "center")
-    DatoCedula.heading("#6", text = "Fecha Emision", anchor = "center")
-    DatoCedula.heading("#7", text = "Fecha Vencimiento", anchor = "center")
-    DatoCedula.heading("#8", text = "Nacionalidad", anchor = "center")
+    # DATOS ACTA 
 
-    Cedula = funciones.consultarCedulas()
+    DatoActaMatrimonio.heading("#0", text = "Numero Acta Matrimonio", anchor = "center")
+    DatoActaMatrimonio.heading("#1", text = "Fecha Matrimonio", anchor = "center")
 
-    for x in Cedula:
+    # DATOS PRIMER CONTRAYENTE
 
-        DatoCedula.insert("", END, text = x[0], values = (x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8]))
+    DatoActaMatrimonio.heading("#2", text = "Cedula P Contrayente", anchor = "center")
+    DatoActaMatrimonio.heading("#3", text = "Nombres P Contrayente", anchor = "center")
+    DatoActaMatrimonio.heading("#4", text = "Apellidos P Contrayente", anchor = "center")
+    DatoActaMatrimonio.heading("#5", text = "Ocupacion P Contrayente", anchor = "center")
+    DatoActaMatrimonio.heading("#6", text = "Direccion P Contrayente", anchor = "center")
 
-    DatoCedula.place(x = 20, y = 350, width = 1000, height = 280)
+    # DATOS SEGUNDO CONTRAYENTE
+
+    DatoActaMatrimonio.heading("#7", text = "Cedula S Contrayente", anchor = "center")
+    DatoActaMatrimonio.heading("#8", text = "Nombres S Contrayente", anchor = "center")
+    DatoActaMatrimonio.heading("#9", text = "Apellidos S Contrayente", anchor = "center")
+    DatoActaMatrimonio.heading("#10", text = "Ocupacion S Contrayente", anchor = "center")
+    DatoActaMatrimonio.heading("#11", text = "Direccion S Contrayente", anchor = "center")
+
+    # DATOS REGISTRADOR CIVIL
+
+    DatoActaMatrimonio.heading("#12", text = "Cedula Registrador Civil", anchor = "center")
+    DatoActaMatrimonio.heading("#13", text = "Nombres Registrador Civil", anchor = "center")
+    DatoActaMatrimonio.heading("#14", text = "Apellidos Registrador Civil", anchor = "center")
+
+    # DATOS PRIMER TESTIGO
+
+    DatoActaMatrimonio.heading("#15", text = "Cedula P Testigo", anchor = "center")
+    DatoActaMatrimonio.heading("#16", text = "Nombres P Testigo", anchor = "center")
+    DatoActaMatrimonio.heading("#17", text = "Apellidos P Testigos", anchor = "center")
+
+    # DATOS SEGUNGO TESTIGO
+
+    DatoActaMatrimonio.heading("#18", text = "Cedula S Testigo", anchor = "center")
+    DatoActaMatrimonio.heading("#19", text = "Nombres S Testigo", anchor = "center")
+    DatoActaMatrimonio.heading("#20", text = "Apellidos S Testigo", anchor = "center")
+
+    #DATOS REGISTROS
+
+    DatoActaMatrimonio.heading("#21", text = "Nombre Registro", anchor = "center")
+    DatoActaMatrimonio.heading("#22", text = "Estado", anchor = "center")
+    DatoActaMatrimonio.heading("#23", text = "Municipio", anchor = "center")
+    DatoActaMatrimonio.heading("#24", text = "Parroquia", anchor = "center")
+    DatoActaMatrimonio.heading("#25", text = "Direccion ", anchor = "center")
+    DatoActaMatrimonio.heading("#26", text = "Nombre Director", anchor = "center")
+    DatoActaMatrimonio.heading("#27", text = "Apellidos Director", anchor = "center")
+
+    ActaMatrimonio = funciones.consultarActaMatrimonio()
+
+    for x in ActaMatrimonio:
+
+        DatoActaMatrimonio.insert("", END, text = x[0], values = (x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17], x[18], x[19], x[20], x[21], x[22], x[23], x[24], x[25],x[26],x[27]))
+
+    DatoActaMatrimonio.place(x = 20, y = 315, width = 1000, height = 315)
+
+# MOSTRAR DATOS ACTA DEFUNNCION
 
 def MostrarDatosAD (frameInicio):
 
@@ -606,11 +669,11 @@ def actaMatrimonio ():
 
     botonAgregarActaMatrimonio = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat", command = lambda: funciones.guardarActaMatrimonio(FechaAM.get(), PContrayente.get(), OPContrayente.get(), DPContrayente.get(),SContrayente.get(),OSContrayente.get(),DSContrayente.get(),registrador.get(),PTestigo.get(),STestigo.get(),prefectura.get()))
     botonAgregarActaMatrimonio.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonAgregarActaMatrimonio.place (x = round(1057/2), y = 300)
+    botonAgregarActaMatrimonio.place (x = round(1057/2), y = 275)
 
-    botonMostrarAD = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat", command = lambda: MostrarDatosAD(frameInicio))
+    botonMostrarAD = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat", command = lambda: MostrarDatosAM(frameInicio))
     botonMostrarAD.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonMostrarAD.place (x = 300, y = 240)
+    botonMostrarAD.place (x = 370, y = 275)
     
 def actaDivorcio ():
     
