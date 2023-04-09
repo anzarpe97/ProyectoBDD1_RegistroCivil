@@ -26,9 +26,8 @@ class DAO ():
         if  self.connection.is_connected():
 
             cursor = self.connection.cursor(buffered=True)  #nro_acta, nombres, apellidos, fecha_nacimiento, hora_nacimiento, lugar_nacimiento, sexo, cedula_padre, nombre_padre, apellido_padre, cedula_madre, nombre_madre, apellido_madre, id_prefectura
-            
-            sql = "INSERT INTO acta_nacimiento(nro_acta, nombres, apellidos, fecha_nacimiento, hora_nacimiento, lugar_nacimiento, sexo, cedula_padre, nombre_padre, apellido_padre, cedula_madre, nombre_madre, apellido_madre, id_prefecturas) VALUES (null,'{0}','{1}','{2}','{3}','{4}','{5}',{6},'{7}','{8}',{9},'{10}','{11}',{12})"
-            
+            sql = "INSERT INTO acta_nacimiento(nro_acta, nombres, apellidos, fecha_nacimiento, hora_nacimiento, lugar_nacimiento, sexo, cedula_padre, nombre_padre, apellido_padre, cedula_madre, nombre_madre, apellido_madre, id_prefectura) VALUES (null,'{0}','{1}','{2}','{3}','{4}','{5}',{6},'{7}','{8}',{9},'{10}','{11}',{12})"
+        
             cursor.execute(sql.format(DAN[0], DAN[1], DAN[2], DAN[3], DAN[4], DAN[5], DAN[6], DAN[7], DAN[8], DAN[9], DAN[10], DAN[11],DAN[12]))
             
             self.connection.commit()
@@ -50,10 +49,19 @@ class DAO ():
     def insertarActaMatrimonio(self,DAM):
 
         cursor = self.connection.cursor(buffered=True)  
-                                                                                           
-        sql = "INSERT INTO acta_matrimonio (nro_acta, fecha_acta, id_contrayente1, ocupacion_contrayente_1, direccion_contrayente_1, id_contrayente2, ocupacion_contrayente_2, direccion_contrayente_2, id_registrador_civil, id_testigo1, id_testigo2, id_prefectura) VALUES (null,'{0}', {1}, '{2}', '{3}', {4}, '{5}', '{6}', {7}, {8}, {9}, {10})"
+
+        sql = "INSERT INTO acta_matrimonio (nro_acta, fecha_acta, id_contrayente1, ocupacion_contrayente1, direccion_contrayente1, id_contrayente2, ocupacion_contrayente2, direccion_contrayente2, id_registrador_civil, id_testigo1, id_testigo2, id_prefectura) VALUES (null,'{0}', {1}, '{2}', '{3}', {4}, '{5}', '{6}', {7}, {8}, {9}, {10})"
         cursor.execute (sql.format(DAM[0], DAM[1], DAM[2], DAM[3], DAM[4], DAM[5], DAM[6], DAM[7], DAM[8], DAM[9], DAM[10]))
             
+        self.connection.commit()
+
+    def insertarActaDefuncion (self,AD):
+
+        cursor = self.connection.cursor(buffered=True)  
+                                                                                                                                                                                                                                        #(a_nacimiento_fallecido, edad_fallecido, sexo_fallecido, estado_civil_f, fecha_defuncion, hora_defuncion, lugar_defuncion, causa_muerte, c_informante, relacion_informante                        
+        sql = "INSERT INTO acta_defuncion(id_acta_defuncion, a_nacimiento_fallecido, edad_fallecido, sexo_fallecido, estado_civil_f, fecha_defuncion, hora_defuncion, lugar_defuncion, causa_muerte, c_informante, relacion_informante) VALUES (null,{0}, {1}, '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', {8}, '{9}')"
+        cursor.execute (sql.format(AD[0], AD[1], AD[2], AD[3], AD[4], AD[5], AD[6], AD[7], AD[8], AD[9]))
+                
         self.connection.commit()
 
     # CONSULTAS DE TABLAS
@@ -63,8 +71,9 @@ class DAO ():
         if  self.connection.is_connected():
 
             cursor = self.connection.cursor(buffered=True)  
-            
-            sql = "SELECT a.nro_acta,a.nombres,a.apellidos,a.fecha_nacimiento,a.hora_nacimiento,a.lugar_nacimiento, a.sexo, a.cedula_padre,a.nombre_padre, a.apellido_padre, a.cedula_madre, a.nombre_madre, a.apellido_madre, p.nombre_registro, p.estado, p.municipio, p.parroquia, p.direccion, p.director_nombre, p.director_apellido FROM acta_nacimiento a JOIN prefecturas p ON a.id_prefecturas = p.id_prefecturas"
+                    
+
+            sql = "SELECT a.nro_acta,a.nombres,a.apellidos,a.fecha_nacimiento,a.hora_nacimiento,a.lugar_nacimiento, a.sexo, a.cedula_padre,a.nombre_padre, a.apellido_padre, a.cedula_madre, a.nombre_madre, a.apellido_madre, p.nombre_registro, p.estado, p.municipio, p.parroquia, p.direccion, p.director_nombre, p.director_apellido FROM acta_nacimiento a JOIN prefecturas p ON a.id_prefectura = p.id_prefectura"
 
             cursor.execute(sql)
             
@@ -78,10 +87,26 @@ class DAO ():
 
             cursor = self.connection.cursor(buffered=True)  
             
-            sql = "SELECT c.n_cedula, c.acta_nacimiento, c.nombres, c.apellidos, c.estado_civil, c.sexo, c.fecha_emision, c.fecha_vencimiento, c.nacionalidad FROM cedula c JOIN acta_nacimiento a ON c.acta_nacimiento = a.nro_acta"
+            sql = "SELECT c.n_cedula, c.nombres, c.apellidos, c.estado_civil, c.sexo, a.fecha_nacimiento, c.fecha_emision, c.fecha_vencimiento, c.nacionalidad FROM cedula c JOIN acta_nacimiento a ON c.acta_nacimiento = a.nro_acta"
 
             cursor.execute(sql)
             
             myresult = cursor.fetchall()
             
             return myresult   
+
+    def consultarAD (self):
+
+        if  self.connection.is_connected():
+
+                cursor = self.connection.cursor(buffered=True)  
+                
+                sql = "SELECT ad.id_acta_defuncion,an.nombres,an.apellidos,ad.edad_fallecido,ad.sexo_fallecido,ad.estado_civil_f,ad.fecha_defuncion,ad.hora_defuncion,ad.lugar_defuncion,ad.causa_muerte,ad.c_informante,c.nombres,c.apellidos, ad.relacion_informante, an.nombre_madre, an.apellido_madre, an.nombre_padre, an.apellido_padre FROM acta_defuncion ad JOIN acta_nacimiento an ON ad.a_nacimiento_fallecido = an.nro_acta JOIN cedula c ON ad.c_informante = c.n_cedula"
+
+                cursor.execute(sql)
+                
+                myresult = cursor.fetchall()
+                
+                return myresult
+
+    

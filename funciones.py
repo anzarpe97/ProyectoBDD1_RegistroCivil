@@ -205,6 +205,8 @@ def guardarActaMatrimonio (fechaActa, Pcontrayente, PDireccion, POcupacion, SCon
     
     else: 
         
+        #PASAMOS LAS CEDULAS A INT
+
         try:
 
             Pcontrayente = int (Pcontrayente)
@@ -217,6 +219,7 @@ def guardarActaMatrimonio (fechaActa, Pcontrayente, PDireccion, POcupacion, SCon
         except ValueError:
                 
                 MessageBox.showwarning("Datos Incompletos","- Debes ingresar valores numericos en los campos: \n\n Cedula P contrayente \nCedula S Contrayente \n Cedula Registrador Civil \nPrimer Testigo \nSegundo Testigo")
+                
                 flag = False
 
         # ACOMODAR TEXTO INGRESADO            
@@ -226,7 +229,7 @@ def guardarActaMatrimonio (fechaActa, Pcontrayente, PDireccion, POcupacion, SCon
             PDireccion = PDireccion.title()
             POcupacion = POcupacion.title()
             SDireccion = SDireccion.title()
-            SOcupacion = SOcupacion.title
+            SOcupacion = SOcupacion.title()
 
         # Acomodar Fecha
 
@@ -254,7 +257,7 @@ def guardarActaMatrimonio (fechaActa, Pcontrayente, PDireccion, POcupacion, SCon
                     
                 flag = False
 
-            #
+        # SELECIONAR PREFECTURA
 
         if flag == True:
 
@@ -279,12 +282,82 @@ def guardarActaMatrimonio (fechaActa, Pcontrayente, PDireccion, POcupacion, SCon
                 flag = False
                 MessageBox.showinfo(message = "- Haz ingresado una prefectura Incorrecta\n\n- Vuelve a intentarlo", title = "Registro Civil")
 
+        # HACER CONSULTA
+
         if flag == True:
              
             DatosActaMatrimonio =[fechaActa, Pcontrayente, PDireccion, POcupacion, SContrayente, SDireccion, SOcupacion, registradorCivil, PTestigo, STestigo, prefectura]
      
-            consul.insertarCedula (DatosActaMatrimonio)
+            consul.insertarActaMatrimonio(DatosActaMatrimonio)
                 
+            MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
+
+def guardarActaDefuncion (a_nacimiento_fallecido, sexo_fallecido, estado_civil_f, fecha_defuncion, hora_defuncion, lugar_defuncion, causa_muerte, c_informante, relacion_informante):
+     
+    flag = True
+    
+    # VERIFICAMOS SI LOS DATOS IMPORTANTES SE INGRESARON
+
+    if a_nacimiento_fallecido == 0 or sexo_fallecido == "" or estado_civil_f == "" or fecha_defuncion == "" or hora_defuncion == "" or lugar_defuncion == "" or causa_muerte == "" or c_informante == 0 or  relacion_informante == "":
+ 
+        MessageBox.showwarning("Datos Incompletos","Debes ingresar un valor numerico en los campos: \n- Numero Acta Nacimiento\n- Numero Cedula\n- Fecha Emision\n- Fecha Vencimiento\n- Estado Civil\n- Nacionalidad\n- Genero\n\n- Intentelo Nuevamente")
+    
+    else: 
+        
+        #PASAMOS LAS CEDULAS A INT
+
+        try:
+
+            a_nacimiento_fallecido = int (a_nacimiento_fallecido)
+            c_informante = int (c_informante)
+
+
+        except ValueError:
+                
+                MessageBox.showwarning("Datos Incompletos","- Debes ingresar valores numericos en los campos: \n\n Cedula P contrayente \nCedula S Contrayente \n Cedula Registrador Civil \nPrimer Testigo \nSegundo Testigo")
+                
+                flag = False
+
+        # ACOMODAR TEXTO INGRESADO            
+        
+        if flag == True:
+             
+            causa_muerte = causa_muerte.title()
+            lugar_defuncion = lugar_defuncion.title()
+
+        # Acomodar Fecha
+
+        if flag == True:
+
+            dia = fecha_defuncion[0:2]
+            mes = fecha_defuncion[3:5]
+            anio = fecha_defuncion[6:10]
+
+            fecha_defuncion = anio + "-" + mes +"-"+ dia
+    
+            try:
+                    
+                dia = int(dia)
+                mes = int (mes)
+                anio = int (anio)
+
+                edad_fallecido = 2023 - anio
+
+            except ValueError:
+                    
+                MessageBox.showwarning("Formato Incorrecto","-El formato que ha ingresado es incorrecto, debe ingresar la fecha en el formato: \n\n             DD-MM-AAAA\n\n- Intentelo Nuevamente")
+                    
+                flag = False
+
+
+        # HACER CONSULTA
+
+        if flag == True:
+             
+            DatosActaDefuncion =[a_nacimiento_fallecido, edad_fallecido, sexo_fallecido, estado_civil_f, fecha_defuncion, hora_defuncion, lugar_defuncion, causa_muerte, c_informante, relacion_informante]
+     
+            consul.insertarActaDefuncion(DatosActaDefuncion)
+            
             MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
 
 # CONSULTAS
@@ -301,6 +374,8 @@ def consultarCedulas ():
 
     return dato 
 
-def prueba(fechaActa, Pcontrayente, PDireccion, POcupacion, SContrayente, SDireccion, SOcupacion, registradorCivil, PTestigo, STestigo, prefectura):
+def consultarActaDeuncion():
      
-    print(fechaActa, Pcontrayente, PDireccion, POcupacion, SContrayente, SDireccion, SOcupacion, registradorCivil, PTestigo, STestigo, prefectura)
+    dato = consul.consultarAD()
+
+    return dato
