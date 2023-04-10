@@ -204,6 +204,102 @@ def MostrarDatosAM (frameInicio):
 
     DatoActaMatrimonio.place(x = 20, y = 315, width = 1000, height = 315)
 
+
+def MostrarDatosAD (frameInicio):
+
+    Vscrollbar = ttk.Scrollbar (orient = tk.HORIZONTAL)
+
+    DatoActaMatrimonio = ttk.Treeview (frameInicio, columns = ("#1","#2","#3","#4","#5","#6","#7","#8","#9","#10","#11","#12","#13","#14","#15","#16","#17","#18","#19","#20","#21","#22","#23","#24","#25","#26","#27"), yscrollcommand = Vscrollbar.set)
+    Vscrollbar.config (command = DatoActaMatrimonio.xview)
+    Vscrollbar.place (x = 163, y = 637, width = 1000) 
+
+    DatoActaMatrimonio.column("#0", width = 200)
+    DatoActaMatrimonio.column("#1", width = 120)
+    DatoActaMatrimonio.column("#2", width = 120)
+    DatoActaMatrimonio.column("#3", width = 120)
+    DatoActaMatrimonio.column("#4", width = 120)
+    DatoActaMatrimonio.column("#5", width = 120)
+    DatoActaMatrimonio.column("#6", width = 120)
+    DatoActaMatrimonio.column("#7", width = 120)
+    DatoActaMatrimonio.column("#8", width = 120)
+    DatoActaMatrimonio.column("#9", width = 120)
+    DatoActaMatrimonio.column("#10", width = 120)
+    DatoActaMatrimonio.column("#11", width = 120)
+    DatoActaMatrimonio.column("#12", width = 120)
+    DatoActaMatrimonio.column("#13", width = 120)
+    DatoActaMatrimonio.column("#14", width = 120)
+    DatoActaMatrimonio.column("#15", width = 120)
+    DatoActaMatrimonio.column("#16", width = 120)
+    DatoActaMatrimonio.column("#17", width = 120)
+    DatoActaMatrimonio.column("#18", width = 120)
+    DatoActaMatrimonio.column("#19", width = 120)
+    DatoActaMatrimonio.column("#20", width = 120)
+    DatoActaMatrimonio.column("#21", width = 120)
+    DatoActaMatrimonio.column("#22", width = 120)
+    DatoActaMatrimonio.column("#23", width = 120)
+    DatoActaMatrimonio.column("#24", width = 120)
+    DatoActaMatrimonio.column("#25", width = 120)
+    DatoActaMatrimonio.column("#26", width = 120)
+    DatoActaMatrimonio.column("#27", width = 120)
+
+    # DATOS ACTA 
+
+    DatoActaMatrimonio.heading("#0", text = "Numero Acta Matrimonio", anchor = "center")
+    DatoActaMatrimonio.heading("#1", text = "Fecha Matrimonio", anchor = "center")
+
+    # DATOS PRIMER CONTRAYENTE
+
+    DatoActaMatrimonio.heading("#2", text = "Cedula P Contrayente", anchor = "center")
+    DatoActaMatrimonio.heading("#3", text = "Nombres P Contrayente", anchor = "center")
+    DatoActaMatrimonio.heading("#4", text = "Apellidos P Contrayente", anchor = "center")
+    DatoActaMatrimonio.heading("#5", text = "Ocupacion P Contrayente", anchor = "center")
+    DatoActaMatrimonio.heading("#6", text = "Direccion P Contrayente", anchor = "center")
+
+    # DATOS SEGUNDO CONTRAYENTE
+
+    DatoActaMatrimonio.heading("#7", text = "Cedula S Contrayente", anchor = "center")
+    DatoActaMatrimonio.heading("#8", text = "Nombres S Contrayente", anchor = "center")
+    DatoActaMatrimonio.heading("#9", text = "Apellidos S Contrayente", anchor = "center")
+    DatoActaMatrimonio.heading("#10", text = "Ocupacion S Contrayente", anchor = "center")
+    DatoActaMatrimonio.heading("#11", text = "Direccion S Contrayente", anchor = "center")
+
+    # DATOS REGISTRADOR CIVIL
+
+    DatoActaMatrimonio.heading("#12", text = "Cedula Registrador Civil", anchor = "center")
+    DatoActaMatrimonio.heading("#13", text = "Nombres Registrador Civil", anchor = "center")
+    DatoActaMatrimonio.heading("#14", text = "Apellidos Registrador Civil", anchor = "center")
+
+    # DATOS PRIMER TESTIGO
+
+    DatoActaMatrimonio.heading("#15", text = "Cedula P Testigo", anchor = "center")
+    DatoActaMatrimonio.heading("#16", text = "Nombres P Testigo", anchor = "center")
+    DatoActaMatrimonio.heading("#17", text = "Apellidos P Testigos", anchor = "center")
+
+    # DATOS SEGUNGO TESTIGO
+
+    DatoActaMatrimonio.heading("#18", text = "Cedula S Testigo", anchor = "center")
+    DatoActaMatrimonio.heading("#19", text = "Nombres S Testigo", anchor = "center")
+    DatoActaMatrimonio.heading("#20", text = "Apellidos S Testigo", anchor = "center")
+
+    #DATOS REGISTROS
+
+    DatoActaMatrimonio.heading("#21", text = "Nombre Registro", anchor = "center")
+    DatoActaMatrimonio.heading("#22", text = "Estado", anchor = "center")
+    DatoActaMatrimonio.heading("#23", text = "Municipio", anchor = "center")
+    DatoActaMatrimonio.heading("#24", text = "Parroquia", anchor = "center")
+    DatoActaMatrimonio.heading("#25", text = "Direccion ", anchor = "center")
+    DatoActaMatrimonio.heading("#26", text = "Nombre Director", anchor = "center")
+    DatoActaMatrimonio.heading("#27", text = "Apellidos Director", anchor = "center")
+
+    ActaMatrimonio = funciones.consultarActaMatrimonio()
+
+    #for x in ActaMatrimonio:
+
+        #DatoActaMatrimonio.insert("", END, text = x[0], values = (x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17], x[18], x[19], x[20], x[21], x[22], x[23], x[24], x[25],x[26],x[27]))
+
+    #DatoActaMatrimonio.place(x = 20, y = 315, width = 1000, height = 315)
+
+
 # MOSTRAR DATOS ACTA DEFUNNCION
 
 def MostrarDatosAD (frameInicio):
@@ -677,6 +773,21 @@ def actaMatrimonio ():
     
 def actaDivorcio ():
     
+    NumActaMatrimonio = IntVar ()
+    CedulaPrimerEsposo = IntVar ()
+    DireccionPrimerEsposo = StringVar()
+
+    CedulaSegundoEsposo = IntVar()
+    DireccionSegundoEsposo =StringVar()
+
+    CedulaAbogadoPE = IntVar()
+    CedulaAbogadoSE = IntVar()
+
+    ActaNacimientoPHijo = IntVar()
+    ActaNacimientoSHijo = IntVar()
+
+    Prefectura = StringVar()
+
     #--------- NO TOCAR ------------------------------------------------------------------
     
     frameInicio = tk.Frame(root, background = "#209cb4", height = 656, width = 1057)
@@ -692,7 +803,7 @@ def actaDivorcio ():
     numActaMatrimonioLabel.configure (font = ("roboto", 10, "bold"), fg="WHITE", background="#209cb4")
     numActaMatrimonioLabel.place(x = 30, y=90)
     
-    numActaMatrimonioEntry = tk.Entry(frameInicio, relief="flat")
+    numActaMatrimonioEntry = tk.Entry(frameInicio, relief="flat", textvariable=NumActaMatrimonio)
     numActaMatrimonioEntry.place(x=200, y=93)
     
     # PRIMER ESPOSX
@@ -701,7 +812,7 @@ def actaDivorcio ():
     PEsposo.configure(font = ("roboto", 10, "bold"), fg = "WHITE", background="#209cb4")
     PEsposo.place (x = 70, y = 130)
 
-    PContrayenteE = tk.Entry(frameInicio, relief="flat")
+    PContrayenteE = tk.Entry(frameInicio, relief="flat",textvariable=CedulaPrimerEsposo)
     PContrayenteE.place (x = 200, y = 133)
     
     #SEGUNDX ESPOSX
@@ -710,7 +821,7 @@ def actaDivorcio ():
     SEsposo.configure(font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
     SEsposo.place (x = 430, y =130)
 
-    SEsposoE = tk.Entry(frameInicio, relief = "flat")
+    SEsposoE = tk.Entry(frameInicio, relief = "flat",textvariable=CedulaSegundoEsposo)
     SEsposoE.place (x = 560, y = 133)
     
     # DIRECCION PRIMER ESPOSX
@@ -719,7 +830,7 @@ def actaDivorcio ():
     DireccionPELabel.configure(font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
     DireccionPELabel.place (x =57, y = 170)
 
-    DireccionPELabeEntry = tk.Entry(frameInicio, relief = "flat")
+    DireccionPELabeEntry = tk.Entry(frameInicio, relief = "flat",textvariable=DireccionPrimerEsposo)
     DireccionPELabeEntry.place (x = 200, y = 173)
     
     # DIRECCION SEGUNDO ESPOSX
@@ -728,7 +839,7 @@ def actaDivorcio ():
     DireccionSELabeEntry.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
     DireccionSELabeEntry.place (x = 416, y = 170)
 
-    DireccionSELabeE = tk.Entry(frameInicio, relief = "flat")
+    DireccionSELabeE = tk.Entry(frameInicio, relief = "flat",textvariable=DireccionSegundoEsposo)
     DireccionSELabeE.place (x = 560, y = 173)
     
     #ABOGADO PRIMER ESPOSX
@@ -737,7 +848,7 @@ def actaDivorcio ():
     abogadoPLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
     abogadoPLabel.place (x = 43, y = 210)
 
-    abogadoPE = tk.Entry(frameInicio, relief = "flat")
+    abogadoPE = tk.Entry(frameInicio, relief = "flat",textvariable=CedulaAbogadoPE)
     abogadoPE.place (x = 200, y = 213)
 
     # ABOGADO SEGUNDX ESPOSX
@@ -746,7 +857,7 @@ def actaDivorcio ():
     abogadoSLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
     abogadoSLabel.place (x = 402, y = 210)
 
-    abogadoSE = tk.Entry(frameInicio, relief = "flat")
+    abogadoSE = tk.Entry(frameInicio, relief = "flat", textvariable=CedulaAbogadoSE)
     abogadoSE.place (x = 560, y = 213)
 
     # HIJOS
@@ -755,14 +866,14 @@ def actaDivorcio ():
     hijoUnoLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
     hijoUnoLabel.place (x = 750, y = 130)
 
-    hijoUnoEntry = tk.Entry(frameInicio, relief = "flat")
+    hijoUnoEntry = tk.Entry(frameInicio, relief = "flat", textvariable=ActaNacimientoPHijo)
     hijoUnoEntry.place (x = 910, y = 133)
     
     hijoDosLabel = tk.Label (frameInicio, text = "Acta Nacimiento Hijo/a: ")
     hijoDosLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
     hijoDosLabel.place (x = 750, y = 170)
 
-    hijoDosEntry = tk.Entry(frameInicio, relief = "flat")
+    hijoDosEntry = tk.Entry(frameInicio, relief = "flat", textvariable=ActaNacimientoSHijo)
     hijoDosEntry.place (x = 910, y = 173)
     
     # PREFECTURAS 
@@ -771,9 +882,13 @@ def actaDivorcio ():
     prefecturasLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
     prefecturasLabel.place (x = 813, y = 210)
     
-    prefecturasOpcion = ttk.Combobox (frameInicio,values = ["Coquivacoa", "Chiquinquira", "Cacique Mara", "Oregarios Villalobos"], width=17)
+    prefecturasOpcion = ttk.Combobox (frameInicio, values = ["Coquivacoa", "Chiquinquira", "Cacique Mara", "Olegarios Villalobos"], width = 17, textvariable = Prefectura)
     prefecturasOpcion.place (x = 910,y = 210)
     
+    botonAgregarActaDivorcio = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat", command = lambda: funciones.guardarActaDivorcio(NumActaMatrimonio.get(),CedulaPrimerEsposo.get(),DireccionPrimerEsposo.get(),CedulaSegundoEsposo.get(),DireccionSegundoEsposo.get(), CedulaAbogadoPE.get(),CedulaAbogadoSE.get(),ActaNacimientoPHijo.get(),ActaNacimientoSHijo.get(),Prefectura.get()))
+    botonAgregarActaDivorcio.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonAgregarActaDivorcio.place (x = round(1057/2), y = 280)
+
 def actaDefuncion ():
 
     ActaDifunto = IntVar()

@@ -55,6 +55,15 @@ class DAO ():
             
         self.connection.commit()
 
+    def insertarActaDivorcio(self,DAD):
+
+        cursor = self.connection.cursor(buffered=True)  
+
+        sql = "INSERT INTO acta_divorcio(n_acta, Id_acta_matrimonio, c_conyuge1, direccion_esposo1, c_conyuge2, direccion_esposo2, id_ab_conyuge1, id_ab_conyuge2, id_hijo1, id_hijo2, id_prefectura) VALUES (null,{0},{1}, '{2}', {3},'{4}', {5}, {6}, {7}, {8}, {9})"
+        cursor.execute (sql.format(DAD[0], DAD[1], DAD[2], DAD[3], DAD[4], DAD[5], DAD[6], DAD[7], DAD[8], DAD[9]))
+            
+        self.connection.commit()
+
     def insertarActaDefuncion (self,AD):
 
         cursor = self.connection.cursor(buffered=True)  
@@ -124,3 +133,9 @@ class DAO ():
                 return myresult
 
     
+
+"""
+
+SELECT a.n_acta,  a.c_conyuge1, c1.nombres, c1.apellidos, a.c_conyuge2, c2.nombres, c2.apellidos, a.id_ab_conyuge1, c3.nombres, c3.apellidos, a.id_ab_conyuge2, c4.nombres, c4.apellidos, a.id_hijo1, c5.nombres, c5.apellidos, a.id_hijo2, c6.nombres, c6.apellidos, a.id_prefectura, p.nombre_registro, p.estado, p.municipio, p.parroquia, p.direccion, p.director_nombre, p.director_apellido FROM acta_divorcio a JOIN cedula c1 ON a.c_conyuge1 = c1.n_cedula JOIN cedula c2 ON a.c_conyuge2 = c2.n_cedula JOIN cedula c3 ON a.id_ab_conyuge1 = c3.n_cedula JOIN cedula c4 ON a.id_ab_conyuge2 = c4.n_cedula JOIN cedula c5 ON a.id_hijo1 = c5.n_cedula JOIN cedula c6 ON a.id_hijo2 = c6.n_cedula JOIN prefecturas p ON a.id_prefectura = p.id_prefectura
+
+"""

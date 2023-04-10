@@ -292,6 +292,79 @@ def guardarActaMatrimonio (fechaActa, Pcontrayente, PDireccion, POcupacion, SCon
                 
             MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
 
+def guardarActaDivorcio (Id_acta_matrimonio, c_conyuge1, direccion_esposo1, c_conyuge2, direccion_esposo2, id_ab_conyuge1, id_ab_conyuge2, id_hijo1, id_hijo2, prefectura):
+     
+    if Id_acta_matrimonio == 0 or  c_conyuge1 == 0 or direccion_esposo1 == "" or c_conyuge2 == 0 or direccion_esposo2 == "" or  id_ab_conyuge1 == 0 or  id_ab_conyuge2 == 0  or id_hijo1 == 0 or id_hijo2 == 0 or prefectura == "": 
+        
+     
+        MessageBox.showwarning("Datos Incompletos", "Rellena los campos: \n\n- Numero Acta Matrimonio\n- Cedula P Esposo\n- Direccion P Esposo \n- Cedula S Esposo\n- Direccion S Esposo \n- Cedula Abg P Esposo \n- Cedula Abg S Esposo\n- Acta Nacimiento Hijo 1 \n- Acta Nacimiento Hijo 2 \n- Prefectura\n\nY vuelve a intentarlo.")
+    else:
+
+        flag = True
+
+        # ACOMODAMOS DIRECCIONES
+
+        if flag == True:
+        
+        # Acomodar Nombres
+
+            direccion_esposo1 = direccion_esposo1.title()
+            direccion_esposo2 = direccion_esposo2.title()
+        
+        # VERIFICAMOS SI LA CEDULAS SON TIPO INT
+
+        if flag == True:
+
+            try:
+                
+                Id_acta_matrimonio = int (Id_acta_matrimonio)
+                c_conyuge1 = int (c_conyuge1)
+                c_conyuge2 = int(c_conyuge2)
+                id_ab_conyuge1 = int(id_ab_conyuge1)
+                id_ab_conyuge2 = int (id_ab_conyuge2)
+                id_hijo1 = int (id_hijo1)
+                id_hijo2 = int (id_hijo2)
+                
+            except ValueError:
+                
+                MessageBox.showwarning("Datos Incompletos","Debes ingresar un valor numerico en los campos: \n- Cedula Padre\n- Cedula Madre\n\n- Intentelo Nuevamente")
+                flag =False 
+
+        # ESCOJEMOS LA PREFECTURA ID
+
+        if flag == True:
+
+            if prefectura == "Coquivacoa":
+                    
+                    prefectura = 1
+                    
+            elif prefectura == "Chiquinquira":
+                    
+                    prefectura = 2
+                        
+            elif prefectura ==  "Cacique Mara":
+                    
+                    prefectura = 3
+                    
+            elif prefectura == "Olegarios Villalobos":
+                    
+                    prefectura = 4
+            
+            else:
+                
+                flag = False
+                MessageBox.showinfo(message = "- Haz ingresado una prefectura Incorrecta\n\n- Vuelve a intentarlo", title = "Registro Civil")
+
+        # Diccionario Acta Nacimiento
+        
+        if flag == True :
+            
+            datosActaDivorcio = [Id_acta_matrimonio, c_conyuge1, direccion_esposo1, c_conyuge2, direccion_esposo2, id_ab_conyuge1, id_ab_conyuge2, id_hijo1, id_hijo2, prefectura]
+
+            consul.insertarActaDivorcio(datosActaDivorcio)
+
+            MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
+
 def guardarActaDefuncion (a_nacimiento_fallecido, sexo_fallecido, estado_civil_f, fecha_defuncion, hora_defuncion, lugar_defuncion, causa_muerte, c_informante, relacion_informante):
      
     flag = True
@@ -367,7 +440,6 @@ def consultarActaNacimiento ():
     datos = consul.consultaActaNacimiento()
 
     return datos
-
 
 def consultarCedulas ():
      
