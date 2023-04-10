@@ -299,7 +299,6 @@ def MostrarDatosAD (frameInicio):
 
     #DatoActaMatrimonio.place(x = 20, y = 315, width = 1000, height = 315)
 
-
 # MOSTRAR DATOS ACTA DEFUNNCION
 
 def MostrarDatosAD (frameInicio):
@@ -627,6 +626,10 @@ def cedula ():
     botonConsultaCedula = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat",command = lambda: MostrarDatosC(frameInicio))
     botonConsultaCedula.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
     botonConsultaCedula.place (x = 400, y = 230)
+
+    boton = tk.Button (frameInicio, text = "Prueba", height = 1, width = 12,relief="flat",command = lambda: funciones.verificarActaNacimiento(numActaNacimiento.get()))
+    boton.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    boton.place (x = 700, y = 230)
 
 def actaMatrimonio ():
 

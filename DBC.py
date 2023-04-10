@@ -32,6 +32,8 @@ class DAO ():
             
             self.connection.commit()
 
+            cursor.close()
+
     def insertarCedula (self,DC):
 
         if  self.connection.is_connected():
@@ -118,6 +120,20 @@ class DAO ():
             
             return myresult
 
+    def consultarActaDivorcio(self):
+        
+        if  self.connection.is_connected():
+
+                cursor = self.connection.cursor(buffered=True)  
+                
+                sql = "SELECT a.n_acta,  a.c_conyuge1, c1.nombres, c1.apellidos, a.direccion_conyuge1, a.c_conyuge2, c2.nombres, c2.apellidos,a.direccion_conyuge2 ,a.id_ab_conyuge1, c3.nombres, c3.apellidos, a.id_ab_conyuge2, c4.nombres, c4.apellidos, a.id_hijo1, c5.nombres, c5.apellidos, a.id_hijo2, c6.nombres, c6.apellidos, a.id_prefectura, p.nombre_registro, p.estado, p.municipio, p.parroquia, p.direccion, p.director_nombre, p.director_apellido FROM acta_divorcio a JOIN cedula c1 ON a.c_conyuge1 = c1.n_cedula JOIN cedula c2 ON a.c_conyuge2 = c2.n_cedula JOIN cedula c3 ON a.id_ab_conyuge1 = c3.n_cedula JOIN cedula c4 ON a.id_ab_conyuge2 = c4.n_cedula JOIN cedula c5 ON a.id_hijo1 = c5.n_cedula JOIN cedula c6 ON a.id_hijo2 = c6.n_cedula JOIN prefecturas p ON a.id_prefectura = p.id_prefectura"
+
+                cursor.execute(sql)
+                
+                myresult = cursor.fetchall()
+                
+                return myresult
+
     def consultarAD (self):
 
         if  self.connection.is_connected():
@@ -132,10 +148,40 @@ class DAO ():
                 
                 return myresult
 
-    
+    # CONSULTAS PRUEBAS
 
-"""
+    def consultaVCedula (self):
 
-SELECT a.n_acta,  a.c_conyuge1, c1.nombres, c1.apellidos, a.c_conyuge2, c2.nombres, c2.apellidos, a.id_ab_conyuge1, c3.nombres, c3.apellidos, a.id_ab_conyuge2, c4.nombres, c4.apellidos, a.id_hijo1, c5.nombres, c5.apellidos, a.id_hijo2, c6.nombres, c6.apellidos, a.id_prefectura, p.nombre_registro, p.estado, p.municipio, p.parroquia, p.direccion, p.director_nombre, p.director_apellido FROM acta_divorcio a JOIN cedula c1 ON a.c_conyuge1 = c1.n_cedula JOIN cedula c2 ON a.c_conyuge2 = c2.n_cedula JOIN cedula c3 ON a.id_ab_conyuge1 = c3.n_cedula JOIN cedula c4 ON a.id_ab_conyuge2 = c4.n_cedula JOIN cedula c5 ON a.id_hijo1 = c5.n_cedula JOIN cedula c6 ON a.id_hijo2 = c6.n_cedula JOIN prefecturas p ON a.id_prefectura = p.id_prefectura
+        if  self.connection.is_connected():
 
-"""
+            cursor = self.connection.cursor(buffered=True)  
+                    
+            sql = "SELECT n_cedula FROM cedula"
+
+            cursor.execute(sql)
+            
+            myresult = cursor.fetchall()
+
+            cursor.close()
+
+            return myresult
+         
+    def consultaVActaNacimiento(self):
+
+        if  self.connection.is_connected():
+
+            cursor = self.connection.cursor(buffered=True)  
+                    
+            sql = "SELECT nro_acta FROM acta_nacimiento"
+
+            cursor.execute(sql)
+            
+            myresult = cursor.fetchall()
+
+            cursor.close()
+
+            return myresult
+
+
+
+

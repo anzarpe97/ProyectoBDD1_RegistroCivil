@@ -4,6 +4,50 @@ from DBC import DAO
 
 consul = DAO()    
 
+def verificarCedula (numCedula):
+    
+    a = 0     
+    
+    cedulas = consul.consultaVCedula()
+    
+    b = len(cedulas)
+
+    for x in cedulas:
+         
+        if numCedula == x[0]:
+             
+            MessageBox.showwarning("Registro Civil", "- Haz colocado una cedula ya ingresada\n\n       Corrige y vuelve a intentarlo.")
+              
+            return False
+              
+        if a == (b-1):
+            
+            return True
+
+        a = a + 1
+
+def verificarActaNacimiento(numActaN):
+     
+    a = 0     
+    
+    acta = consul.consultaVActaNacimiento()
+    
+    b = len(acta)
+
+    for x in acta:
+         
+        if numActaN == x[0]:
+             
+            MessageBox.showwarning("Registro Civil", "- Haz colocado un acta de nacimiento ya ingresada\n\n       Corrige y vuelve a intentarlo.")
+              
+            return False
+              
+        if a == (b - 1):
+            
+            return True
+
+        a = a + 1
+
 def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento, lugarNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre,  prefectura):
     
     if nombre == "" or  apellido == "" or sexo == "" or lugarNacimiento == "" or FechaNacimiento == "" or horaNacimiento == "": 
@@ -30,7 +74,17 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
             apellidoMadre = apellidoMadre.title()
 
             lugarNacimiento = lugarNacimiento.title()
-
+        
+        # VERIFICAMOS SI NO SE COLOCA LA MISMA CEDULA EN AMBOS CAMPOS DE CEDULA
+        
+        if flag == True:
+             
+            if cedulaPadre == cedulaMadre:
+                 
+                MessageBox.showwarning("Datos Incompletos", "No debes colocar la misma cedula en los campos Cedula Padre y Cedula Madre\n\n Revisa y vuelve a intentarlo.")
+                
+                flag = False 
+ 
         # ACOMODAMOS LA FECHA
 
         if flag == True:
@@ -150,7 +204,11 @@ def guardarCedulaIdentidad (numCedula,numActaNacimiento,nombres,apellidos,estado
                 MessageBox.showwarning("Datos Incompletos","- Debes ingresar valores numericos en los campos: \n\n- Numero Acta Nacimiento\n- Numero Cedula")
                 flag = False
 
-            
+        
+        if flag == True:
+             
+            flag = verificarCedula(numCedula)
+
         if flag == True:
              
              nombres = nombres.title()
@@ -454,7 +512,17 @@ def consultarActaMatrimonio():
     return dato
 
 def consultarActaDeuncion():
-     
+
     dato = consul.consultarAD()
 
     return dato
+
+
+
+  
+
+
+            
+        
+              
+
