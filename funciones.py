@@ -4,6 +4,8 @@ from DBC import DAO
 
 consul = DAO()    
 
+# CONSULTA VERIFICAR DATOS
+
 def verificarCedula (numCedula):
     
     a = 0     
@@ -47,6 +49,47 @@ def verificarActaNacimiento(numActaN):
             return True
 
         a = a + 1
+
+def cedulaExiste (cedula):
+     
+    a = 0     
+    
+    cedulas = consul.consultaVCedula()
+    
+    b = len(cedulas)
+
+    for x in cedulas:
+         
+        if cedula == x[0]:
+               
+            return True
+              
+        if a == (b-1):
+
+            return False
+
+        a = a + 1
+
+def actaNacimientoExiste (numActaNa):
+    a = 0     
+    
+    numActaNa = consul.consultaVCedula()
+    
+    b = len(numActaNa)
+
+    for x in numActaNa:
+         
+        if numActaNa == x[0]:
+               
+            return True
+              
+        if a == (b-1):
+
+            return False
+
+        a = a + 1
+
+# GUARDAR DATOS
 
 def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento, lugarNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre,  prefectura):
     
@@ -191,9 +234,11 @@ def guardarCedulaIdentidad (numCedula,numActaNacimiento,nombres,apellidos,estado
     if numCedula == "" or numActaNacimiento== "" or estadoCivil== "" or sexo == ""  or fechaEmision == ""  or nacionlidad == "":
  
         MessageBox.showwarning("Datos Incompletos","Debes ingresar un valor numerico en los campos: \n- Numero Acta Nacimiento\n- Numero Cedula\n- Fecha Emision\n- Fecha Vencimiento\n- Estado Civil\n- Nacionalidad\n- Genero\n\n- Intentelo Nuevamente")
-    
+
     else: 
         
+         # VERIFICAMOS SI LAS CEDULAS SON TIPO INT
+
         try:
             
             numCedula = int(numCedula)
@@ -204,21 +249,22 @@ def guardarCedulaIdentidad (numCedula,numActaNacimiento,nombres,apellidos,estado
                 MessageBox.showwarning("Datos Incompletos","- Debes ingresar valores numericos en los campos: \n\n- Numero Acta Nacimiento\n- Numero Cedula")
                 flag = False
 
-        
+        # VERIFICAMOS SI LA CEDULA YA FUE INGRESADA
+
         if flag == True:
              
             flag = verificarCedula(numCedula)
+
+        # ACOMODAMOS LOS NOMBRES Y APELLIDOS
 
         if flag == True:
              
              nombres = nombres.title()
              apellidos = apellidos.title()
 
-            # Acomodar Fecha
+        # ACOMODAMOS FECHA
 
         if flag == True:
-
-                # Acomodar Fecha
 
             dia = fechaEmision[0:2]
             mes = fechaEmision[3:5]
@@ -241,6 +287,8 @@ def guardarCedulaIdentidad (numCedula,numActaNacimiento,nombres,apellidos,estado
                 MessageBox.showwarning("Formato Incorrecto","-El formato que ha ingresado es incorrecto, debe ingresar la fecha en el formato: \n\n             DD-MM-AAAA\n\n- Intentelo Nuevamente")
                     
                 flag = False
+
+        # INGRESAMOS DATOS
 
         if flag == True:
 
@@ -273,13 +321,63 @@ def guardarActaMatrimonio (fechaActa, Pcontrayente, PDireccion, POcupacion, SCon
             PTestigo = int (PTestigo)
             STestigo = int (STestigo)
 
-
         except ValueError:
                 
-                MessageBox.showwarning("Datos Incompletos","- Debes ingresar valores numericos en los campos: \n\n Cedula P contrayente \nCedula S Contrayente \n Cedula Registrador Civil \nPrimer Testigo \nSegundo Testigo")
-                
+                MessageBox.showwarning("Registo Civil","- Debes ingresar valores numericos en los campos: \n\n Cedula P contrayente \nCedula S Contrayente \n Cedula Registrador Civil \nPrimer Testigo \nSegundo Testigo")
                 flag = False
 
+        # VERIFICAMOS CEDULAS INGRESADAS
+
+        if flag == True:
+            
+            # VERIFICAMOS SI EXISTE LA CEDULA DEL PRIMER CONTRAYENTE
+
+            flag = cedulaExiste(Pcontrayente)
+
+            if flag == True:
+                
+                # VERIFICAMOS SI EXTISTE LA CEDULA DEL SEGUNDO CONTRAYENTE
+
+                flag = cedulaExiste(SContrayente)
+
+                if flag == True:
+
+                    # VERIFICAMOS SI EXISTE LA CEDULA DEL REGISTRADOR CIVIL
+
+                    flag = cedulaExiste(registradorCivil)
+
+                    if flag == True:
+                        
+                        # VERIFICAMOS SI EXISTE LA CEDULA DEL PRIMER TESTIGO
+
+                        flag = cedulaExiste (PTestigo)
+
+                        if flag == True:
+                            
+                             # VERIFICAMOS SI EXISTE LA CEDULA DEL SEGUNDO TESTIGO
+
+                            flag = cedulaExiste (STestigo)
+
+                            if flag == False:
+                                 
+                                MessageBox.showwarning("Registo Civil","- La cedula del segundo testigo no existe.\n\n Debes ingresarla antes de realizar el acta de matrimonio.")
+
+                        else:
+
+                             MessageBox.showwarning("Registo Civil","- La cedula del primer testigo no existe.\n\n Debes ingresarla antes de realizar el acta de matrimonio.") 
+                    
+                    else:
+                         
+                        MessageBox.showwarning("Registo Civil","- La cedula del registrador civil no existe.\n\n Debes ingresarla antes de realizar el acta de matrimonio.")
+
+                else:
+
+                    MessageBox.showwarning("Registo Civil","- La cedula del segundo contrayente no existe.\n\n Debes ingresarla antes de realizar el acta de matrimonio.")
+
+            else:
+                 
+                MessageBox.showwarning("Registo Civil","- La cedula del primer primer contrayente no existe.\n\n Debes ingresarla antes de realizar el acta de matrimonio.")
+ 
         # ACOMODAR TEXTO INGRESADO            
         
         if flag == True:
@@ -387,6 +485,16 @@ def guardarActaDivorcio (Id_acta_matrimonio, c_conyuge1, direccion_esposo1, c_co
                 
                 MessageBox.showwarning("Datos Incompletos","Debes ingresar un valor numerico en los campos: \n- Cedula Padre\n- Cedula Madre\n\n- Intentelo Nuevamente")
                 flag =False 
+
+        if flag == True:
+             
+            flag = cedulaExiste(c_conyuge1) 
+
+            if flag == True:
+                 
+            else:
+                 
+
 
         # ESCOJEMOS LA PREFECTURA ID
 
@@ -516,13 +624,3 @@ def consultarActaDeuncion():
     dato = consul.consultarAD()
 
     return dato
-
-
-
-  
-
-
-            
-        
-              
-

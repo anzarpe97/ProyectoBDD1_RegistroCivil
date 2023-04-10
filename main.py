@@ -6,8 +6,6 @@ from tkinter import *
 
 root = tk.Tk()
 
-# FUNCIONES
-
 # MOSTRAR DATOS ACTA NACIMIENTO
 
 def MostrarDatosAC (frameInicio):
@@ -143,7 +141,7 @@ def MostrarDatosAM (frameInicio):
     DatoActaMatrimonio.column("#22", width = 120)
     DatoActaMatrimonio.column("#23", width = 120)
     DatoActaMatrimonio.column("#24", width = 120)
-    DatoActaMatrimonio.column("#25", width = 120)
+    DatoActaMatrimonio.column("#25", width = 500)
     DatoActaMatrimonio.column("#26", width = 120)
     DatoActaMatrimonio.column("#27", width = 120)
 
@@ -204,6 +202,7 @@ def MostrarDatosAM (frameInicio):
 
     DatoActaMatrimonio.place(x = 20, y = 315, width = 1000, height = 315)
 
+# MOSTRAR DATOS ACTA DE DIVORCIO
 
 def MostrarDatosAD (frameInicio):
 
@@ -627,7 +626,7 @@ def cedula ():
     botonConsultaCedula.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
     botonConsultaCedula.place (x = 400, y = 230)
 
-    boton = tk.Button (frameInicio, text = "Prueba", height = 1, width = 12,relief="flat",command = lambda: funciones.verificarActaNacimiento(numActaNacimiento.get()))
+    boton = tk.Button (frameInicio, text = "Prueba", height = 1, width = 12,relief="flat",command = lambda: funciones.cedulaExiste(numCedula.get()))
     boton.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
     boton.place (x = 700, y = 230)
 
