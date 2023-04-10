@@ -71,19 +71,65 @@ def cedulaExiste (cedula):
         a = a + 1
 
 def actaNacimientoExiste (numActaNa):
+    
     a = 0     
     
-    numActaNa = consul.consultaVCedula()
+    numActaN = consul.consultaVActaNacimiento()
     
-    b = len(numActaNa)
+    b = len(numActaN)
 
-    for x in numActaNa:
+    for x in numActaN:
          
         if numActaNa == x[0]:
                
             return True
               
         if a == (b-1):
+            
+            MessageBox.showwarning("Registro Civil", "El numero de acta no existe, revise y vuelva a intentar")
+
+            return False
+
+        a = a + 1
+
+def VerificarActaMatrimonio(actaMatrimonio):
+     
+    a = 0     
+    
+    numActaM = consul.consultaVActaMatrimonio()
+    print(numActaM)
+    b = len(numActaM)
+
+    for x in numActaM:
+         
+        if actaMatrimonio == x[0]:
+
+            MessageBox.showwarning("Datos Incompletos","- Este Numero de acta ya se le realizó el divoricio, intente con otro.")
+
+            return False
+              
+        if a == (b-1):
+    
+            return True
+
+        a = a + 1
+
+def actaMatrimonioExiste(num):
+    a = 0     
+    
+    numActa = consul.consultaVActaMatrimonio()
+    
+    b = len(numActa)
+
+    for x in numActa:
+         
+        if num == x[0]:
+            
+            return True
+              
+        if a == (b-1):
+
+            MessageBox.showwarning("Datos Incompletos", "- El numero de acta no existe, revise y vuelva a intentarlo.")
 
             return False
 
@@ -452,11 +498,23 @@ def guardarActaDivorcio (Id_acta_matrimonio, c_conyuge1, direccion_esposo1, c_co
      
     if Id_acta_matrimonio == 0 or  c_conyuge1 == 0 or direccion_esposo1 == "" or c_conyuge2 == 0 or direccion_esposo2 == "" or  id_ab_conyuge1 == 0 or  id_ab_conyuge2 == 0  or id_hijo1 == 0 or id_hijo2 == 0 or prefectura == "": 
         
-     
         MessageBox.showwarning("Datos Incompletos", "Rellena los campos: \n\n- Numero Acta Matrimonio\n- Cedula P Esposo\n- Direccion P Esposo \n- Cedula S Esposo\n- Direccion S Esposo \n- Cedula Abg P Esposo \n- Cedula Abg S Esposo\n- Acta Nacimiento Hijo 1 \n- Acta Nacimiento Hijo 2 \n- Prefectura\n\nY vuelve a intentarlo.")
+        
     else:
 
         flag = True
+
+        # VERIFICAMOS SI EL ACTA DE MATRIMONIO EXISTE
+
+        if flag == True:
+
+            flag = actaMatrimonioExiste(Id_acta_matrimonio) 
+
+        # VERIFICAMOS SI EL ACTA DE MATRIMONIO YA SE INGRESO
+
+        if flag == True:
+            
+            flag = VerificarActaMatrimonio(Id_acta_matrimonio)
 
         # ACOMODAMOS DIRECCIONES
 
@@ -483,8 +541,11 @@ def guardarActaDivorcio (Id_acta_matrimonio, c_conyuge1, direccion_esposo1, c_co
                 
             except ValueError:
                 
-                MessageBox.showwarning("Datos Incompletos","Debes ingresar un valor numerico en los campos: \n- Cedula Padre\n- Cedula Madre\n\n- Intentelo Nuevamente")
+                MessageBox.showwarning("Registro Civil","Debes ingresar un valor numerico en los campos: \n- Cedula Padre\n- Cedula Madre\n\n- Intentelo Nuevamente")
+                
                 flag =False 
+
+        # VERIFICAMOS QUE LAS CEDULAS ESTEN BIEN
 
         if flag == True:
              
@@ -492,11 +553,51 @@ def guardarActaDivorcio (Id_acta_matrimonio, c_conyuge1, direccion_esposo1, c_co
 
             if flag == True:
                  
+                flag = cedulaExiste(c_conyuge2)
+                
+                if flag == True:
+                     
+                    flag = cedulaExiste(id_ab_conyuge1)
+
+                    if flag == True:
+                       
+                       flag = cedulaExiste(id_ab_conyuge2)
+
+                       if flag == False:
+                        
+                        MessageBox.showwarning("Registo Civil","- La cedula del abodado segundo Esposx no existe.\n\n Debes ingresarla antes de realizar el acta de divorcio.")
+                    
+                    else:
+                
+                        MessageBox.showwarning("Registo Civil","- La cedula del abogado primer Esposx no existe.\n\n Debes ingresarla antes de realizar el acta de divorcio.")
+                
+                else:
+
+                    MessageBox.showwarning("Registo Civil","- La cedula del segundo Esposx no existe.\n\n Debes ingresarla antes de realizar el acta de divorcio.")
+
+            else:
+
+                MessageBox.showwarning("Registo Civil","- La cedula del primer Esposx no existe.\n\n Debes ingresarla antes de realizar el acta de divorcio.")
+
+        # VERIFICAMOS QUE LAS ACTAS DE NACIMIENTO ESTEN BIEN
+
+        if flag == True:
+             
+            flag = actaNacimientoExiste(id_hijo1)
+
+            if flag == True:
+                 
+                flag = actaNacimientoExiste(id_hijo2)
+
+                if flag == False:
+                     
+                    MessageBox.showwarning("Registo Civil","- El acta de nacimiento del segundo hijo no existe.\n\n Debes ingresarla antes de realizar el acta de divorcio.")
+
             else:
                  
+                MessageBox.showwarning("Registo Civil","- El acta de nacimiento del primer hijo no existe.\n\n Debes ingresarla antes de realizar el acta de divorcio.")
 
-
-        # ESCOJEMOS LA PREFECTURA ID
+        # ESCOGEMOS LA PREFECTURA ID
 
         if flag == True:
 
@@ -557,8 +658,29 @@ def guardarActaDefuncion (a_nacimiento_fallecido, sexo_fallecido, estado_civil_f
                 
                 flag = False
 
+
+        #VERIFICAMOS SI EL ACTA EXISTE
+
+        if flag == True:
+             
+            flag = actaNacimientoExiste(a_nacimiento_fallecido)
+
+            if flag == False:
+                 
+                MessageBox.showwarning("Datos Incompletos","- El acta de nacimiento que se ingresó no existe\n\n Verifique el acta e intente de nuevo")
+                 
+        # VERIFICAMOS SI EL LA CEDULA DEL TESTIGO EXSISTE
+
+        if flag == True:
+             
+             flag= cedulaExiste(c_informante)
+
+             if flag == False:
+                  
+                  MessageBox.showwarning("Datos Incompletos","- El acta del testigo que se ingresó no existe\n\n Verifique el acta e intente de nuevo")
+
         # ACOMODAR TEXTO INGRESADO            
-        
+
         if flag == True:
              
             causa_muerte = causa_muerte.title()
@@ -616,6 +738,12 @@ def consultarCedulas ():
 def consultarActaMatrimonio():
      
     dato = consul.ConsultaMatrimonio()
+
+    return dato
+
+def consultarActaDivorcio ():
+     
+    dato = consul.consultarActaDivorcio()
 
     return dato
 
