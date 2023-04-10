@@ -378,6 +378,7 @@ def actaNacimiento ():
     horaNacimiento = StringVar ()
     ubicacion = StringVar ()
     prefectura =StringVar ()
+    numeroActa = IntVar ()
 
     # NO TOCAR
     
@@ -513,13 +514,28 @@ def actaNacimiento ():
     prefecturaOpcion = ttk.Combobox (frameInicio,values = ["Coquivacoa", "Chiquinquira", "Cacique Mara", "Olegarios Villalobos"], textvariable= prefectura,width = 17)
     prefecturaOpcion.place (x = 141,y = 263)#x = 275, y = 213
 
+    numActaLabel = tk.Label (frameInicio, text = "Num Acta Nacimiento: ")
+    numActaLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
+    numActaLabel.place (x = 675, y = 260)
+
+    numActaEntry = tk.Entry (frameInicio, relief="flat",textvariable = numeroActa)
+    numActaEntry.place (x = 820, y = 263)
+
+    ActaLabel = tk.Label (frameInicio, text = "Solo para actualizar ")
+    ActaLabel.configure (font = ("roboto", 9, "bold"), fg = "WHITE", background = "#209cb4")
+    ActaLabel.place (x = 820, y = 285)
+
     # BOTON AGREGAR 
 
     botonAgregar = tk.Button (frameInicio, text = "Guardar", height = 1, width = 9,relief="flat", command = lambda: funciones.guardarDatosAcNacimiento(nombres.get(),apellidos.get(),fechaNacimiento.get(),horaNacimiento.get(), ubicacion.get(), sexoBebe.get(), cedulaPadre.get(), nombrePadre.get(),apellidoPadre.get(),cedulaMadre.get(),nombreMadre.get(),apellidoMadre.get(),prefectura.get()))
     botonAgregar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
     botonAgregar.place (x = round(1057/2), y = 315)
 
-    botonActualizar = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat", command = lambda: MostrarDatosAC(frameInicio))
+    botonMostrar = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat", command = lambda: MostrarDatosAC(frameInicio))
+    botonMostrar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonMostrar.place (x = 700, y = 315)
+
+    botonActualizar = tk.Button (frameInicio, text = "Actualizar Datos", height = 1, width = 14,relief="flat", command = lambda: funciones.actualizarActaNacimiento(nombres.get(),apellidos.get(),fechaNacimiento.get(),horaNacimiento.get(), ubicacion.get(), sexoBebe.get(), cedulaPadre.get(), nombrePadre.get(),apellidoPadre.get(),cedulaMadre.get(),nombreMadre.get(),apellidoMadre.get(),prefectura.get(),numeroActa.get()))
     botonActualizar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
     botonActualizar.place (x = 400, y = 315)
 

@@ -752,3 +752,137 @@ def consultarActaDeuncion():
     dato = consul.consultarAD()
 
     return dato
+
+def actualizarActaNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento, lugarNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre,  prefectura, numActa):
+    
+    if nombre == "" or  apellido == "" or sexo == "" or lugarNacimiento == "" or FechaNacimiento == "" or horaNacimiento == "": 
+        
+        MessageBox.showwarning("Datos Incompletos", "Rellena los campos: \n\n- Nombres\n- Apellidos\n- Sexo\n- Lugar De Nacimiento\n- Hora De nacimiento\n- Fecha de Nacimiento\n\nY vuelve a intentarlo.")
+     
+    else:
+
+        flag = True
+
+        # ACOMODAMOS lOS NOMBRES
+
+        if flag == True:
+        
+        # Acomodar Nombres
+
+            nombre = nombre.title()
+            apellido = apellido.title()
+
+            nombrePadre = nombrePadre.title()
+            apellidoPadre = apellidoPadre.title() 
+
+            nombreMadre = nombreMadre.title()
+            apellidoMadre = apellidoMadre.title()
+
+            lugarNacimiento = lugarNacimiento.title()
+        
+        # VERIFICAMOS SI NO SE COLOCA LA MISMA CEDULA EN AMBOS CAMPOS DE CEDULA
+        
+        if flag == True:
+             
+            if cedulaPadre == cedulaMadre:
+                 
+                MessageBox.showwarning("Datos Incompletos", "No debes colocar la misma cedula en los campos Cedula Padre y Cedula Madre\n\n Revisa y vuelve a intentarlo.")
+                
+                flag = False 
+ 
+        # ACOMODAMOS LA FECHA
+
+        if flag == True:
+
+            # Acomodar Fecha
+
+            dia = FechaNacimiento[0:2]
+            mes = FechaNacimiento[3:5]
+            anio = FechaNacimiento[6:10]
+
+            FechaNacimiento = anio + "-" + mes +"-"+ dia
+ 
+            try:
+                
+                dia = int(dia)
+                mes = int (mes)
+                anio = int (anio)
+
+                if dia < 1 or dia > 31:
+                    MessageBox.showwarning("Formato Incorrecto","- El dia que ingreso no es valido \n\n- Intentelo Nuevamente")
+                    flag = False
+
+                if mes < 1 or mes > 12:
+                    
+                    MessageBox.showwarning("Formato Incorrecto","- El mes que ingreso no es valido \n\n- Intentelo Nuevamente")
+                    flag = False
+
+                if mes == 2 and dia > 28:
+                    MessageBox.showwarning("Formato Incorrecto","El mes de febrero solo llega hasta el dia 28\n\n- Intentelo Nuevamente")
+                    flag = False
+
+            except ValueError:
+                
+                MessageBox.showwarning("Formato Incorrecto","-El formato que ha ingresado es incorrecto, debe ingresar la fecha en el formato: \n\n             DD-MM-AAAA\n\n- Intentelo Nuevamente")
+                
+                flag = False
+        
+        # VERIFICAMOS SI LA CEDULAS SON TIPO INT
+
+        if flag == True:
+
+            try:
+                
+                cedulaPadre = int(cedulaPadre)
+                cedulaMadre = int(cedulaMadre)
+
+                if cedulaMadre == "" or cedulaPadre == "":
+                    
+                    if cedulaPadre == "":
+                        cedulaPadre = 0
+                    
+                    else:
+                        cedulaMadre = 0 
+                        
+                flag= True
+                
+
+            except ValueError:
+                
+                MessageBox.showwarning("Datos Incompletos","Debes ingresar un valor numerico en los campos: \n- Cedula Padre\n- Cedula Madre\n\n- Intentelo Nuevamente")
+                flag =False 
+
+        # ESCOJEMOS LA PREFECTURA ID
+
+        if flag == True:
+
+            if prefectura == "Coquivacoa":
+                    
+                    prefectura = 1
+                    
+            elif prefectura == "Chiquinquira":
+                    
+                    prefectura = 2
+                        
+            elif prefectura ==  "Cacique Mara":
+                    
+                    prefectura = 3
+                    
+            elif prefectura == "Olegarios Villalobos":
+                    
+                    prefectura = 4
+            
+            else:
+                
+                flag = False
+                MessageBox.showinfo(message = "- Haz ingresado una prefectura Incorrecta\n\n- Vuelve a intentarlo", title = "Registro Civil")
+
+        # Diccionario Acta Nacimiento
+        
+        if flag == True :
+            
+            datosActaNacimiento = [nombre, apellido, FechaNacimiento, horaNacimiento, lugarNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre,  prefectura, numActa]
+
+            consul.insertarActaNacimiento(datosActaNacimiento)
+
+            MessageBox.showinfo(message = "Se ha actualizado el registro satisfactoriamente.", title = "Registro Civil")
