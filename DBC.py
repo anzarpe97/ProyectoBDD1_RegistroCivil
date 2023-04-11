@@ -214,3 +214,16 @@ class DAO ():
 
             cursor.close()
 
+    def cedulaUptate(self,DC):
+
+        if  self.connection.is_connected():
+
+            cursor = self.connection.cursor()
+            
+            sql = "UPDATE cedula SET n_cedula = {0}, nombres = '{1}', apellidos = '{2}', estado_civil = '{3}', sexo = '{4}', fecha_emision = '{5}', fecha_vencimiento = '{6}', nacionalidad = '{7}' WHERE n_cedula = {0}"
+
+            cursor.execute(sql.format(DC[0],DC[2],DC[3],DC[4],DC[5],DC[6],DC[7],DC[8]))
+            
+            self.connection.commit()
+
+

@@ -1024,7 +1024,7 @@ def actualizarCedula (numCedula,numActaNacimiento,nombres,apellidos,estadoCivil,
 
                 datosCedula = [numCedula,numActaNacimiento, nombres,apellidos, estadoCivil, sexo, fechaEmision, fechaVencimiento, nacionlidad]
             
-                consul.insertarCedula (datosCedula)
+                consul.cedulaUptate(datosCedula)
                     
                 MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
      
