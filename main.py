@@ -10,7 +10,6 @@ root = tk.Tk()
 
 def MostrarDatosAC (frameInicio):
 
-
     Vscrollbar = ttk.Scrollbar (orient = tk.HORIZONTAL)
 
     DatosActa = ttk.Treeview (frameInicio, columns = ("#1", "#2", "#3", "#4", "#5", "#6", "#7", "#8", "#9", "#10", "#11", "#12", "#13", "#14", "#15", "#16", "#17", "#18", "#19"), yscrollcommand = Vscrollbar.set)
@@ -59,7 +58,6 @@ def MostrarDatosAC (frameInicio):
     DatosActa.heading ("#18", text = "Nombre Director", anchor = "center")
     DatosActa.heading ("#19", text = "Apellido Director", anchor = "center")
 
-
     DAN = funciones.consultarActaNacimiento()
 
     for x in DAN:
@@ -104,7 +102,7 @@ def MostrarDatosC (frameInicio):
 
         DatoCedula.insert("", END, text = x[0], values = (x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8]))
 
-    DatoCedula.place(x = 20, y = 310, width = 1000, height = 320)
+    DatoCedula.place(x = 20, y = 260, width = 1000, height = 370)
 
 # MOSTRAR DATOS ACTA DE MATRIMONIO
 
@@ -363,6 +361,23 @@ def MostrarDatosAD (frameInicio):
 
 def actaNacimiento ():
 
+    def reiniciarCampos():
+
+        nombres.set("")
+        apellidos.set("")
+        sexoBebe.set("")
+        cedulaPadre.set(0)
+        nombrePadre.set("")
+        apellidoPadre.set("")
+        cedulaMadre.set(0)
+        nombreMadre.set("")
+        apellidoMadre.set("")
+        fechaNacimiento.set("")
+        horaNacimiento.set("")
+        ubicacion.set("")
+        prefectura.set("")
+        numeroActa.set(0)
+
     # VARIABLES
 
     nombres = StringVar ()
@@ -529,17 +544,38 @@ def actaNacimiento ():
 
     botonAgregar = tk.Button (frameInicio, text = "Guardar", height = 1, width = 9,relief="flat", command = lambda: funciones.guardarDatosAcNacimiento(nombres.get(),apellidos.get(),fechaNacimiento.get(),horaNacimiento.get(), ubicacion.get(), sexoBebe.get(), cedulaPadre.get(), nombrePadre.get(),apellidoPadre.get(),cedulaMadre.get(),nombreMadre.get(),apellidoMadre.get(),prefectura.get()))
     botonAgregar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonAgregar.place (x = round(1057/2), y = 315)
+    botonAgregar.place (x = 565, y = 315)
 
-    botonMostrar = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat", command = lambda: MostrarDatosAC(frameInicio))
-    botonMostrar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonMostrar.place (x = 700, y = 315)
+    # BOTON ACTUALIZAR 
 
     botonActualizar = tk.Button (frameInicio, text = "Actualizar Datos", height = 1, width = 14,relief="flat", command = lambda: funciones.actualizarActaNacimiento(nombres.get(),apellidos.get(),fechaNacimiento.get(),horaNacimiento.get(), ubicacion.get(), sexoBebe.get(), cedulaPadre.get(), nombrePadre.get(),apellidoPadre.get(),cedulaMadre.get(),nombreMadre.get(),apellidoMadre.get(),prefectura.get(),numeroActa.get()))
     botonActualizar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonActualizar.place (x = 400, y = 315)
+    botonActualizar.place (x = 655, y = 315)
+
+    # BOTON REINICIAR CAMPO
+
+    botonReiniciar = tk.Button (frameInicio, text = "Reiniciar Campos", height = 1, width = 14,relief="flat", command = lambda: reiniciarCampos())
+    botonReiniciar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonReiniciar.place (x = 785, y = 315)
+
+    # BOTON MOSTRAR DATOS
+
+    botonMostrar = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat", command = lambda: MostrarDatosAC(frameInicio))
+    botonMostrar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonMostrar.place (x = 915, y = 315)
 
 def cedula ():
+
+    def reiniciarCampos():
+
+        numCedula.set("")
+        numActaNacimiento.set("")
+        nombres.set("")
+        apellidos.set("")
+        EstadoCivil.set("")
+        genero.set("")
+        nacionalidad.set("")
+        fechaEmision.set("")
 
     # Variables
 
@@ -639,17 +675,30 @@ def cedula ():
     nacionalidadOpcion = ttk.Combobox (frameInicio,values = ["Venezolano/a", "Extranjero/a"], textvariable = nacionalidad,width=17)
     nacionalidadOpcion.place(x = 830, y = 173)
 
-    botonAgregarCedula = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat",command = lambda: funciones.guardarCedulaIdentidad(numCedula.get(), numActaNacimiento.get(),nombres.get(),apellidos.get(),EstadoCivil.get(),genero.get(),fechaEmision.get(), nacionalidad.get()))
+    # BOTON AGREGAR CEDULA
+
+    botonAgregarCedula = tk.Button (frameInicio, text = "Guardar", height = 1, width = 9,relief="flat",command = lambda: funciones.guardarCedulaIdentidad(numCedula.get(), numActaNacimiento.get(),nombres.get(),apellidos.get(),EstadoCivil.get(),genero.get(),fechaEmision.get(), nacionalidad.get()))
     botonAgregarCedula.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonAgregarCedula.place (x = 550, y = 230)
+    botonAgregarCedula.place (x = 565, y = 225)
+
+    # BOTON ACTUALIZAR 
+
+    botonActualizar = tk.Button (frameInicio, text = "Actualizar Datos", height = 1, width = 14,relief="flat", command=lambda: funciones.actualizarCedula(numCedula.get(), numActaNacimiento.get(),nombres.get(),apellidos.get(),EstadoCivil.get(),genero.get(),fechaEmision.get(), nacionalidad.get()))
+    botonActualizar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonActualizar.place (x = 655, y = 225)
+
+    # REINICIAR CAMPOS
+
+    botonReiniciar = tk.Button (frameInicio, text = "Reiniciar Campos", height = 1, width = 14,relief="flat", command = lambda: reiniciarCampos())
+    botonReiniciar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonReiniciar.place (x = 785, y = 225)
+
+    # BOTON MOSTRAR DATOS
 
     botonConsultaCedula = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat",command = lambda: MostrarDatosC(frameInicio))
     botonConsultaCedula.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonConsultaCedula.place (x = 400, y = 230)
+    botonConsultaCedula.place (x = 915, y = 225)
 
-    boton = tk.Button (frameInicio, text = "Prueba", height = 1, width = 12,relief="flat",command = lambda: funciones.cedulaExiste(numCedula.get()))
-    boton.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    boton.place (x = 700, y = 230)
 
 def actaMatrimonio ():
 
@@ -1102,4 +1151,3 @@ buttonActaDefuncion.configure(height = 126, width = 130, font=("roboto", 10, "no
 buttonActaDefuncion.grid(row = 4,column = 0)
 
 root.mainloop()
-

@@ -283,18 +283,6 @@ def guardarCedulaIdentidad (numCedula,numActaNacimiento,nombres,apellidos,estado
 
     else: 
         
-         # VERIFICAMOS SI LAS CEDULAS SON TIPO INT
-
-        try:
-            
-            numCedula = int(numCedula)
-            numActaNacimiento = int (numActaNacimiento)
-
-        except ValueError:
-                
-                MessageBox.showwarning("Datos Incompletos","- Debes ingresar valores numericos en los campos: \n\n- Numero Acta Nacimiento\n- Numero Cedula")
-                flag = False
-
         # VERIFICAMOS SI LA CEDULA YA FUE INGRESADA
 
         if flag == True:
@@ -333,6 +321,44 @@ def guardarCedulaIdentidad (numCedula,numActaNacimiento,nombres,apellidos,estado
                 MessageBox.showwarning("Formato Incorrecto","-El formato que ha ingresado es incorrecto, debe ingresar la fecha en el formato: \n\n             DD-MM-AAAA\n\n- Intentelo Nuevamente")
                     
                 flag = False
+
+                # VERIFICAMOS GENERO
+        
+        # VERIFICAMOS GENERO
+
+        if flag == True:
+
+            if sexo == "Hombre" or sexo == "Mujer" or sexo == "No-Binario":
+                 
+                flag = True
+
+            else:
+             
+                MessageBox.showwarning("Registro Civil","- Haz ingresado un genero incorrecto\n\nVerifica e intenta de nuevo")
+
+        # VERIFICAMOS ESTADO CIVIL
+
+        if flag == True:
+
+            if estadoCivil == "Soltero/a" or estadoCivil == "Casado/a" or estadoCivil == "Divorciado" or estadoCivil == "Viudo/a":
+                 
+                flag = True
+
+            else:
+             
+                MessageBox.showwarning("Registro Civil","- Haz ingresado un estado civil incorrecto\n\nVerifica e intenta de nuevo")
+
+        # VERIFICAMOS NACIONALIDAD
+
+        if flag == True:
+
+            if nacionlidad == "Venezolano/a" or nacionlidad == "Extranjero/a":
+                 
+                flag = True
+
+            else:
+             
+                MessageBox.showwarning("Registro Civil","- Haz ingresado un estado civil incorrecto\n\nVerifica e intenta de nuevo")
 
         # INGRESAMOS DATOS
 
@@ -753,6 +779,8 @@ def consultarActaDeuncion():
 
     return dato
 
+# ACTUALIZAR DATOS
+
 def actualizarActaNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento, lugarNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre,  prefectura, numActa):
     
     if nombre == "" or  apellido == "" or sexo == "" or lugarNacimiento == "" or FechaNacimiento == "" or horaNacimiento == "": 
@@ -883,6 +911,120 @@ def actualizarActaNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
             
             datosActaNacimiento = [nombre, apellido, FechaNacimiento, horaNacimiento, lugarNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre,  prefectura, numActa]
 
-            consul.insertarActaNacimiento(datosActaNacimiento)
+            consul.actaNacimientoUpdate(datosActaNacimiento)
 
             MessageBox.showinfo(message = "Se ha actualizado el registro satisfactoriamente.", title = "Registro Civil")
+
+def actualizarCedula (numCedula,numActaNacimiento,nombres,apellidos,estadoCivil,sexo,fechaEmision,nacionlidad):
+     
+    flag = True
+    
+    # VERIFICAMOS SI LOS DATOS IMPORTANTES SE INGRESARON
+
+    if numCedula == "" or numActaNacimiento== "" or estadoCivil== "" or sexo == ""  or fechaEmision == ""  or nacionlidad == "":
+ 
+        MessageBox.showwarning("Registro Civil","Debes ingresar un valor numerico en los campos: \n- Numero Acta Nacimiento\n- Numero Cedula\n- Fecha Emision\n- Fecha Vencimiento\n- Estado Civil\n- Nacionalidad\n- Genero\n\n- Intentelo Nuevamente")
+
+    else: 
+
+        # VERIFICAMOS SI LA CEDULA YA FUE INGRESADA
+
+        if flag == True:
+             
+            flag = cedulaExiste(numCedula)
+
+            if flag == False:
+                  
+                  MessageBox.showwarning("Registro Civil","- La cedula Ingresada para actualizar los datos no existe \n\n    Verifique e intente de nuevo")
+
+        # VERIFICAMOS SI EL ACTA DE NACIMIENTO FUE INGRESADO
+
+        if flag == True:
+             
+            flag = actaNacimientoExiste(numActaNacimiento)
+
+            if flag == False:
+
+                MessageBox.showwarning("Registro Civil","- El acta de nacimiento ingresado no existe\n\n    Verifique e intente de nuevo")
+
+        # ACOMODAMOS LOS NOMBRES Y APELLIDOS
+
+        if flag == True:
+             
+             nombres = nombres.title()
+             apellidos = apellidos.title()
+
+        # ACOMODAMOS FECHA
+
+        if flag == True:
+
+            dia = fechaEmision[0:2]
+            mes = fechaEmision[3:5]
+            anio = fechaEmision[6:10]
+
+            fechaEmision = anio + "-" + mes +"-"+ dia
+    
+            try:
+                    
+                dia = int (dia)
+                mes = int (mes)
+                anio = int (anio)
+
+                anio = anio + 10
+
+                fechaVencimiento = str(anio) + "-" + str (mes)+ "-" + str (dia)
+
+            except ValueError:
+                    
+                MessageBox.showwarning("Registro Civil","-El formato que ha ingresado es incorrecto, debe ingresar la fecha en el formato: \n\n             DD-MM-AAAA\n\n- Intentelo Nuevamente")
+                    
+                flag = False
+
+        # VERIFICAMOS GENERO
+        
+        if flag == True:
+
+            if sexo == "Hombre" or sexo == "Mujer" or sexo == "No-Binario":
+                 
+                flag = True
+
+            else:
+             
+                MessageBox.showwarning("Registro Civil","- Haz ingresado un genero incorrecto\n\nVerifica e intenta de nuevo")
+
+        # VERIFICAMOS ESTADO CIVIL
+
+        if flag == True:
+
+            if estadoCivil == "Soltero/a" or estadoCivil == "Casado/a" or estadoCivil == "Divorciado" or estadoCivil == "Viudo/a":
+                 
+                flag = True
+
+            else:
+             
+                MessageBox.showwarning("Registro Civil","- Haz ingresado un estado civil incorrecto\n\nVerifica e intenta de nuevo")
+
+        # VERIFICAMOS NACIONALIDAD
+
+        if flag == True:
+
+            if nacionlidad == "Venezolano/a" or nacionlidad == "Extranjero/a":
+                 
+                flag = True
+
+            else:
+             
+                MessageBox.showwarning("Registro Civil","- Haz ingresado un estado civil incorrecto\n\nVerifica e intenta de nuevo")
+        
+
+        # INGRESAMOS DATOS
+
+        if flag == True:
+
+
+                datosCedula = [numCedula,numActaNacimiento, nombres,apellidos, estadoCivil, sexo, fechaEmision, fechaVencimiento, nacionlidad]
+            
+                consul.insertarCedula (datosCedula)
+                    
+                MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
+     

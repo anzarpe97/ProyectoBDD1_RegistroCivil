@@ -203,10 +203,11 @@ class DAO ():
         
         if  self.connection.is_connected():
 
-            cursor = self.connection.cursor(buffered=True)  #nro_acta, nombres, apellidos, fecha_nacimiento, hora_nacimiento, lugar_nacimiento, sexo, cedula_padre, nombre_padre, apellido_padre, cedula_madre, nombre_madre, apellido_madre, id_prefectura
+            cursor = self.connection.cursor()  #nro_acta, nombres, apellidos, fecha_nacimiento, hora_nacimiento, lugar_nacimiento, sexo, cedula_padre, nombre_padre, apellido_padre, cedula_madre, nombre_madre, apellido_madre, id_prefectura
             
-            sql = "UPDATE acta_nacimiento SET nombres = '{0}', apellidos = '{1}', fecha_nacimiento = '{2}', hora_nacimiento = '{3}',lugar_nacimiento = '{4}',sexo = '{5}',cedula_padre = {6},nombre_padre = '{7}',apellido_padre = '{8}',cedula_madre = {9},nombre_madre = '{10}',apellido_madre = '{11}',id_prefectura = {12} WHERE nro_acta = {13}"
-            """Update Laptop set Price = 7000 where id = 1"""                                                                                                                                                                                                                                                                                                                                                                                   
+            sql = "UPDATE acta_nacimiento SET nombres = '{0}', apellidos = '{1}', fecha_nacimiento = '{2}', hora_nacimiento = '{3}', lugar_nacimiento = '{4}', sexo = '{5}', cedula_padre = {6}, nombre_padre = '{7}', apellido_padre = '{8}', cedula_madre = {9}, nombre_madre = '{10}', apellido_madre = '{11}', id_prefectura = {12} WHERE nro_acta = {13}"
+                                              #nombres         apellidos          fecha_nacimiento          hora_nacimiento          lugar_nacimiento           sexo          cedula_padre        nombre_padre          apellido_padre         cedula_madre        nombre_madre,         apellido_madre            id_prefectura
+
             cursor.execute(sql.format(DAN[0], DAN[1], DAN[2], DAN[3], DAN[4], DAN[5], DAN[6], DAN[7], DAN[8], DAN[9], DAN[10], DAN[11],DAN[12],DAN[13]))
             
             self.connection.commit()
