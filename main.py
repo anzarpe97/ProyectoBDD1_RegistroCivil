@@ -1233,10 +1233,10 @@ def actaDefuncion ():
 
     # REPORTE DATOS
 
-    botonReporte = tk.Button (frameInicio, text = "Genera Reporte", height = 1, width = 14,relief="flat", command = lambda: funciones.generarReporteActaDefuncion())
+    botonReporte = tk.Button (frameInicio, text = "Generar Reporte", height = 1, width = 14,relief="flat", command = lambda: funciones.generarReporteActaDefuncion())
     botonReporte.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
     botonReporte.place (x = 435, y = 240)
-  
+
 # Configuracion Ventana
 
 # TAMAÑO Y POSICIONAMIENTO DE LA VENTANA
@@ -1252,43 +1252,43 @@ r = str (posicionX) + "+" + str (posicionY)
 root.geometry("1205x666"+"+"+r)
 root.title("Registro Civil")
 root.iconbitmap("Images/ImagenesFunciones/Pen.ico")
-root.config(background="WHITE")
+root.config(background = "WHITE")
 root.resizable(0,0)
 
 # Frames
 
-frameMenu = tk.Frame(root)
-frameMenu.pack(side=tk.LEFT)
+frameMenu = tk.Frame (root)
+frameMenu.pack (side = tk.LEFT)
 
-frameInicio = tk.Frame(root,background="WHITE",height = 666, width = 1062,highlightbackground="WHITE",highlightthickness=5)
+frameInicio = tk.Frame(root, background = "WHITE",height = 666, width = 1062, highlightbackground = "WHITE", highlightthickness=5)
 frameInicio.pack(side=tk.TOP)
 
 # Imagenes Botones
 
-nacimientoPhoto = tk.PhotoImage(file="Images/ImagenesBotones/Nacimiento.png")
+nacimientoPhoto = tk.PhotoImage(file = "Images/ImagenesBotones/Nacimiento.png")
 nacimientoImage = nacimientoPhoto.subsample(1, 1)
 
-cedulaPhoto = tk.PhotoImage(file="Images/ImagenesBotones/Cedula.png")
+cedulaPhoto = tk.PhotoImage(file = "Images/ImagenesBotones/Cedula.png")
 cedulaImage = cedulaPhoto.subsample(1, 1)
 
-matrimonioPhoto = tk.PhotoImage(file="Images/ImagenesBotones/Matrimonio.png")
+matrimonioPhoto = tk.PhotoImage(file = "Images/ImagenesBotones/Matrimonio.png")
 matrimonioImage = matrimonioPhoto.subsample(1, 1)
 
-divorcioPhoto = tk.PhotoImage(file="Images/ImagenesBotones/Divorcio.png")
+divorcioPhoto = tk.PhotoImage(file = "Images/ImagenesBotones/Divorcio.png")
 divorcioImage = divorcioPhoto.subsample(1, 1)
 
-defuncionPhoto = tk.PhotoImage(file="Images/ImagenesBotones/Difunto.png")
+defuncionPhoto = tk.PhotoImage(file = "Images/ImagenesBotones/Difunto.png")
 defuncionImage = defuncionPhoto.subsample(1, 1)
 
 # Botones
 
 buttonActaNacimiento = tk.Button (frameMenu, text = "\nActa\nde\nNacimiento", image = nacimientoImage, compound = tk.TOP, background= "#209cb4", relief= tk.FLAT,command=actaNacimiento)
-buttonActaNacimiento.config(height = 125, width = 130, font=("roboto", 10, "normal",),fg="WHITE",activebackground="#71acb7",activeforeground="WHITE")
-buttonActaNacimiento.grid(row = 0,column = 0)
+buttonActaNacimiento.config (height = 125, width = 130, font = ("roboto", 10, "normal"), fg = "WHITE", activebackground = "#71acb7", activeforeground = "WHITE")
+buttonActaNacimiento.grid (row = 0,column = 0)
 
-buttonCedula = tk.Button (frameMenu, text = "\nCedula", image = cedulaImage, compound = tk.TOP, background= "#209cb4", relief= tk.FLAT,command=cedula)
-buttonCedula.config (height = 125, width = 130, font=("roboto", 10, "normal"), fg="WHITE",activebackground="#71acb7",activeforeground="WHITE")
-buttonCedula.grid (row=1,column =0)
+buttonCedula = tk.Button (frameMenu, text = "\nCedula", image = cedulaImage, compound = tk.TOP, background = "#209cb4", relief= tk.FLAT, command = cedula)
+buttonCedula.config (height = 125, width = 130, font=("roboto", 10, "normal"), fg = "WHITE", activebackground = "#71acb7", activeforeground = "WHITE")
+buttonCedula.grid (row = 1, column = 0)
 
 buttonActaMatrimonio = tk.Button (frameMenu, text = "\nActa\nde\nMatrimonio", image = matrimonioImage, compound = tk.TOP, background= "#209cb4", relief= tk.FLAT,command=actaMatrimonio)
 buttonActaMatrimonio.config(height = 125, width = 130, font=("roboto", 10, "normal"),fg="WHITE",activebackground="#71acb7",activeforeground="WHITE")

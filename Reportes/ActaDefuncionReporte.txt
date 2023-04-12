@@ -1,2 +1,4 @@
-#6, Dasdasd, Asdasd, 26, Hombre, Casado/a, 1997-10-01, 1:01:01, Fsefsef, Fsdfsef, 26456381, Adrian Francisco, Salazar Pereira, fsefsef, Fsef, Sefsef, Dsefsefse, Sefsef
+#8, Anderson Francisco, Salazar Pereira, 26, Hombre, Soltero/a, 2023-01-01, 1:01:01, En Su Casa, Por Pendejo, 13004082, Veronica Yanitza, Pereira Delgado, Su mama, Veronica Yanitza, Pereira Delgado, Francisco Jose, Salazar Vilchez
+
+#9, Anderson Francisco, Salazar Pereira, 26, Hombre, Soltero/a, 2023-01-01, 1:01:01, En Su Casa, Violacion, 13004082, Veronica Yanitza, Pereira Delgado, Mama, Veronica Yanitza, Pereira Delgado, Francisco Jose, Salazar Vilchez
 

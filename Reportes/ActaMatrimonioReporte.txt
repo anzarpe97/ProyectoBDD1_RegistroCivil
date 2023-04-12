@@ -1,2 +1,2 @@
-Numero Acta - Nombres - Apellidos - Fecha Nacimiento - Hora Nacimiento - Lugar Nacimiento - Cedula Padre - Nombres Padre - Apellidos Padre - Cedula Madre - Nombres Madre - Apellidos Madre - Datos Registro Civil
+#6, 1996-12-15, 5055319, Francisco Jose, Salazar Vilchez, Administrador, Santa Lucia, 13004082, Veronica Yanitza, Pereira Delgado, Repostera, Barrio Corazon De Jesus, 29980263, Alanis Daniela, Salazar Pereira, 26456380, Anderson Francisco, Salazar Pereira, 26456381, Adrian Francisco, Salazar Pereira, Registro Civil Olegario Villalobos, Zulia, Maracaibo, Olegario Villalobos, Plaza de la República, av. 78 Dr. Portillo, calle 77 (detrás de la concha acústica), Andres, Gonzalez, 
 
