@@ -1426,6 +1426,8 @@ def actualizarActaDefuncion(a_nacimiento_fallecido, sexo_fallecido, estado_civil
             
             MessageBox.showinfo(message = "Resgistro Actualizado satisfactoriamente.", title = "Registro Civil")
 
+# REPORTEE
+
 def generarReporteActaNacimiento ():
 
     datos = consultarActaNacimiento ()
@@ -1446,15 +1448,30 @@ def generarReporteCedula ():
 
     datos = consultarCedulas ()
 
-    reporteActaNacimiento = open ("reportes/CedulaReporte.txt" , "w")
+    reporteCedula = open ("reportes/CedulaReporte.txt" , "w")
 
-    reporteActaNacimiento.write("Numero Cedula - Nombres - Apellidos - Estado Civil - Sexo - Fecha Nacimiento - Fecha Emision - Nombres Padre - Fecha Vencimiento - Nacionalidad\n\n")
+    reporteCedula.write("Numero Cedula - Nombres - Apellidos - Estado Civil - Sexo - Fecha Nacimiento - Fecha Emision - Nombres Padre - Fecha Vencimiento - Nacionalidad\n\n")
   
     for x in datos:
         
-        reporteActaNacimiento.write("CI: "+ str(x[0]) + ", " + x[1] + ", " + x[2]  + ", " + x[3] + ", " + x[4] +", " + str(x[5])+", " + str(x[6]) + ", " + str(x[7]) +   ", " + str(x[8])  + "\n\n")
+        reporteCedula.write("CI: "+ str(x[0]) + ", " + x[1] + ", " + x[2]  + ", " + x[3] + ", " + x[4] +", " + str(x[5])+", " + str(x[6]) + ", " + str(x[7]) +   ", " + str(x[8])  + "\n\n")
                                             #c.n_cedula,     c.nombres,    c.apellidos,   c.estado_civil, c.sexo,  a.fecha_nacimiento, c.fecha_emision, c.fecha_vencimiento, c.nacionalidad
-    reporteActaNacimiento.close()
+    reporteCedula.close()
     
     MessageBox.showwarning("Registro Civil", "Reporte Generado Satisfactoriamente")
 
+def generarReporteActaMatrimonio ():
+
+    datos = consultarActaMatrimonio ()
+
+    reporteActaMatrimonio = open ("reportes/ActaMatrimonioReporte.txt" , "w")
+
+    reporteActaMatrimonio.write("Numero Acta - Nombres - Apellidos - Fecha Nacimiento - Hora Nacimiento - Lugar Nacimiento - Cedula Padre - Nombres Padre - Apellidos Padre - Cedula Madre - Nombres Madre - Apellidos Madre - Datos Registro Civil\n\n")
+    
+    for x in datos:
+
+        reporteActaMatrimonio.write("#"+str(x[0]) + ", " + str(x[1]) + ", " +str(x[2]) + ", " +str(x[3]) + ", " +str(x[4]) + ", " +str(x[5]) + ", " +str(x[6]) + ", " +str(x[7]) + ", " +str(x[8]) + ", " +str(x[9]) + ", " +str(x[10]) + ", " +str(x[11]) + ", " +str(x[12]) + ", " +str(x[13]) + ", " +str(x[14]) + ", " +str(x[15]) + ", " +str(x[16]) + ", " +str(x[17]) + ", " +str(x[18]) + ", " +str(x[19]) + ", " +str(x[20]) + ", " +str(x[21]) + ", " +str(x[22]) + ", " +str(x[23]) + ", " +str(x[24]) + ", " +str(x[25]) + ", " +str(x[26]) + ", " +str(x[27]) + ", "  +"\n\n")
+        
+    reporteActaMatrimonio.close()
+
+    MessageBox.showwarning("Registro Civil", "Reporte Generado Satisfactoriamente")

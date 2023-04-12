@@ -896,6 +896,12 @@ def actaMatrimonio ():
     botonMostrarAD = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat", command = lambda: MostrarDatosAM(frameInicio))
     botonMostrarAD.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
     botonMostrarAD.place (x = 915, y = 260)
+
+    # REPORTE DATOS
+
+    botonReporte = tk.Button (frameInicio, text = "Genera Reporte", height = 1, width = 14,relief="flat", command = lambda: funciones.generarReporteActaMatrimonio())
+    botonReporte.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonReporte.place (x = 20, y = 260)
     
 def actaDivorcio ():
     

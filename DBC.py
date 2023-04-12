@@ -264,16 +264,3 @@ class DAO ():
       
         self.connection.commit()
 
-"""
-                a_nacimiento_fallecido, 
-                edad_fallecido, 
-                sexo_fallecido, 
-                estado_civil_f, 
-                fecha_defuncion, 
-                hora_defuncion, 
-                lugar_defuncion, 
-                causa_muerte, 
-                c_informante, 
-                relacion_informante,
-                numActa
-"""
