@@ -1465,13 +1465,39 @@ def generarReporteActaMatrimonio ():
     datos = consultarActaMatrimonio ()
 
     reporteActaMatrimonio = open ("reportes/ActaMatrimonioReporte.txt" , "w")
-
-    reporteActaMatrimonio.write("Numero Acta - Nombres - Apellidos - Fecha Nacimiento - Hora Nacimiento - Lugar Nacimiento - Cedula Padre - Nombres Padre - Apellidos Padre - Cedula Madre - Nombres Madre - Apellidos Madre - Datos Registro Civil\n\n")
     
     for x in datos:
 
         reporteActaMatrimonio.write("#"+str(x[0]) + ", " + str(x[1]) + ", " +str(x[2]) + ", " +str(x[3]) + ", " +str(x[4]) + ", " +str(x[5]) + ", " +str(x[6]) + ", " +str(x[7]) + ", " +str(x[8]) + ", " +str(x[9]) + ", " +str(x[10]) + ", " +str(x[11]) + ", " +str(x[12]) + ", " +str(x[13]) + ", " +str(x[14]) + ", " +str(x[15]) + ", " +str(x[16]) + ", " +str(x[17]) + ", " +str(x[18]) + ", " +str(x[19]) + ", " +str(x[20]) + ", " +str(x[21]) + ", " +str(x[22]) + ", " +str(x[23]) + ", " +str(x[24]) + ", " +str(x[25]) + ", " +str(x[26]) + ", " +str(x[27]) + ", "  +"\n\n")
         
     reporteActaMatrimonio.close()
+
+    MessageBox.showwarning("Registro Civil", "Reporte Generado Satisfactoriamente")
+
+def generarReporteActaDivorcio():
+
+    datos = consultarActaDivorcio ()
+
+    ReporteActadivorcio = open ("reportes/ActaDivocioReporte.txt" , "w")
+    
+    for x in datos:
+
+        ReporteActadivorcio.write("#"+str(x[0]) + ", " + str(x[1]) + ", " +str(x[2]) + ", " +str(x[3]) + ", " +str(x[4]) + ", " +str(x[5]) + ", " +str(x[6]) + ", " +str(x[7]) + ", " +str(x[8]) + ", " +str(x[9]) + ", " +str(x[10]) + ", " +str(x[11]) + ", " +str(x[12]) + ", " +str(x[13]) + ", " +str(x[14]) + ", " +str(x[15]) + ", " +str(x[16]) + ", " +str(x[17]) + ", " +str(x[18]) + ", " +str(x[19]) + ", " +str(x[20]) + ", " +str(x[21]) + ", " +str(x[22]) + ", " +str(x[23]) + ", " +str(x[24]) + ", " +str(x[25]) + ", " +str(x[26]) + ", " +str(x[27]) + ", "  +"\n\n")
+        
+    ReporteActadivorcio.close()
+    
+    MessageBox.showwarning("Registro Civil", "Reporte Generado Satisfactoriamente")
+
+def generarReporteActaDefuncion():
+
+    datos = consultarActaDeuncion()
+
+    ReporteActaDefuncion = open ("reportes/ActaDefuncionReporte.txt" , "w")
+    
+    for x in datos:
+
+        ReporteActaDefuncion.write("#"+str(x[0]) + ", " + str(x[1]) + ", " +str(x[2]) + ", " +str(x[3]) + ", " +str(x[4]) + ", " +str(x[5]) + ", " +str(x[6]) + ", " +str(x[7]) + ", " +str(x[8]) + ", " +str(x[9]) + ", " +str(x[10]) + ", " +str(x[11]) + ", " +str(x[12]) + ", " +str(x[13]) + ", " +str(x[14]) + ", " +str(x[15]) + ", " +str(x[16]) + ", " +str(x[17])  +"\n\n")
+        
+    ReporteActaDefuncion.close()
 
     MessageBox.showwarning("Registro Civil", "Reporte Generado Satisfactoriamente")

@@ -238,8 +238,6 @@ def MostrarDatosADi (frameInicio):
     DatoActaDivorcio.column("#25", width = 120)
     DatoActaDivorcio.column("#26", width = 120)
     DatoActaDivorcio.column("#27", width = 120)
-    DatoActaDivorcio.column("#28", width = 120)
-    DatoActaDivorcio.column("#29", width = 120)
 
     # DATOS ACTA 
 
@@ -1068,6 +1066,12 @@ def actaDivorcio ():
     boton.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
     boton.place (x = 915, y = 260)
 
+    # REPORTE DATOS
+
+    botonReporte = tk.Button (frameInicio, text = "Genera Reporte", height = 1, width = 14,relief="flat", command = lambda: funciones.generarReporteActaDivorcio())
+    botonReporte.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonReporte.place (x = 20, y = 260)
+
 def actaDefuncion ():
 
     def reiniciarCampos():
@@ -1226,6 +1230,12 @@ def actaDefuncion ():
     botonMostrarAD = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat", command = lambda: MostrarDatosAD(frameInicio))
     botonMostrarAD.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
     botonMostrarAD.place (x = 915, y = 240)
+
+    # REPORTE DATOS
+
+    botonReporte = tk.Button (frameInicio, text = "Genera Reporte", height = 1, width = 14,relief="flat", command = lambda: funciones.generarReporteActaDefuncion())
+    botonReporte.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonReporte.place (x = 435, y = 240)
   
 # Configuracion Ventana
 
@@ -1291,5 +1301,6 @@ buttonActaDivorcio.grid(row=3,column =0)
 buttonActaDefuncion = tk.Button (frameMenu, text = "\nActa \nde\nDefuncion", image = defuncionImage, compound = tk.TOP, relief= tk.FLAT, background= "#209cb4",command=actaDefuncion)
 buttonActaDefuncion.configure(height = 126, width = 130, font=("roboto", 10, "normal"),fg="WHITE", activebackground="#71acb7", activeforeground="WHITE")
 buttonActaDefuncion.grid(row = 4,column = 0)
+
 
 root.mainloop()
