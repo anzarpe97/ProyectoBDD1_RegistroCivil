@@ -1302,5 +1302,18 @@ buttonActaDefuncion = tk.Button (frameMenu, text = "\nActa \nde\nDefuncion", ima
 buttonActaDefuncion.configure(height = 126, width = 130, font=("roboto", 10, "normal"),fg="WHITE", activebackground="#71acb7", activeforeground="WHITE")
 buttonActaDefuncion.grid(row = 4,column = 0)
 
-
 root.mainloop()
+
+"""
+BASE DE DATOS 1
+SECCION: N-613
+
+INTEGRANTES: 
+
+- 26456380; Anderson Salazar
+- 27683017; Veronica Pacheco
+- 29926690; Fernando Perez
+- 30149687; Valezka Lopez
+- 30237967; Miguel Quiroz 
+
+"""
