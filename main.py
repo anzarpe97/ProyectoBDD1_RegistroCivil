@@ -699,9 +699,24 @@ def cedula ():
     botonConsultaCedula.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
     botonConsultaCedula.place (x = 915, y = 225)
 
-
 def actaMatrimonio ():
 
+    def reiniciarCampos():
+        
+        PContrayente.set(0)
+        OPContrayente.set("")
+        DPContrayente.set("")
+        SContrayente.set(0)
+        OSContrayente.set("")
+        DSContrayente.set("")
+        PTestigo.set(0)
+        STestigo.set(0)
+        registrador.set(0)
+        FechaAM.set("")
+        prefectura.set("")
+        numActaMatrimonio.set(0)
+
+    numActaMatrimonio = IntVar()
     PContrayente = IntVar()
     OPContrayente = StringVar()
     DPContrayente = StringVar()
@@ -835,13 +850,41 @@ def actaMatrimonio ():
     prefecturasOpcion = ttk.Combobox (frameInicio,values = ["Coquivacoa", "Chiquinquira", "Cacique Mara", "Olegarios Villalobos"], width=17,textvariable=prefectura)
     prefecturasOpcion.place (x = 555,y = 210)                                                                                                                                                                                                              
 
-    botonAgregarActaMatrimonio = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat", command = lambda: funciones.guardarActaMatrimonio(FechaAM.get(), PContrayente.get(), OPContrayente.get(), DPContrayente.get(),SContrayente.get(),OSContrayente.get(),DSContrayente.get(),registrador.get(),PTestigo.get(),STestigo.get(),prefectura.get()))
+    numActaLabel = tk.Label (frameInicio, text = "Num Acta Nacimiento: ")
+    numActaLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
+    numActaLabel.place (x = 753, y = 210)
+
+    numActaEntry = tk.Entry (frameInicio, relief="flat",textvariable = numActaMatrimonio)
+    numActaEntry.place (x = 900, y = 210)
+
+    ActaLabel = tk.Label (frameInicio, text = "Solo para actualizar ")
+    ActaLabel.configure (font = ("roboto", 9, "bold"), fg = "WHITE", background = "#209cb4")
+    ActaLabel.place (x = 903, y = 233)
+
+    # BOTON AGREGAR DATOS
+
+    botonAgregarActaMatrimonio = tk.Button (frameInicio, text = "Guardar", height = 1, width = 9,relief="flat", command = lambda: funciones.guardarActaMatrimonio(FechaAM.get(), PContrayente.get(), OPContrayente.get(), DPContrayente.get(),SContrayente.get(),OSContrayente.get(),DSContrayente.get(),registrador.get(),PTestigo.get(),STestigo.get(),prefectura.get()))
     botonAgregarActaMatrimonio.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonAgregarActaMatrimonio.place (x = round(1057/2), y = 275)
+    botonAgregarActaMatrimonio.place (x =565, y = 260)
+
+
+    # BOTON ACTUALIZAR 
+
+    botonActualizar = tk.Button (frameInicio, text = "Actualizar Datos", height = 1, width = 14,relief="flat", command = lambda: funciones.actualizarActaMatrimonio(FechaAM.get(), PContrayente.get(), OPContrayente.get(), DPContrayente.get(),SContrayente.get(),OSContrayente.get(),DSContrayente.get(),registrador.get(),PTestigo.get(),STestigo.get(),prefectura.get(),numActaMatrimonio.get()))
+    botonActualizar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonActualizar.place (x = 655, y = 260)
+
+    # REINICIAR CAMPOS
+
+    botonReiniciar = tk.Button (frameInicio, text = "Reiniciar Campos", height = 1, width = 14,relief="flat", command = lambda: reiniciarCampos())
+    botonReiniciar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonReiniciar.place (x = 785, y = 260)
+
+    # BOTON MOSTRAR DATOS
 
     botonMostrarAD = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat", command = lambda: MostrarDatosAM(frameInicio))
     botonMostrarAD.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonMostrarAD.place (x = 370, y = 275)
+    botonMostrarAD.place (x = 915, y = 260)
     
 def actaDivorcio ():
     

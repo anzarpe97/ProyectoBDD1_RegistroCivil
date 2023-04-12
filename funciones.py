@@ -129,7 +129,7 @@ def actaMatrimonioExiste(num):
               
         if a == (b-1):
 
-            MessageBox.showwarning("Datos Incompletos", "- El numero de acta no existe, revise y vuelva a intentarlo.")
+            MessageBox.showwarning("Registro Civil", "- El numero de acta no existe, revise y vuelva a intentarlo.")
 
             return False
 
@@ -271,7 +271,7 @@ def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento,
 
             MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
                      
-def guardarCedulaIdentidad (numCedula,numActaNacimiento,nombres,apellidos,estadoCivil,sexo,fechaEmision,nacionlidad):
+def guardarCedulaIdentidad (numCedula, numActaNacimiento, nombres, apellidos, estadoCivil, sexo, fechaEmision, nacionlidad):
     
     flag = True
     
@@ -429,10 +429,6 @@ def guardarActaMatrimonio (fechaActa, Pcontrayente, PDireccion, POcupacion, SCon
                              # VERIFICAMOS SI EXISTE LA CEDULA DEL SEGUNDO TESTIGO
 
                             flag = cedulaExiste (STestigo)
-
-                            if flag == False:
-                                 
-                                MessageBox.showwarning("Registo Civil","- La cedula del segundo testigo no existe.\n\n Debes ingresarla antes de realizar el acta de matrimonio.")
 
                         else:
 
@@ -1027,4 +1023,161 @@ def actualizarCedula (numCedula,numActaNacimiento,nombres,apellidos,estadoCivil,
                 consul.cedulaUptate(datosCedula)
                     
                 MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
+
+def actualizarActaMatrimonio(fechaActa, Pcontrayente, PDireccion, POcupacion, SContrayente, SDireccion, SOcupacion, registradorCivil, PTestigo, STestigo, prefectura, numactaM):   
+
+    flag = True
+    
+    # VERIFICAMOS SI LOS DATOS IMPORTANTES SE INGRESARON
+
+    if fechaActa == "" or Pcontrayente == 0 or PDireccion == "" or POcupacion == "" or SContrayente == 0 or SDireccion == "" or SOcupacion == "" or registradorCivil == 0 or  PTestigo == 0 or STestigo == 0:
+ 
+        MessageBox.showwarning("Datos Incompletos","Debes ingresar un valor numerico en los campos: \n- Numero Acta Nacimiento\n- Numero Cedula\n- Fecha Emision\n- Fecha Vencimiento\n- Estado Civil\n- Nacionalidad\n- Genero\n\n- Intentelo Nuevamente")
+    
+    else: 
+        
+        #PASAMOS LAS CEDULAS A INT
+
+        try:
+
+            Pcontrayente = int (Pcontrayente)
+            SContrayente = int (SContrayente)
+            registradorCivil = int (registradorCivil)
+            PTestigo = int (PTestigo)
+            STestigo = int (STestigo)
+
+        except ValueError:
+                
+                MessageBox.showwarning("Registo Civil","- Debes ingresar valores numericos en los campos: \n\n Cedula P contrayente \nCedula S Contrayente \n Cedula Registrador Civil \nPrimer Testigo \nSegundo Testigo")
+                flag = False
+
+        if flag == True:
+
+            flag = actaMatrimonioExiste(numactaM)
+
+            if flag == False:
+
+                MessageBox.showwarning("Registo Civil","- El acta de matrimonio no existe.\n\n Verifica e vuelve a intentarlo")
+
+
+        # VERIFICAMOS CEDULAS INGRESADAS
+
+        if flag == True:
+            
+            # VERIFICAMOS SI EXISTE LA CEDULA DEL PRIMER CONTRAYENTE
+
+            flag = cedulaExiste(Pcontrayente)
+
+            if flag == True:
+                
+                # VERIFICAMOS SI EXTISTE LA CEDULA DEL SEGUNDO CONTRAYENTE
+
+                flag = cedulaExiste(SContrayente)
+
+                if flag == True:
+
+                    # VERIFICAMOS SI EXISTE LA CEDULA DEL REGISTRADOR CIVIL
+
+                    flag = cedulaExiste(registradorCivil)
+
+                    if flag == True:
+                        
+                        # VERIFICAMOS SI EXISTE LA CEDULA DEL PRIMER TESTIGO
+
+                        flag = cedulaExiste (PTestigo)
+
+                        if flag == True:
+                            
+                             # VERIFICAMOS SI EXISTE LA CEDULA DEL SEGUNDO TESTIGO
+
+                            flag = cedulaExiste (STestigo)
+
+                            if flag == False:
+                                 
+                                MessageBox.showwarning("Registo Civil","- La cedula del segundo testigo no existe.\n\n Debes ingresarla antes de realizar el acta de matrimonio.")
+
+                        else:
+
+                             MessageBox.showwarning("Registo Civil","- La cedula del primer testigo no existe.\n\n Debes ingresarla antes de realizar el acta de matrimonio.") 
+                    
+                    else:
+                         
+                        MessageBox.showwarning("Registo Civil","- La cedula del registrador civil no existe.\n\n Debes ingresarla antes de realizar el acta de matrimonio.")
+
+                else:
+
+                    MessageBox.showwarning("Registo Civil","- La cedula del segundo contrayente no existe.\n\n Debes ingresarla antes de realizar el acta de matrimonio.")
+
+            else:
+                 
+                MessageBox.showwarning("Registo Civil","- La cedula del primer primer contrayente no existe.\n\n Debes ingresarla antes de realizar el acta de matrimonio.")
+ 
+        # ACOMODAR TEXTO INGRESADO            
+        
+        if flag == True:
+             
+            PDireccion = PDireccion.title()
+            POcupacion = POcupacion.title()
+            SDireccion = SDireccion.title()
+            SOcupacion = SOcupacion.title()
+
+        # Acomodar Fecha
+
+        if flag == True:
+
+            dia = fechaActa[0:2]
+            mes = fechaActa[3:5]
+            anio = fechaActa[6:10]
+
+            fechaActa = anio + "-" + mes +"-"+ dia
+    
+            try:
+                    
+                dia = int(dia)
+                mes = int (mes)
+                anio = int (anio)
+
+                anio = anio + 10
+
+                fechaVencimiento = str(anio) + "-" + str (mes)+ "-" + str (dia)
+
+            except ValueError:
+                    
+                MessageBox.showwarning("Formato Incorrecto","-El formato que ha ingresado es incorrecto, debe ingresar la fecha en el formato: \n\n             DD-MM-AAAA\n\n- Intentelo Nuevamente")
+                    
+                flag = False
+
+        # SELECIONAR PREFECTURA
+
+        if flag == True:
+
+            if prefectura == "Coquivacoa":
+                    
+                    prefectura = 1
+                    
+            elif prefectura == "Chiquinquira":
+                    
+                    prefectura = 2
+                        
+            elif prefectura ==  "Cacique Mara":
+                    
+                    prefectura = 3
+                    
+            elif prefectura == "Olegarios Villalobos":
+                    
+                    prefectura = 4
+            
+            else:
+                
+                flag = False
+                MessageBox.showinfo(message = "- Haz ingresado una prefectura Incorrecta\n\n- Vuelve a intentarlo", title = "Registro Civil")
+
+        # HACER CONSULTA
+
+        if flag == True:
+             
+            DatosActaMatrimonio =[fechaActa, Pcontrayente, PDireccion, POcupacion, SContrayente, SDireccion, SOcupacion, registradorCivil, PTestigo, STestigo, prefectura,numactaM]
      
+            consul.actaMatrimonioUpdate(DatosActaMatrimonio)
+                
+            MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil") 

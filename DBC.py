@@ -69,7 +69,7 @@ class DAO ():
     def insertarActaDefuncion (self,AD):
 
         cursor = self.connection.cursor(buffered=True)  
-                                                                                                                                                                                                                                        #(a_nacimiento_fallecido, edad_fallecido, sexo_fallecido, estado_civil_f, fecha_defuncion, hora_defuncion, lugar_defuncion, causa_muerte, c_informante, relacion_informante                        
+    
         sql = "INSERT INTO acta_defuncion(id_acta_defuncion, a_nacimiento_fallecido, edad_fallecido, sexo_fallecido, estado_civil_f, fecha_defuncion, hora_defuncion, lugar_defuncion, causa_muerte, c_informante, relacion_informante) VALUES (null,{0}, {1}, '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', {8}, '{9}')"
         cursor.execute (sql.format(AD[0], AD[1], AD[2], AD[3], AD[4], AD[5], AD[6], AD[7], AD[8], AD[9]))
                 
@@ -226,4 +226,18 @@ class DAO ():
             
             self.connection.commit()
 
+    def actaMatrimonioUpdate(self,DAM):
 
+        cursor = self.connection.cursor(buffered=True)  
+
+        sql = "UPDATE acta_matrimonio SET fecha_acta = '{0}', id_contrayente1 = {1}, ocupacion_contrayente1 = '{2}', direccion_contrayente1 = '{3}', id_contrayente2 = {4}, ocupacion_contrayente2 = '{5}', direccion_contrayente2 = '{6}', id_registrador_civil = {7}, id_testigo1 = {8}, id_testigo2 = {9}, id_prefectura = {10} WHERE nro_acta = {11}"
+        cursor.execute (sql.format(DAM[0], DAM[1], DAM[2], DAM[3], DAM[4], DAM[5], DAM[6], DAM[7], DAM[8], DAM[9], DAM[10],DAM[11]))
+            
+        self.connection.commit()
+
+
+"""
+
+
+
+"""
