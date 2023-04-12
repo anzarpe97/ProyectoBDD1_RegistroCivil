@@ -50,21 +50,25 @@ class DAO ():
 
     def insertarActaMatrimonio(self,DAM):
 
-        cursor = self.connection.cursor(buffered=True)  
+        if  self.connection.is_connected():
 
-        sql = "INSERT INTO acta_matrimonio (nro_acta, fecha_acta, id_contrayente1, ocupacion_contrayente1, direccion_contrayente1, id_contrayente2, ocupacion_contrayente2, direccion_contrayente2, id_registrador_civil, id_testigo1, id_testigo2, id_prefectura) VALUES (null,'{0}', {1}, '{2}', '{3}', {4}, '{5}', '{6}', {7}, {8}, {9}, {10})"
-        cursor.execute (sql.format(DAM[0], DAM[1], DAM[2], DAM[3], DAM[4], DAM[5], DAM[6], DAM[7], DAM[8], DAM[9], DAM[10]))
-            
-        self.connection.commit()
+            cursor = self.connection.cursor(buffered=True)  
+
+            sql = "INSERT INTO acta_matrimonio (nro_acta, fecha_acta, id_contrayente1, ocupacion_contrayente1, direccion_contrayente1, id_contrayente2, ocupacion_contrayente2, direccion_contrayente2, id_registrador_civil, id_testigo1, id_testigo2, id_prefectura) VALUES (null,'{0}', {1}, '{2}', '{3}', {4}, '{5}', '{6}', {7}, {8}, {9}, {10})"
+            cursor.execute (sql.format(DAM[0], DAM[1], DAM[2], DAM[3], DAM[4], DAM[5], DAM[6], DAM[7], DAM[8], DAM[9], DAM[10]))
+                
+            self.connection.commit()
 
     def insertarActaDivorcio(self,DAD):
 
-        cursor = self.connection.cursor(buffered=True)  
+        if  self.connection.is_connected():
 
-        sql = "INSERT INTO acta_divorcio(n_acta, Id_acta_matrimonio, c_conyuge1, direccion_esposo1, c_conyuge2, direccion_esposo2, id_ab_conyuge1, id_ab_conyuge2, id_hijo1, id_hijo2, id_prefectura) VALUES (null,{0},{1}, '{2}', {3},'{4}', {5}, {6}, {7}, {8}, {9})"
-        cursor.execute (sql.format(DAD[0], DAD[1], DAD[2], DAD[3], DAD[4], DAD[5], DAD[6], DAD[7], DAD[8], DAD[9]))
-            
-        self.connection.commit()
+            cursor = self.connection.cursor(buffered=True)  
+
+            sql = "INSERT INTO acta_divorcio (n_acta, Id_acta_matrimonio, c_conyuge1, direccion_esposo1, c_conyuge2, direccion_esposo2, id_ab_conyuge1, id_ab_conyuge2, id_hijo1, id_hijo2, id_prefectura) VALUES (null,{0},{1}, '{2}', {3},'{4}', {5}, {6}, {7}, {8}, {9})"
+            cursor.execute (sql.format(DAD[0], DAD[1], DAD[2], DAD[3], DAD[4], DAD[5], DAD[6], DAD[7], DAD[8], DAD[9]))
+                
+            self.connection.commit()
 
     def insertarActaDefuncion (self,AD):
 
@@ -197,6 +201,20 @@ class DAO ():
 
         return myresult
 
+    def consultaVActaDefuncion(self):
+
+        cursor = self.connection.cursor(buffered=True)  
+                    
+        sql = "SELECT id_acta_defuncion FROM acta_defuncion"
+
+        cursor.execute(sql)
+            
+        myresult = cursor.fetchall()
+
+        cursor.close()
+
+        return myresult
+
     # UPDATES
 
     def actaNacimientoUpdate(self, DAN):
@@ -231,13 +249,31 @@ class DAO ():
         cursor = self.connection.cursor(buffered=True)  
 
         sql = "UPDATE acta_matrimonio SET fecha_acta = '{0}', id_contrayente1 = {1}, ocupacion_contrayente1 = '{2}', direccion_contrayente1 = '{3}', id_contrayente2 = {4}, ocupacion_contrayente2 = '{5}', direccion_contrayente2 = '{6}', id_registrador_civil = {7}, id_testigo1 = {8}, id_testigo2 = {9}, id_prefectura = {10} WHERE nro_acta = {11}"
+        
         cursor.execute (sql.format(DAM[0], DAM[1], DAM[2], DAM[3], DAM[4], DAM[5], DAM[6], DAM[7], DAM[8], DAM[9], DAM[10],DAM[11]))
             
         self.connection.commit()
 
+    def actaDivorcioUpdate(self,DAD):
+        
+        cursor = self.connection.cursor(buffered=True)  
+
+        sql = "UPDATE acta_defuncion SET  a_nacimiento_fallecido = {0},  edad_fallecido = '{1}',  sexo_fallecido = '{2}',  estado_civil_f = '{3}',  fecha_defuncion = '{4}',  hora_defuncion = '{5}',  lugar_defuncion = '{6}',  causa_muerte = '{7}',  c_informante = {8},  relacion_informante = '{9}' WHERE id_acta_defuncion = {10}"
+        
+        cursor.execute (sql.format(DAD[0], DAD[1], DAD[2], DAD[3], DAD[4], DAD[5], DAD[6], DAD[7], DAD[8], DAD[9]))
+      
+        self.connection.commit()
 
 """
-
-
-
+                a_nacimiento_fallecido, 
+                edad_fallecido, 
+                sexo_fallecido, 
+                estado_civil_f, 
+                fecha_defuncion, 
+                hora_defuncion, 
+                lugar_defuncion, 
+                causa_muerte, 
+                c_informante, 
+                relacion_informante,
+                numActa
 """

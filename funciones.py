@@ -135,6 +135,29 @@ def actaMatrimonioExiste(num):
 
         a = a + 1
 
+def actaDefuncionExiste (numD):
+
+    a = 0     
+    
+    numActa = consul.consultaVActaDefuncion()
+    
+    b = len(numActa)
+
+    for x in numActa:
+         
+        if numD == x[0]:
+            
+            return True
+              
+        if a == (b-1):
+
+            MessageBox.showwarning("Registro Civil", "- El numero de acta de defuncion no existe, revise y vuelva a intentarlo.")
+
+            return False
+
+        a = a + 1
+
+
 # GUARDAR DATOS
 
 def guardarDatosAcNacimiento (nombre, apellido, FechaNacimiento, horaNacimiento, lugarNacimiento, sexo, cedulaPadre, nombrePadre, apellidoPadre, cedulaMadre, nombreMadre, apellidoMadre,  prefectura):
@@ -526,17 +549,11 @@ def guardarActaDivorcio (Id_acta_matrimonio, c_conyuge1, direccion_esposo1, c_co
 
         flag = True
 
-        # VERIFICAMOS SI EL ACTA DE MATRIMONIO EXISTE
-
-        if flag == True:
-
-            flag = actaMatrimonioExiste(Id_acta_matrimonio) 
-
         # VERIFICAMOS SI EL ACTA DE MATRIMONIO YA SE INGRESO
 
         if flag == True:
             
-            flag = VerificarActaMatrimonio(Id_acta_matrimonio)
+            flag = actaMatrimonioExiste(Id_acta_matrimonio)
 
         # ACOMODAMOS DIRECCIONES
 
@@ -1181,3 +1198,228 @@ def actualizarActaMatrimonio(fechaActa, Pcontrayente, PDireccion, POcupacion, SC
             consul.actaMatrimonioUpdate(DatosActaMatrimonio)
                 
             MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil") 
+
+def actualizarActaDivorcio(Id_acta_matrimonio, c_conyuge1, direccion_esposo1, c_conyuge2, direccion_esposo2, id_ab_conyuge1, id_ab_conyuge2, id_hijo1, id_hijo2, prefectura,numActaDiv):
+
+    if Id_acta_matrimonio == 0 or  c_conyuge1 == 0 or direccion_esposo1 == "" or c_conyuge2 == 0 or direccion_esposo2 == "" or  id_ab_conyuge1 == 0 or  id_ab_conyuge2 == 0  or id_hijo1 == 0 or id_hijo2 == 0 or prefectura == "": 
+        
+        MessageBox.showwarning("Datos Incompletos", "Rellena los campos: \n\n- Numero Acta Matrimonio\n- Cedula P Esposo\n- Direccion P Esposo \n- Cedula S Esposo\n- Direccion S Esposo \n- Cedula Abg P Esposo \n- Cedula Abg S Esposo\n- Acta Nacimiento Hijo 1 \n- Acta Nacimiento Hijo 2 \n- Prefectura\n\nY vuelve a intentarlo.")
+        
+    else:
+
+        flag = True
+
+    # VERIFICAMOS SI EL ACTA DE MATRIMONIO YA SE INGRESO
+
+        if flag == True:
+            
+            flag = actaMatrimonioExiste(Id_acta_matrimonio)
+
+        # ACOMODAMOS DIRECCIONES
+
+        if flag == True:
+        
+        # Acomodar Nombres
+
+            direccion_esposo1 = direccion_esposo1.title()
+            direccion_esposo2 = direccion_esposo2.title()
+        
+        # VERIFICAMOS SI LA CEDULAS SON TIPO INT
+
+        if flag == True:
+
+            try:
+                
+                Id_acta_matrimonio = int (Id_acta_matrimonio)
+                c_conyuge1 = int (c_conyuge1)
+                c_conyuge2 = int(c_conyuge2)
+                id_ab_conyuge1 = int(id_ab_conyuge1)
+                id_ab_conyuge2 = int (id_ab_conyuge2)
+                id_hijo1 = int (id_hijo1)
+                id_hijo2 = int (id_hijo2)
+                
+            except ValueError:
+                
+                MessageBox.showwarning("Registro Civil","Debes ingresar un valor numerico en los campos: \n- Cedula Padre\n- Cedula Madre\n\n- Intentelo Nuevamente")
+                
+                flag =False 
+
+        # VERIFICAMOS QUE LAS CEDULAS ESTEN BIEN
+
+        if flag == True:
+             
+            flag = cedulaExiste(c_conyuge1) 
+
+            if flag == True:
+                 
+                flag = cedulaExiste(c_conyuge2)
+                
+                if flag == True:
+                     
+                    flag = cedulaExiste(id_ab_conyuge1)
+
+                    if flag == True:
+                       
+                       flag = cedulaExiste(id_ab_conyuge2)
+
+                       if flag == False:
+                        
+                        MessageBox.showwarning("Registo Civil","- La cedula del abodado segundo Esposx no existe.\n\n Debes ingresarla antes de realizar el acta de divorcio.")
+                    
+                    else:
+                
+                        MessageBox.showwarning("Registo Civil","- La cedula del abogado primer Esposx no existe.\n\n Debes ingresarla antes de realizar el acta de divorcio.")
+                
+                else:
+
+                    MessageBox.showwarning("Registo Civil","- La cedula del segundo Esposx no existe.\n\n Debes ingresarla antes de realizar el acta de divorcio.")
+
+            else:
+
+                MessageBox.showwarning("Registo Civil","- La cedula del primer Esposx no existe.\n\n Debes ingresarla antes de realizar el acta de divorcio.")
+
+        # VERIFICAMOS QUE LAS ACTAS DE NACIMIENTO ESTEN BIEN
+
+        if flag == True:
+             
+            flag = actaNacimientoExiste(id_hijo1)
+
+            if flag == True:
+                 
+                flag = actaNacimientoExiste(id_hijo2)
+
+                if flag == False:
+                     
+                    MessageBox.showwarning("Registo Civil","- El acta de nacimiento del segundo hijo no existe.\n\n Debes ingresarla antes de realizar el acta de divorcio.")
+
+            else:
+                 
+                MessageBox.showwarning("Registo Civil","- El acta de nacimiento del primer hijo no existe.\n\n Debes ingresarla antes de realizar el acta de divorcio.")
+
+        # ESCOGEMOS LA PREFECTURA ID
+
+        if flag == True:
+
+            if prefectura == "Coquivacoa":
+                    
+                    prefectura = 1
+                    
+            elif prefectura == "Chiquinquira":
+                    
+                    prefectura = 2
+                        
+            elif prefectura ==  "Cacique Mara":
+                    
+                    prefectura = 3
+                    
+            elif prefectura == "Olegarios Villalobos":
+                    
+                    prefectura = 4
+            
+            else:
+                
+                flag = False
+                MessageBox.showinfo(message = "- Haz ingresado una prefectura Incorrecta\n\n- Vuelve a intentarlo", title = "Registro Civil")
+
+        # Diccionario Acta Nacimiento
+        
+        if flag == True :
+            
+            datosActaDivorcio = [Id_acta_matrimonio, c_conyuge1, direccion_esposo1, c_conyuge2, direccion_esposo2, id_ab_conyuge1, id_ab_conyuge2, id_hijo1, id_hijo2, prefectura,numActaDiv]
+
+            consul.actaDivorcioUpdate(datosActaDivorcio)
+
+            MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
+
+def actualizarActaDefuncion(a_nacimiento_fallecido, sexo_fallecido, estado_civil_f, fecha_defuncion, hora_defuncion, lugar_defuncion, causa_muerte, c_informante, relacion_informante,numActa):
+
+    flag = True
+    
+    # VERIFICAMOS SI LOS DATOS IMPORTANTES SE INGRESARON
+
+    if a_nacimiento_fallecido == 0 or sexo_fallecido == "" or estado_civil_f == "" or fecha_defuncion == "" or hora_defuncion == "" or lugar_defuncion == "" or causa_muerte == "" or c_informante == 0 or  relacion_informante == "":
+ 
+        MessageBox.showwarning("Datos Incompletos","Debes ingresar un valor numerico en los campos: \n- Numero Acta Nacimiento\n- Numero Cedula\n- Fecha Emision\n- Fecha Vencimiento\n- Estado Civil\n- Nacionalidad\n- Genero\n\n- Intentelo Nuevamente")
+
+    else: 
+        
+        # VERIFICAMOS SI EL ACTA DE DEFUNCION EXISTE
+
+        if flag == True:
+
+            flag = actaDefuncionExiste(numActa)
+
+        #PASAMOS LAS CEDULAS A INT
+
+        try:
+
+            a_nacimiento_fallecido = int (a_nacimiento_fallecido)
+            c_informante = int (c_informante)
+
+
+        except ValueError:
+                
+                MessageBox.showwarning("Datos Incompletos","- Debes ingresar valores numericos en los campos: \n\n Cedula P contrayente \nCedula S Contrayente \n Cedula Registrador Civil \nPrimer Testigo \nSegundo Testigo")
+                
+                flag = False
+
+        #VERIFICAMOS SI EL ACTA EXISTE
+
+        if flag == True:
+             
+            flag = actaNacimientoExiste(a_nacimiento_fallecido)
+
+            if flag == False:
+                 
+                MessageBox.showwarning("Datos Incompletos","- El acta de nacimiento que se ingresó no existe\n\n Verifique el acta e intente de nuevo")
+                 
+        # VERIFICAMOS SI EL LA CEDULA DEL TESTIGO EXSISTE
+
+        if flag == True:
+             
+             flag= cedulaExiste(c_informante)
+
+             if flag == False:
+                  
+                  MessageBox.showwarning("Datos Incompletos","- El acta del testigo que se ingresó no existe\n\n Verifique el acta e intente de nuevo")
+
+        # ACOMODAR TEXTO INGRESADO            
+
+        if flag == True:
+             
+            causa_muerte = causa_muerte.title()
+            lugar_defuncion = lugar_defuncion.title()
+
+        # Acomodar Fecha
+
+        if flag == True:
+
+            dia = fecha_defuncion[0:2]
+            mes = fecha_defuncion[3:5]
+            anio = fecha_defuncion[6:10]
+
+            fecha_defuncion = anio + "-" + mes +"-"+ dia
+    
+            try:
+                    
+                dia = int(dia)
+                mes = int (mes)
+                anio = int (anio)
+
+                edad_fallecido = 2023 - anio
+
+            except ValueError:
+                    
+                MessageBox.showwarning("Formato Incorrecto","-El formato que ha ingresado es incorrecto, debe ingresar la fecha en el formato: \n\n             DD-MM-AAAA\n\n- Intentelo Nuevamente")
+                    
+                flag = False
+
+        # HACER CONSULTA
+
+        if flag == True:
+             
+            DatosActaDefuncion = [a_nacimiento_fallecido, edad_fallecido, sexo_fallecido, estado_civil_f, fecha_defuncion, hora_defuncion, lugar_defuncion, causa_muerte, c_informante, relacion_informante,numActa]
+     
+            consul.actaDivorcioUpdate(DatosActaDefuncion)
+            
+            MessageBox.showinfo(message = "Resgistro Actualizado satisfactoriamente.", title = "Registro Civil")

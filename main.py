@@ -198,7 +198,7 @@ def MostrarDatosAM (frameInicio):
 
         DatoActaMatrimonio.insert("", END, text = x[0], values = (x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17], x[18], x[19], x[20], x[21], x[22], x[23], x[24], x[25],x[26],x[27]))
 
-    DatoActaMatrimonio.place(x = 20, y = 315, width = 1000, height = 315)
+    DatoActaMatrimonio.place(x = 20, y = 295, width = 1000, height = 339)
 
 # MOSTRAR DATOS ACTA DE DIVORCIO
 
@@ -299,7 +299,7 @@ def MostrarDatosADi (frameInicio):
 
         DatoActaDivorcio.insert("", END, text = x[0], values = (x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17], x[18], x[19], x[20], x[21], x[22], x[23], x[24], x[25],x[26],x[27],x[28]))
 
-    DatoActaDivorcio.place(x = 20, y = 315, width = 1000, height = 315)
+    DatoActaDivorcio.place(x = 20, y = 295, width = 1000, height = 335)
 
 # MOSTRAR DATOS ACTA DEFUNNCION
 
@@ -867,7 +867,6 @@ def actaMatrimonio ():
     botonAgregarActaMatrimonio.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
     botonAgregarActaMatrimonio.place (x =565, y = 260)
 
-
     # BOTON ACTUALIZAR 
 
     botonActualizar = tk.Button (frameInicio, text = "Actualizar Datos", height = 1, width = 14,relief="flat", command = lambda: funciones.actualizarActaMatrimonio(FechaAM.get(), PContrayente.get(), OPContrayente.get(), DPContrayente.get(),SContrayente.get(),OSContrayente.get(),DSContrayente.get(),registrador.get(),PTestigo.get(),STestigo.get(),prefectura.get(),numActaMatrimonio.get()))
@@ -888,6 +887,20 @@ def actaMatrimonio ():
     
 def actaDivorcio ():
     
+    def reiniciarCampos():
+
+        NumActaMatrimonio.set(0)
+        CedulaPrimerEsposo.set(0)
+        DireccionPrimerEsposo.set("")
+        CedulaSegundoEsposo.set(0)
+        DireccionSegundoEsposo.set("")
+        CedulaAbogadoPE.set(0)
+        CedulaAbogadoSE.set(0)
+        ActaNacimientoPHijo.set(0)
+        ActaNacimientoSHijo.set(0)
+        Prefectura.set("")
+        numActaDivorcio.set()
+
     NumActaMatrimonio = IntVar ()
     CedulaPrimerEsposo = IntVar ()
     DireccionPrimerEsposo = StringVar()
@@ -897,7 +910,7 @@ def actaDivorcio ():
 
     CedulaAbogadoPE = IntVar()
     CedulaAbogadoSE = IntVar()
-
+    numActaDivorcio = IntVar()
     ActaNacimientoPHijo = IntVar()
     ActaNacimientoSHijo = IntVar()
 
@@ -1000,15 +1013,57 @@ def actaDivorcio ():
     prefecturasOpcion = ttk.Combobox (frameInicio, values = ["Coquivacoa", "Chiquinquira", "Cacique Mara", "Olegarios Villalobos"], width = 17, textvariable = Prefectura)
     prefecturasOpcion.place (x = 910,y = 210)
     
-    botonAgregarActaDivorcio = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat", command = lambda: funciones.guardarActaDivorcio(NumActaMatrimonio.get(),CedulaPrimerEsposo.get(),DireccionPrimerEsposo.get(),CedulaSegundoEsposo.get(),DireccionSegundoEsposo.get(), CedulaAbogadoPE.get(),CedulaAbogadoSE.get(),ActaNacimientoPHijo.get(),ActaNacimientoSHijo.get(),Prefectura.get()))
+    # ACTA DIVORCIO NUMERO
+    
+    numActaLabel = tk.Label (frameInicio, text = "Num Acta Divorcio: ")
+    numActaLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
+    numActaLabel.place (x = 780, y = 90)
+
+    numActaEntry = tk.Entry (frameInicio, relief="flat",textvariable = numActaDivorcio)
+    numActaEntry.place (x = 910, y = 93)
+
+    ActaLabel = tk.Label (frameInicio, text = "Solo para actualizar ")
+    ActaLabel.configure (font = ("roboto", 9, "bold"), fg = "WHITE", background = "#209cb4")
+    ActaLabel.place (x = 910, y = 65)
+    
+    # BOTON AGREGAR
+
+    botonAgregarActaDivorcio = tk.Button (frameInicio, text = "Guardar", height = 1, width = 9,relief="flat", command = lambda: funciones.guardarActaDivorcio(NumActaMatrimonio.get(),CedulaPrimerEsposo.get(),DireccionPrimerEsposo.get(),CedulaSegundoEsposo.get(),DireccionSegundoEsposo.get(), CedulaAbogadoPE.get(),CedulaAbogadoSE.get(),ActaNacimientoPHijo.get(),ActaNacimientoSHijo.get(),Prefectura.get()))
     botonAgregarActaDivorcio.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonAgregarActaDivorcio.place (x = 820, y = 265)
+    botonAgregarActaDivorcio.place (x = 565, y = 260)
+
+    # BOTON ACTUALIZAR 
+
+    botonActualizar = tk.Button (frameInicio, text = "Actualizar Datos", height = 1, width = 14,relief="flat", command = lambda: funciones.actualizarActaDivorcio(NumActaMatrimonio.get(),CedulaPrimerEsposo.get(),DireccionPrimerEsposo.get(),CedulaSegundoEsposo.get(),DireccionSegundoEsposo.get(), CedulaAbogadoPE.get(),CedulaAbogadoSE.get(),ActaNacimientoPHijo.get(),ActaNacimientoSHijo.get(),Prefectura.get(),numActaDivorcio.get()))
+    botonActualizar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonActualizar.place (x = 655, y = 260)
+
+    # REINICIAR CAMPOS
+
+    botonReiniciar = tk.Button (frameInicio, text = "Reiniciar Campos", height = 1, width = 14,relief="flat", command = lambda: reiniciarCampos())
+    botonReiniciar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonReiniciar.place (x = 785, y = 260)
+
+    # MOSTRAR DATOS
 
     boton = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat", command = lambda: MostrarDatosADi(frameInicio))
     boton.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    boton.place (x = 700, y = 265)
+    boton.place (x = 915, y = 260)
 
 def actaDefuncion ():
+
+    def reiniciarCampos():
+
+        ActaDifunto.set(0)
+        generoDifunto.set("")
+        EstadoCivilDifunto.set("")
+        FechaDefuncionDifunto.set("")
+        HoraDefuncionDifunto.set("")
+        LugarDefuncionDifunto.set("")
+        CausaDeMuerte.set("")
+        CedulaInformante.set(0)
+        RelacionInformante.set("")
+        numAD.set(0)
 
     ActaDifunto = IntVar()
     generoDifunto = StringVar()
@@ -1019,7 +1074,7 @@ def actaDefuncion ():
     CausaDeMuerte = StringVar()
     CedulaInformante = IntVar()
     RelacionInformante = StringVar()
-
+    numAD = IntVar()
     # NO TOCAR 
     
     frameInicio = tk.Frame(root, background = "#209cb4", height = 656, width = 1057)
@@ -1109,6 +1164,7 @@ def actaDefuncion ():
     FormatoHLabel.configure(font = ("roboto", 8, "bold"), fg ="WHITE", background="#209cb4")
     FormatoHLabel.place (x = 902, y = 203)
 
+
     #FECHA EXPEDICION ACTA  
 
     generoLabel = tk.Label (frameInicio, text = "Genero Difunto: ")
@@ -1118,15 +1174,40 @@ def actaDefuncion ():
     generoOpcion = ttk.Combobox (frameInicio,values = ["Hombre", "Mujer", "No-Binario"], width=17,textvariable=generoDifunto)
     generoOpcion.place(x = 555, y = 173)
 
+    numActaLabel = tk.Label (frameInicio, text = "Num Acta Defuncion: ")
+    numActaLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    numActaLabel.place (x = 57, y = 210)
+
+    numActaEntry = tk.Entry (frameInicio, relief="flat",textvariable = numAD)
+    numActaEntry.place (x = 225, y = 213)
+
+    ActaLabel = tk.Label (frameInicio, text = "Solo para actualizar ")
+    ActaLabel.configure (font = ("roboto", 9, "bold"), fg = "WHITE", background = "#209cb4")
+    ActaLabel.place (x = 225, y = 233)
+
     # GUARDAR DATOS
 
-    botonAgregarActaDefuncion = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat", command = lambda: funciones.guardarActaDefuncion(ActaDifunto.get(), generoDifunto.get(), EstadoCivilDifunto.get(), FechaDefuncionDifunto.get(), HoraDefuncionDifunto.get(), LugarDefuncionDifunto.get(), CausaDeMuerte.get(),CedulaInformante.get(),RelacionInformante.get()))
+    botonAgregarActaDefuncion = tk.Button (frameInicio, text = "Guardar", height = 1, width = 9,relief="flat", command = lambda: funciones.guardarActaDefuncion(ActaDifunto.get(), generoDifunto.get(), EstadoCivilDifunto.get(), FechaDefuncionDifunto.get(), HoraDefuncionDifunto.get(), LugarDefuncionDifunto.get(), CausaDeMuerte.get(),CedulaInformante.get(),RelacionInformante.get()))
     botonAgregarActaDefuncion.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonAgregarActaDefuncion.place (x = round(1057/2), y = 240)           
+    botonAgregarActaDefuncion.place (x = 565, y = 240)           
     
+    # BOTON ACTUALIZAR 
+
+    botonActualizar = tk.Button (frameInicio, text = "Actualizar Datos", height = 1, width = 14,relief="flat", command = lambda: funciones.actualizarActaDefuncion(ActaDifunto.get(), generoDifunto.get(), EstadoCivilDifunto.get(), FechaDefuncionDifunto.get(), HoraDefuncionDifunto.get(), LugarDefuncionDifunto.get(), CausaDeMuerte.get(),CedulaInformante.get(),RelacionInformante.get(),numAD.get()))
+    botonActualizar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonActualizar.place (x = 655, y = 240)
+
+    # REINICIAR CAMPOS
+
+    botonReiniciar = tk.Button (frameInicio, text = "Reiniciar Campos", height = 1, width = 14,relief="flat", command = lambda: reiniciarCampos())
+    botonReiniciar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonReiniciar.place (x = 785, y = 240)
+
+    # MOSTRAR DATOS
+
     botonMostrarAD = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat", command = lambda: MostrarDatosAD(frameInicio))
     botonMostrarAD.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonMostrarAD.place (x = 300, y = 240)
+    botonMostrarAD.place (x = 915, y = 240)
   
 # Configuracion Ventana
 
