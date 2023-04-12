@@ -159,6 +159,19 @@ def actaDefuncionExiste (numD):
 
         a = a + 1
 
+def calcularEdad(numActaN):
+
+    prueba = consul.consultaVFechaNacimiento(numActaN)
+    print(numActaN)
+    b = str (prueba [0])
+    
+    c = b [0:4]
+    print(c)
+    c = int(c)
+    
+    d = 2023 - c
+    print(d)
+    return d
 
 # GUARDAR DATOS
 
@@ -313,6 +326,10 @@ def guardarCedulaIdentidad (numCedula, numActaNacimiento, nombres, apellidos, es
         if flag == True:
              
             flag = verificarCedula(numCedula)
+
+        if flag == True:
+
+            flag = actaNacimientoExiste(numActaNacimiento)
 
         # ACOMODAMOS LOS NOMBRES Y APELLIDOS
 
@@ -471,6 +488,34 @@ def guardarActaMatrimonio (fechaActa, Pcontrayente, PDireccion, POcupacion, SCon
                  
                 MessageBox.showwarning("Registo Civil","- La cedula del primer primer contrayente no existe.\n\n Debes ingresarla antes de realizar el acta de matrimonio.")
  
+        # VERIFICAMOS SI NO SE COLOCAN CEDULAS IGUALES
+
+        if flag == True:
+
+            if Pcontrayente == SContrayente or  PTestigo or STestigo  or registradorCivil:
+                
+                MessageBox.showwarning("Registro Civil","- Haz ingresado el numero de cedula del Primer Contrayente en dos campos diferentes \n\n   Verifica e intenta de nuevo")
+                
+                flag = False
+
+            if  SContrayente == PTestigo or STestigo  or registradorCivil:
+                
+                MessageBox.showwarning("Registro Civil","- Haz ingresado el numero de cedula del Segundo Contrayente en dos campos diferentes \n\n   Verifica e intenta de nuevo")
+                
+                flag = False
+
+            if   PTestigo == STestigo  or registradorCivil:
+                
+                MessageBox.showwarning("Registro Civil","- Haz ingresado el numero de cedula del Segundo Contrayente en dos campos diferentes \n\n   Verifica e intenta de nuevo")
+                
+                flag = False
+
+            if   STestigo  == registradorCivil:
+                
+                MessageBox.showwarning("Registro Civil","- Haz ingresado el numero de cedula del Segundo Contrayente en dos campos diferentes \n\n   Verifica e intenta de nuevo")
+                    
+                flag = False
+
         # ACOMODAR TEXTO INGRESADO            
         
         if flag == True:
@@ -699,7 +744,6 @@ def guardarActaDefuncion (a_nacimiento_fallecido, sexo_fallecido, estado_civil_f
                 
                 flag = False
 
-
         #VERIFICAMOS SI EL ACTA EXISTE
 
         if flag == True:
@@ -709,7 +753,10 @@ def guardarActaDefuncion (a_nacimiento_fallecido, sexo_fallecido, estado_civil_f
             if flag == False:
                  
                 MessageBox.showwarning("Datos Incompletos","- El acta de nacimiento que se ingresó no existe\n\n Verifique el acta e intente de nuevo")
-                 
+
+
+        edad_fallecido = calcularEdad (a_nacimiento_fallecido) 
+
         # VERIFICAMOS SI EL LA CEDULA DEL TESTIGO EXSISTE
 
         if flag == True:
@@ -742,8 +789,6 @@ def guardarActaDefuncion (a_nacimiento_fallecido, sexo_fallecido, estado_civil_f
                 dia = int(dia)
                 mes = int (mes)
                 anio = int (anio)
-
-                edad_fallecido = 2023 - anio
 
             except ValueError:
                     
@@ -1342,15 +1387,9 @@ def actualizarActaDefuncion(a_nacimiento_fallecido, sexo_fallecido, estado_civil
     if a_nacimiento_fallecido == 0 or sexo_fallecido == "" or estado_civil_f == "" or fecha_defuncion == "" or hora_defuncion == "" or lugar_defuncion == "" or causa_muerte == "" or c_informante == 0 or  relacion_informante == "":
  
         MessageBox.showwarning("Datos Incompletos","Debes ingresar un valor numerico en los campos: \n- Numero Acta Nacimiento\n- Numero Cedula\n- Fecha Emision\n- Fecha Vencimiento\n- Estado Civil\n- Nacionalidad\n- Genero\n\n- Intentelo Nuevamente")
-
+    
     else: 
         
-        # VERIFICAMOS SI EL ACTA DE DEFUNCION EXISTE
-
-        if flag == True:
-
-            flag = actaDefuncionExiste(numActa)
-
         #PASAMOS LAS CEDULAS A INT
 
         try:
@@ -1374,7 +1413,10 @@ def actualizarActaDefuncion(a_nacimiento_fallecido, sexo_fallecido, estado_civil
             if flag == False:
                  
                 MessageBox.showwarning("Datos Incompletos","- El acta de nacimiento que se ingresó no existe\n\n Verifique el acta e intente de nuevo")
-                 
+
+
+        edad_fallecido = calcularEdad (a_nacimiento_fallecido) 
+
         # VERIFICAMOS SI EL LA CEDULA DEL TESTIGO EXSISTE
 
         if flag == True:
@@ -1408,23 +1450,24 @@ def actualizarActaDefuncion(a_nacimiento_fallecido, sexo_fallecido, estado_civil
                 mes = int (mes)
                 anio = int (anio)
 
-                edad_fallecido = 2023 - anio
-
             except ValueError:
                     
                 MessageBox.showwarning("Formato Incorrecto","-El formato que ha ingresado es incorrecto, debe ingresar la fecha en el formato: \n\n             DD-MM-AAAA\n\n- Intentelo Nuevamente")
                     
                 flag = False
 
+
         # HACER CONSULTA
 
         if flag == True:
-                                #a_nacimiento_fallecido, sexo_fallecido, estado_civil_f, fecha_defuncion, hora_defuncion, lugar_defuncion, causa_muerte, c_informante, relacion_informante,numActa#
-            DatosActaDefuncion = [a_nacimiento_fallecido, sexo_fallecido, estado_civil_f, fecha_defuncion, hora_defuncion, lugar_defuncion, causa_muerte, c_informante, relacion_informante,numActa]
-     
+             
+            DatosActaDefuncion = [a_nacimiento_fallecido, edad_fallecido, sexo_fallecido, estado_civil_f,fecha_defuncion,hora_defuncion,lugar_defuncion,causa_muerte,c_informante, relacion_informante, numActa]
+
             consul.actaDivorcioUpdate(DatosActaDefuncion)
             
-            MessageBox.showinfo(message = "Resgistro Actualizado satisfactoriamente.", title = "Registro Civil")
+            MessageBox.showinfo(message = "Resgistro Creado satisfactoriamente.", title = "Registro Civil")
+
+# REPORTE
 
 def generarReporteActaNacimiento ():
 
@@ -1446,15 +1489,56 @@ def generarReporteCedula ():
 
     datos = consultarCedulas ()
 
-    reporteActaNacimiento = open ("reportes/CedulaReporte.txt" , "w")
+    reporteCedula = open ("reportes/CedulaReporte.txt" , "w")
 
-    reporteActaNacimiento.write("Numero Cedula - Nombres - Apellidos - Estado Civil - Sexo - Fecha Nacimiento - Fecha Emision - Nombres Padre - Fecha Vencimiento - Nacionalidad\n\n")
+    reporteCedula.write("Numero Cedula - Nombres - Apellidos - Estado Civil - Sexo - Fecha Nacimiento - Fecha Emision - Nombres Padre - Fecha Vencimiento - Nacionalidad\n\n")
   
     for x in datos:
         
-        reporteActaNacimiento.write("CI: "+ str(x[0]) + ", " + x[1] + ", " + x[2]  + ", " + x[3] + ", " + x[4] +", " + str(x[5])+", " + str(x[6]) + ", " + str(x[7]) +   ", " + str(x[8])  + "\n\n")
+        reporteCedula.write("CI: "+ str(x[0]) + ", " + x[1] + ", " + x[2]  + ", " + x[3] + ", " + x[4] +", " + str(x[5])+", " + str(x[6]) + ", " + str(x[7]) +   ", " + str(x[8])  + "\n\n")
                                             #c.n_cedula,     c.nombres,    c.apellidos,   c.estado_civil, c.sexo,  a.fecha_nacimiento, c.fecha_emision, c.fecha_vencimiento, c.nacionalidad
-    reporteActaNacimiento.close()
+    reporteCedula.close()
     
     MessageBox.showwarning("Registro Civil", "Reporte Generado Satisfactoriamente")
 
+def generarReporteActaMatrimonio ():
+
+    datos = consultarActaMatrimonio ()
+
+    reporteActaMatrimonio = open ("reportes/ActaMatrimonioReporte.txt" , "w")
+    
+    for x in datos:
+
+        reporteActaMatrimonio.write("#"+str(x[0]) + ", " + str(x[1]) + ", " +str(x[2]) + ", " +str(x[3]) + ", " +str(x[4]) + ", " +str(x[5]) + ", " +str(x[6]) + ", " +str(x[7]) + ", " +str(x[8]) + ", " +str(x[9]) + ", " +str(x[10]) + ", " +str(x[11]) + ", " +str(x[12]) + ", " +str(x[13]) + ", " +str(x[14]) + ", " +str(x[15]) + ", " +str(x[16]) + ", " +str(x[17]) + ", " +str(x[18]) + ", " +str(x[19]) + ", " +str(x[20]) + ", " +str(x[21]) + ", " +str(x[22]) + ", " +str(x[23]) + ", " +str(x[24]) + ", " +str(x[25]) + ", " +str(x[26]) + ", " +str(x[27]) + ", "  +"\n\n")
+        
+    reporteActaMatrimonio.close()
+
+    MessageBox.showwarning("Registro Civil", "Reporte Generado Satisfactoriamente")
+
+def generarReporteActaDivorcio():
+
+    datos = consultarActaDivorcio ()
+
+    ReporteActadivorcio = open ("reportes/ActaDivocioReporte.txt" , "w")
+    
+    for x in datos:
+
+        ReporteActadivorcio.write("#"+str(x[0]) + ", " + str(x[1]) + ", " +str(x[2]) + ", " +str(x[3]) + ", " +str(x[4]) + ", " +str(x[5]) + ", " +str(x[6]) + ", " +str(x[7]) + ", " +str(x[8]) + ", " +str(x[9]) + ", " +str(x[10]) + ", " +str(x[11]) + ", " +str(x[12]) + ", " +str(x[13]) + ", " +str(x[14]) + ", " +str(x[15]) + ", " +str(x[16]) + ", " +str(x[17]) + ", " +str(x[18]) + ", " +str(x[19]) + ", " +str(x[20]) + ", " +str(x[21]) + ", " +str(x[22]) + ", " +str(x[23]) + ", " +str(x[24]) + ", " +str(x[25]) + ", " +str(x[26]) + ", " +str(x[27]) + ", "  +"\n\n")
+        
+    ReporteActadivorcio.close()
+    
+    MessageBox.showwarning("Registro Civil", "Reporte Generado Satisfactoriamente")
+
+def generarReporteActaDefuncion():
+
+    datos = consultarActaDeuncion()
+
+    ReporteActaDefuncion = open ("reportes/ActaDefuncionReporte.txt" , "w")
+    
+    for x in datos:
+
+        ReporteActaDefuncion.write("#"+str(x[0]) + ", " + str(x[1]) + ", " +str(x[2]) + ", " +str(x[3]) + ", " +str(x[4]) + ", " +str(x[5]) + ", " +str(x[6]) + ", " +str(x[7]) + ", " +str(x[8]) + ", " +str(x[9]) + ", " +str(x[10]) + ", " +str(x[11]) + ", " +str(x[12]) + ", " +str(x[13]) + ", " +str(x[14]) + ", " +str(x[15]) + ", " +str(x[16]) + ", " +str(x[17])  +"\n\n")
+        
+    ReporteActaDefuncion.close()
+
+    MessageBox.showwarning("Registro Civil", "Reporte Generado Satisfactoriamente")

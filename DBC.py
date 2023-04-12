@@ -215,6 +215,20 @@ class DAO ():
 
         return myresult
 
+    def consultaVFechaNacimiento(self,numActa):
+
+        cursor = self.connection.cursor(buffered=True)  
+                    
+        sql = "SELECT fecha_nacimiento FROM acta_nacimiento WHERE nro_acta = {0};"
+
+        cursor.execute(sql.format(numActa))
+            
+        myresult = cursor.fetchone()
+
+        cursor.close()
+
+        return myresult
+
     # UPDATES
 
     def actaNacimientoUpdate(self, DAN):
@@ -258,22 +272,9 @@ class DAO ():
         
         cursor = self.connection.cursor(buffered=True)  
 
-        sql = "UPDATE acta_defuncion SET  a_nacimiento_fallecido = {0}, sexo_fallecido = '{1}',  estado_civil_f = '{2}',  fecha_defuncion = '{3}',  hora_defuncion = '{4}',  lugar_defuncion = '{5}',  causa_muerte = '{6}',  c_informante = {7},  relacion_informante = '{8}' WHERE id_acta_defuncion = {9}"
+        sql = "UPDATE acta_defuncion SET a_nacimiento_fallecido = {0}, edad_fallecido = {1}, sexo_fallecido = '{2}', estado_civil_f = '{3}', fecha_defuncion = '{4}', hora_defuncion = '{5}', lugar_defuncion = '{6}', causa_muerte = '{7}', c_informante = {8}, relacion_informante = '{9}' WHERE id_acta_defuncion = {10}"
         
-        cursor.execute (sql.format(DAD[0], DAD[1], DAD[2], DAD[3], DAD[4], DAD[5], DAD[6], DAD[7], DAD[8], DAD[9]))
+        cursor.execute (sql.format(DAD[0], DAD[1], DAD[2], DAD[3], DAD[4], DAD[5], DAD[6], DAD[7], DAD[8], DAD[9], DAD[10]))
       
         self.connection.commit()
 
-"""
-                a_nacimiento_fallecido, 
-                edad_fallecido, 
-                sexo_fallecido, 
-                estado_civil_f, 
-                fecha_defuncion, 
-                hora_defuncion, 
-                lugar_defuncion, 
-                causa_muerte, 
-                c_informante, 
-                relacion_informante,
-                numActa
-"""

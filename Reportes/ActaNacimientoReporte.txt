@@ -1,10 +1,10 @@
 Numero Acta - Nombres - Apellidos - Fecha Nacimiento - Hora Nacimiento - Lugar Nacimiento - Cedula Padre - Nombres Padre - Apellidos Padre - Cedula Madre - Nombres Madre - Apellidos Madre - Datos Registro Civil
 
-#9, Dasdasd, Asdasd, 1997-10-01, 1:01:01, Sefsefsef, Masculino, 23423, Dsefsefse, Sefsef, 234234, Fsef, Sefsef, Registro Civil Parroquial Chiquinquirá, Zulia, Maracaibo, Chiquinquirá, Calle 95 del saladillo detrás de panorama., Carlos, Rodriguez
+#9, Anderson Francisco, Salazar Pereira, 1997-10-01, 1:45:18, Clinica Falcon, Masculino, 5055319, Francisco Jose, Salazar Vilchez, 13004082, Veronica Yanitza, Pereira Delgado, Registro Civil Olegario Villalobos, Zulia, Maracaibo, Olegario Villalobos, Plaza de la República, av. 78 Dr. Portillo, calle 77 (detrás de la concha acústica), Andres, Gonzalez
 
-#10, Fsfseefes, Fsefsef, 1998-09-16, 5:26:50, Dawd, Femenino, 2342343, Dawdawdaw, Dawdawd, 234234, Awdaw, Awdaw, Registro Civil Parroquial Chiquinquirá, Zulia, Maracaibo, Chiquinquirá, Calle 95 del saladillo detrás de panorama., Carlos, Rodriguez
+#10, Adrian Francisco, Salazar Pereira, 1998-09-16, 1:45:18, Clinica Falcon, Masculino, 5055319, Francisco Jose, Salazar Vilchez, 13004082, Veronica Yanitza, Pereira Delgado, Registro Civil Olegario Villalobos, Zulia, Maracaibo, Olegario Villalobos, Plaza de la República, av. 78 Dr. Portillo, calle 77 (detrás de la concha acústica), Andres, Gonzalez
 
-#11, Alanis Daniela, Salazar Pereira, 2001-11-15, 1:00:00, Clinica Falcon, Masculino, 5055319, Francisco Jose, Salazar Vilchez, 13004082, Veronica Yanitza, Pereira Delgado, Registro Civil Olegario Villalobos, Zulia, Maracaibo, Olegario Villalobos, Plaza de la República, av. 78 Dr. Portillo, calle 77 (detrás de la concha acústica), Andres, Gonzalez
+#11, Alanis Daniela, Salazar Pereira, 2002-11-15, 1:45:18, Clinica Falcon, Femenino, 5055319, Francisco Jose, Salazar Vilchez, 13004082, Veronica Yanitza, Pereira Delgado, Registro Civil Olegario Villalobos, Zulia, Maracaibo, Olegario Villalobos, Plaza de la República, av. 78 Dr. Portillo, calle 77 (detrás de la concha acústica), Andres, Gonzalez
 
 #12, Veronica Yanitza, Pereira Delgado, 2001-11-15, 1:00:00, General Del Sur, Femenino, 123456, Pedro, Pereira, 654321, Lesvia, Delgado, Registro Civil Olegario Villalobos, Zulia, Maracaibo, Olegario Villalobos, Plaza de la República, av. 78 Dr. Portillo, calle 77 (detrás de la concha acústica), Andres, Gonzalez
 
