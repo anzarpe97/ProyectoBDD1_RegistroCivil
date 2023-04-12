@@ -10,7 +10,6 @@ root = tk.Tk()
 
 def MostrarDatosAC (frameInicio):
 
-
     Vscrollbar = ttk.Scrollbar (orient = tk.HORIZONTAL)
 
     DatosActa = ttk.Treeview (frameInicio, columns = ("#1", "#2", "#3", "#4", "#5", "#6", "#7", "#8", "#9", "#10", "#11", "#12", "#13", "#14", "#15", "#16", "#17", "#18", "#19"), yscrollcommand = Vscrollbar.set)
@@ -59,7 +58,6 @@ def MostrarDatosAC (frameInicio):
     DatosActa.heading ("#18", text = "Nombre Director", anchor = "center")
     DatosActa.heading ("#19", text = "Apellido Director", anchor = "center")
 
-
     DAN = funciones.consultarActaNacimiento()
 
     for x in DAN:
@@ -104,7 +102,7 @@ def MostrarDatosC (frameInicio):
 
         DatoCedula.insert("", END, text = x[0], values = (x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8]))
 
-    DatoCedula.place(x = 20, y = 310, width = 1000, height = 320)
+    DatoCedula.place(x = 20, y = 260, width = 1000, height = 370)
 
 # MOSTRAR DATOS ACTA DE MATRIMONIO
 
@@ -200,103 +198,108 @@ def MostrarDatosAM (frameInicio):
 
         DatoActaMatrimonio.insert("", END, text = x[0], values = (x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17], x[18], x[19], x[20], x[21], x[22], x[23], x[24], x[25],x[26],x[27]))
 
-    DatoActaMatrimonio.place(x = 20, y = 315, width = 1000, height = 315)
+    DatoActaMatrimonio.place(x = 20, y = 295, width = 1000, height = 339)
 
 # MOSTRAR DATOS ACTA DE DIVORCIO
 
-def MostrarDatosAD (frameInicio):
+def MostrarDatosADi (frameInicio):
 
     Vscrollbar = ttk.Scrollbar (orient = tk.HORIZONTAL)
 
-    DatoActaMatrimonio = ttk.Treeview (frameInicio, columns = ("#1","#2","#3","#4","#5","#6","#7","#8","#9","#10","#11","#12","#13","#14","#15","#16","#17","#18","#19","#20","#21","#22","#23","#24","#25","#26","#27"), yscrollcommand = Vscrollbar.set)
-    Vscrollbar.config (command = DatoActaMatrimonio.xview)
+    DatoActaDivorcio = ttk.Treeview (frameInicio, columns = ("#1","#2","#3","#4","#5","#6","#7","#8","#9","#10","#11","#12","#13","#14","#15","#16","#17","#18","#19","#20","#21","#22","#23","#24","#25","#26","#27","#28","#29"), yscrollcommand = Vscrollbar.set)
+    Vscrollbar.config (command = DatoActaDivorcio.xview)
     Vscrollbar.place (x = 163, y = 637, width = 1000) 
 
-    DatoActaMatrimonio.column("#0", width = 200)
-    DatoActaMatrimonio.column("#1", width = 120)
-    DatoActaMatrimonio.column("#2", width = 120)
-    DatoActaMatrimonio.column("#3", width = 120)
-    DatoActaMatrimonio.column("#4", width = 120)
-    DatoActaMatrimonio.column("#5", width = 120)
-    DatoActaMatrimonio.column("#6", width = 120)
-    DatoActaMatrimonio.column("#7", width = 120)
-    DatoActaMatrimonio.column("#8", width = 120)
-    DatoActaMatrimonio.column("#9", width = 120)
-    DatoActaMatrimonio.column("#10", width = 120)
-    DatoActaMatrimonio.column("#11", width = 120)
-    DatoActaMatrimonio.column("#12", width = 120)
-    DatoActaMatrimonio.column("#13", width = 120)
-    DatoActaMatrimonio.column("#14", width = 120)
-    DatoActaMatrimonio.column("#15", width = 120)
-    DatoActaMatrimonio.column("#16", width = 120)
-    DatoActaMatrimonio.column("#17", width = 120)
-    DatoActaMatrimonio.column("#18", width = 120)
-    DatoActaMatrimonio.column("#19", width = 120)
-    DatoActaMatrimonio.column("#20", width = 120)
-    DatoActaMatrimonio.column("#21", width = 120)
-    DatoActaMatrimonio.column("#22", width = 120)
-    DatoActaMatrimonio.column("#23", width = 120)
-    DatoActaMatrimonio.column("#24", width = 120)
-    DatoActaMatrimonio.column("#25", width = 120)
-    DatoActaMatrimonio.column("#26", width = 120)
-    DatoActaMatrimonio.column("#27", width = 120)
+    DatoActaDivorcio.column("#0", width = 200)
+    DatoActaDivorcio.column("#1", width = 120)
+    DatoActaDivorcio.column("#2", width = 120)
+    DatoActaDivorcio.column("#3", width = 120)
+    DatoActaDivorcio.column("#4", width = 120)
+    DatoActaDivorcio.column("#5", width = 120)
+    DatoActaDivorcio.column("#6", width = 120)
+    DatoActaDivorcio.column("#7", width = 120)
+    DatoActaDivorcio.column("#8", width = 120)
+    DatoActaDivorcio.column("#9", width = 120)
+    DatoActaDivorcio.column("#10", width = 120)
+    DatoActaDivorcio.column("#11", width = 120)
+    DatoActaDivorcio.column("#12", width = 120)
+    DatoActaDivorcio.column("#13", width = 120)
+    DatoActaDivorcio.column("#14", width = 120)
+    DatoActaDivorcio.column("#15", width = 120)
+    DatoActaDivorcio.column("#16", width = 120)
+    DatoActaDivorcio.column("#17", width = 120)
+    DatoActaDivorcio.column("#18", width = 120)
+    DatoActaDivorcio.column("#19", width = 120)
+    DatoActaDivorcio.column("#20", width = 120)
+    DatoActaDivorcio.column("#21", width = 120)
+    DatoActaDivorcio.column("#22", width = 120)
+    DatoActaDivorcio.column("#23", width = 120)
+    DatoActaDivorcio.column("#24", width = 120)
+    DatoActaDivorcio.column("#25", width = 120)
+    DatoActaDivorcio.column("#26", width = 120)
+    DatoActaDivorcio.column("#27", width = 120)
+    DatoActaDivorcio.column("#28", width = 120)
+    DatoActaDivorcio.column("#29", width = 120)
 
     # DATOS ACTA 
 
-    DatoActaMatrimonio.heading("#0", text = "Numero Acta Matrimonio", anchor = "center")
-    DatoActaMatrimonio.heading("#1", text = "Fecha Matrimonio", anchor = "center")
+    DatoActaDivorcio.heading("#0", text = "Numero Acta Divorcio", anchor = "center")
 
-    # DATOS PRIMER CONTRAYENTE
+    # DATOS PRIMER ESPOSO
 
-    DatoActaMatrimonio.heading("#2", text = "Cedula P Contrayente", anchor = "center")
-    DatoActaMatrimonio.heading("#3", text = "Nombres P Contrayente", anchor = "center")
-    DatoActaMatrimonio.heading("#4", text = "Apellidos P Contrayente", anchor = "center")
-    DatoActaMatrimonio.heading("#5", text = "Ocupacion P Contrayente", anchor = "center")
-    DatoActaMatrimonio.heading("#6", text = "Direccion P Contrayente", anchor = "center")
+    DatoActaDivorcio.heading("#1", text = "Cedula Primer Esposx", anchor = "center")
+    DatoActaDivorcio.heading("#2", text = "Nombres Primer Esposx", anchor = "center")
+    DatoActaDivorcio.heading("#3", text = "Apellidos Primer Esposx", anchor = "center")
+    DatoActaDivorcio.heading("#4", text = "Direccion Primer Esposo", anchor = "center")
 
-    # DATOS SEGUNDO CONTRAYENTE
+    # DATOS SEGUNDO ESPOSO
 
-    DatoActaMatrimonio.heading("#7", text = "Cedula S Contrayente", anchor = "center")
-    DatoActaMatrimonio.heading("#8", text = "Nombres S Contrayente", anchor = "center")
-    DatoActaMatrimonio.heading("#9", text = "Apellidos S Contrayente", anchor = "center")
-    DatoActaMatrimonio.heading("#10", text = "Ocupacion S Contrayente", anchor = "center")
-    DatoActaMatrimonio.heading("#11", text = "Direccion S Contrayente", anchor = "center")
+    DatoActaDivorcio.heading("#5", text = "Cedula Segundo Esposx", anchor = "center")
+    DatoActaDivorcio.heading("#6", text = "Nombres Segundo Esposx", anchor = "center")
+    DatoActaDivorcio.heading("#7", text = "Apellidos Segundo Esposx", anchor = "center")
+    DatoActaDivorcio.heading("#8", text = "Direccion Segundo Esposx", anchor = "center")
 
-    # DATOS REGISTRADOR CIVIL
+    # DATOS ABOGADO PRIMER ESPOSO
 
-    DatoActaMatrimonio.heading("#12", text = "Cedula Registrador Civil", anchor = "center")
-    DatoActaMatrimonio.heading("#13", text = "Nombres Registrador Civil", anchor = "center")
-    DatoActaMatrimonio.heading("#14", text = "Apellidos Registrador Civil", anchor = "center")
+    DatoActaDivorcio.heading("#9", text = "Cedula Abogado P Esposx", anchor = "center")
+    DatoActaDivorcio.heading("#10", text = "Nombres Abodado P Esposx", anchor = "center")
+    DatoActaDivorcio.heading("#11", text = "Apellidos Abogado P Esposo", anchor = "center")
+
+    # DATOS ABOGADO SEGUNDO ESPOSO
+
+    DatoActaDivorcio.heading("#12", text = "Cedula Abogado S Esposx", anchor = "center")
+    DatoActaDivorcio.heading("#13", text = "Nombres Abodado S Esposx", anchor = "center")
+    DatoActaDivorcio.heading("#14", text = "Apellidos Abogado S Esposo", anchor = "center")
 
     # DATOS PRIMER TESTIGO
 
-    DatoActaMatrimonio.heading("#15", text = "Cedula P Testigo", anchor = "center")
-    DatoActaMatrimonio.heading("#16", text = "Nombres P Testigo", anchor = "center")
-    DatoActaMatrimonio.heading("#17", text = "Apellidos P Testigos", anchor = "center")
+    DatoActaDivorcio.heading("#15", text = "Acta Nacimiento Primer Hijo", anchor = "center")
+    DatoActaDivorcio.heading("#16", text = "Nombres Primer Hijo", anchor = "center")
+    DatoActaDivorcio.heading("#17", text = "Apellidos Primer Hijo", anchor = "center")
 
     # DATOS SEGUNGO TESTIGO
 
-    DatoActaMatrimonio.heading("#18", text = "Cedula S Testigo", anchor = "center")
-    DatoActaMatrimonio.heading("#19", text = "Nombres S Testigo", anchor = "center")
-    DatoActaMatrimonio.heading("#20", text = "Apellidos S Testigo", anchor = "center")
+    DatoActaDivorcio.heading("#18", text = "Acta Nacimiento Segundo Hijo", anchor = "center")
+    DatoActaDivorcio.heading("#19", text = "Nombres Segundo Hijo", anchor = "center")
+    DatoActaDivorcio.heading("#20", text = "Apellidos Segundo Hijo", anchor = "center")
 
     #DATOS REGISTROS
 
-    DatoActaMatrimonio.heading("#21", text = "Nombre Registro", anchor = "center")
-    DatoActaMatrimonio.heading("#22", text = "Estado", anchor = "center")
-    DatoActaMatrimonio.heading("#23", text = "Municipio", anchor = "center")
-    DatoActaMatrimonio.heading("#24", text = "Parroquia", anchor = "center")
-    DatoActaMatrimonio.heading("#25", text = "Direccion ", anchor = "center")
-    DatoActaMatrimonio.heading("#26", text = "Nombre Director", anchor = "center")
-    DatoActaMatrimonio.heading("#27", text = "Apellidos Director", anchor = "center")
+    DatoActaDivorcio.heading("#21", text = "Nombre Registro", anchor = "center")
+    DatoActaDivorcio.heading("#22", text = "Estado", anchor = "center")
+    DatoActaDivorcio.heading("#23", text = "Municipio", anchor = "center")
+    DatoActaDivorcio.heading("#24", text = "Parroquia", anchor = "center")
+    DatoActaDivorcio.heading("#25", text = "Direccion ", anchor = "center")
+    DatoActaDivorcio.heading("#26", text = "Nombre Director", anchor = "center")
+    DatoActaDivorcio.heading("#27", text = "Apellidos Director", anchor = "center")
 
-    ActaMatrimonio = funciones.consultarActaMatrimonio()
+    ActaDivorcio = funciones.consultarActaDivorcio()
 
-    #for x in ActaMatrimonio:
+    for x in ActaDivorcio:
 
-        #DatoActaMatrimonio.insert("", END, text = x[0], values = (x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17], x[18], x[19], x[20], x[21], x[22], x[23], x[24], x[25],x[26],x[27]))
+        DatoActaDivorcio.insert("", END, text = x[0], values = (x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17], x[18], x[19], x[20], x[21], x[22], x[23], x[24], x[25],x[26],x[27],x[28]))
 
-    #DatoActaMatrimonio.place(x = 20, y = 315, width = 1000, height = 315)
+    DatoActaDivorcio.place(x = 20, y = 295, width = 1000, height = 335)
 
 # MOSTRAR DATOS ACTA DEFUNNCION
 
@@ -358,6 +361,23 @@ def MostrarDatosAD (frameInicio):
 
 def actaNacimiento ():
 
+    def reiniciarCampos():
+
+        nombres.set("")
+        apellidos.set("")
+        sexoBebe.set("")
+        cedulaPadre.set(0)
+        nombrePadre.set("")
+        apellidoPadre.set("")
+        cedulaMadre.set(0)
+        nombreMadre.set("")
+        apellidoMadre.set("")
+        fechaNacimiento.set("")
+        horaNacimiento.set("")
+        ubicacion.set("")
+        prefectura.set("")
+        numeroActa.set(0)
+
     # VARIABLES
 
     nombres = StringVar ()
@@ -373,6 +393,7 @@ def actaNacimiento ():
     horaNacimiento = StringVar ()
     ubicacion = StringVar ()
     prefectura =StringVar ()
+    numeroActa = IntVar ()
 
     # NO TOCAR
     
@@ -508,17 +529,59 @@ def actaNacimiento ():
     prefecturaOpcion = ttk.Combobox (frameInicio,values = ["Coquivacoa", "Chiquinquira", "Cacique Mara", "Olegarios Villalobos"], textvariable= prefectura,width = 17)
     prefecturaOpcion.place (x = 141,y = 263)#x = 275, y = 213
 
+    numActaLabel = tk.Label (frameInicio, text = "Num Acta Nacimiento: ")
+    numActaLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
+    numActaLabel.place (x = 675, y = 260)
+
+    numActaEntry = tk.Entry (frameInicio, relief="flat",textvariable = numeroActa)
+    numActaEntry.place (x = 820, y = 263)
+
+    ActaLabel = tk.Label (frameInicio, text = "Solo para actualizar ")
+    ActaLabel.configure (font = ("roboto", 9, "bold"), fg = "WHITE", background = "#209cb4")
+    ActaLabel.place (x = 820, y = 285)
+
     # BOTON AGREGAR 
 
     botonAgregar = tk.Button (frameInicio, text = "Guardar", height = 1, width = 9,relief="flat", command = lambda: funciones.guardarDatosAcNacimiento(nombres.get(),apellidos.get(),fechaNacimiento.get(),horaNacimiento.get(), ubicacion.get(), sexoBebe.get(), cedulaPadre.get(), nombrePadre.get(),apellidoPadre.get(),cedulaMadre.get(),nombreMadre.get(),apellidoMadre.get(),prefectura.get()))
     botonAgregar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonAgregar.place (x = round(1057/2), y = 315)
+    botonAgregar.place (x = 565, y = 315)
 
-    botonActualizar = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat", command = lambda: MostrarDatosAC(frameInicio))
+    # BOTON ACTUALIZAR 
+
+    botonActualizar = tk.Button (frameInicio, text = "Actualizar Datos", height = 1, width = 14,relief="flat", command = lambda: funciones.actualizarActaNacimiento(nombres.get(),apellidos.get(),fechaNacimiento.get(),horaNacimiento.get(), ubicacion.get(), sexoBebe.get(), cedulaPadre.get(), nombrePadre.get(),apellidoPadre.get(),cedulaMadre.get(),nombreMadre.get(),apellidoMadre.get(),prefectura.get(),numeroActa.get()))
     botonActualizar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonActualizar.place (x = 400, y = 315)
+    botonActualizar.place (x = 655, y = 315)
+
+    # BOTON REINICIAR CAMPO
+
+    botonReiniciar = tk.Button (frameInicio, text = "Reiniciar Campos", height = 1, width = 14,relief="flat", command = lambda: reiniciarCampos())
+    botonReiniciar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonReiniciar.place (x = 785, y = 315)
+
+    # BOTON MOSTRAR DATOS
+
+    botonMostrar = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat", command = lambda: MostrarDatosAC(frameInicio))
+    botonMostrar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonMostrar.place (x = 915, y = 315)
+
+    # REPORTE DATOS
+
+    botonReporte = tk.Button (frameInicio, text = "Genera Reporte", height = 1, width = 14,relief="flat", command = lambda: funciones.generarReporteActaNacimiento())
+    botonReporte.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonReporte.place (x = 20, y = 315)
 
 def cedula ():
+
+    def reiniciarCampos():
+
+        numCedula.set("")
+        numActaNacimiento.set("")
+        nombres.set("")
+        apellidos.set("")
+        EstadoCivil.set("")
+        genero.set("")
+        nacionalidad.set("")
+        fechaEmision.set("")
 
     # Variables
 
@@ -618,20 +681,54 @@ def cedula ():
     nacionalidadOpcion = ttk.Combobox (frameInicio,values = ["Venezolano/a", "Extranjero/a"], textvariable = nacionalidad,width=17)
     nacionalidadOpcion.place(x = 830, y = 173)
 
-    botonAgregarCedula = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat",command = lambda: funciones.guardarCedulaIdentidad(numCedula.get(), numActaNacimiento.get(),nombres.get(),apellidos.get(),EstadoCivil.get(),genero.get(),fechaEmision.get(), nacionalidad.get()))
+    # BOTON AGREGAR CEDULA
+
+    botonAgregarCedula = tk.Button (frameInicio, text = "Guardar", height = 1, width = 9,relief="flat",command = lambda: funciones.guardarCedulaIdentidad(numCedula.get(), numActaNacimiento.get(),nombres.get(),apellidos.get(),EstadoCivil.get(),genero.get(),fechaEmision.get(), nacionalidad.get()))
     botonAgregarCedula.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonAgregarCedula.place (x = 550, y = 230)
+    botonAgregarCedula.place (x = 565, y = 225)
+
+    # BOTON ACTUALIZAR 
+
+    botonActualizar = tk.Button (frameInicio, text = "Actualizar Datos", height = 1, width = 14,relief="flat", command=lambda: funciones.actualizarCedula(numCedula.get(), numActaNacimiento.get(),nombres.get(),apellidos.get(),EstadoCivil.get(),genero.get(),fechaEmision.get(), nacionalidad.get()))
+    botonActualizar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonActualizar.place (x = 655, y = 225)
+
+    # REINICIAR CAMPOS
+
+    botonReiniciar = tk.Button (frameInicio, text = "Reiniciar Campos", height = 1, width = 14,relief="flat", command = lambda: reiniciarCampos())
+    botonReiniciar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonReiniciar.place (x = 785, y = 225)
+
+    # BOTON MOSTRAR DATOS
 
     botonConsultaCedula = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat",command = lambda: MostrarDatosC(frameInicio))
     botonConsultaCedula.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonConsultaCedula.place (x = 400, y = 230)
+    botonConsultaCedula.place (x = 915, y = 225)
 
-    boton = tk.Button (frameInicio, text = "Prueba", height = 1, width = 12,relief="flat",command = lambda: funciones.cedulaExiste(numCedula.get()))
-    boton.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    boton.place (x = 700, y = 230)
+    # REPORTE DATOS
+
+    botonReporte = tk.Button (frameInicio, text = "Genera Reporte", height = 1, width = 14,relief="flat", command = lambda: funciones.generarReporteCedula())
+    botonReporte.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonReporte.place (x = 20, y = 225)
 
 def actaMatrimonio ():
 
+    def reiniciarCampos():
+        
+        PContrayente.set(0)
+        OPContrayente.set("")
+        DPContrayente.set("")
+        SContrayente.set(0)
+        OSContrayente.set("")
+        DSContrayente.set("")
+        PTestigo.set(0)
+        STestigo.set(0)
+        registrador.set(0)
+        FechaAM.set("")
+        prefectura.set("")
+        numActaMatrimonio.set(0)
+
+    numActaMatrimonio = IntVar()
     PContrayente = IntVar()
     OPContrayente = StringVar()
     DPContrayente = StringVar()
@@ -765,16 +862,57 @@ def actaMatrimonio ():
     prefecturasOpcion = ttk.Combobox (frameInicio,values = ["Coquivacoa", "Chiquinquira", "Cacique Mara", "Olegarios Villalobos"], width=17,textvariable=prefectura)
     prefecturasOpcion.place (x = 555,y = 210)                                                                                                                                                                                                              
 
-    botonAgregarActaMatrimonio = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat", command = lambda: funciones.guardarActaMatrimonio(FechaAM.get(), PContrayente.get(), OPContrayente.get(), DPContrayente.get(),SContrayente.get(),OSContrayente.get(),DSContrayente.get(),registrador.get(),PTestigo.get(),STestigo.get(),prefectura.get()))
+    numActaLabel = tk.Label (frameInicio, text = "Num Acta Nacimiento: ")
+    numActaLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
+    numActaLabel.place (x = 753, y = 210)
+
+    numActaEntry = tk.Entry (frameInicio, relief="flat",textvariable = numActaMatrimonio)
+    numActaEntry.place (x = 900, y = 210)
+
+    ActaLabel = tk.Label (frameInicio, text = "Solo para actualizar ")
+    ActaLabel.configure (font = ("roboto", 9, "bold"), fg = "WHITE", background = "#209cb4")
+    ActaLabel.place (x = 903, y = 233)
+
+    # BOTON AGREGAR DATOS
+
+    botonAgregarActaMatrimonio = tk.Button (frameInicio, text = "Guardar", height = 1, width = 9,relief="flat", command = lambda: funciones.guardarActaMatrimonio(FechaAM.get(), PContrayente.get(), OPContrayente.get(), DPContrayente.get(),SContrayente.get(),OSContrayente.get(),DSContrayente.get(),registrador.get(),PTestigo.get(),STestigo.get(),prefectura.get()))
     botonAgregarActaMatrimonio.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonAgregarActaMatrimonio.place (x = round(1057/2), y = 275)
+    botonAgregarActaMatrimonio.place (x =565, y = 260)
+
+    # BOTON ACTUALIZAR 
+
+    botonActualizar = tk.Button (frameInicio, text = "Actualizar Datos", height = 1, width = 14,relief="flat", command = lambda: funciones.actualizarActaMatrimonio(FechaAM.get(), PContrayente.get(), OPContrayente.get(), DPContrayente.get(),SContrayente.get(),OSContrayente.get(),DSContrayente.get(),registrador.get(),PTestigo.get(),STestigo.get(),prefectura.get(),numActaMatrimonio.get()))
+    botonActualizar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonActualizar.place (x = 655, y = 260)
+
+    # REINICIAR CAMPOS
+
+    botonReiniciar = tk.Button (frameInicio, text = "Reiniciar Campos", height = 1, width = 14,relief="flat", command = lambda: reiniciarCampos())
+    botonReiniciar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonReiniciar.place (x = 785, y = 260)
+
+    # BOTON MOSTRAR DATOS
 
     botonMostrarAD = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat", command = lambda: MostrarDatosAM(frameInicio))
     botonMostrarAD.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonMostrarAD.place (x = 370, y = 275)
+    botonMostrarAD.place (x = 915, y = 260)
     
 def actaDivorcio ():
     
+    def reiniciarCampos():
+
+        NumActaMatrimonio.set(0)
+        CedulaPrimerEsposo.set(0)
+        DireccionPrimerEsposo.set("")
+        CedulaSegundoEsposo.set(0)
+        DireccionSegundoEsposo.set("")
+        CedulaAbogadoPE.set(0)
+        CedulaAbogadoSE.set(0)
+        ActaNacimientoPHijo.set(0)
+        ActaNacimientoSHijo.set(0)
+        Prefectura.set("")
+        numActaDivorcio.set()
+
     NumActaMatrimonio = IntVar ()
     CedulaPrimerEsposo = IntVar ()
     DireccionPrimerEsposo = StringVar()
@@ -784,7 +922,7 @@ def actaDivorcio ():
 
     CedulaAbogadoPE = IntVar()
     CedulaAbogadoSE = IntVar()
-
+    numActaDivorcio = IntVar()
     ActaNacimientoPHijo = IntVar()
     ActaNacimientoSHijo = IntVar()
 
@@ -887,11 +1025,57 @@ def actaDivorcio ():
     prefecturasOpcion = ttk.Combobox (frameInicio, values = ["Coquivacoa", "Chiquinquira", "Cacique Mara", "Olegarios Villalobos"], width = 17, textvariable = Prefectura)
     prefecturasOpcion.place (x = 910,y = 210)
     
-    botonAgregarActaDivorcio = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat", command = lambda: funciones.guardarActaDivorcio(NumActaMatrimonio.get(),CedulaPrimerEsposo.get(),DireccionPrimerEsposo.get(),CedulaSegundoEsposo.get(),DireccionSegundoEsposo.get(), CedulaAbogadoPE.get(),CedulaAbogadoSE.get(),ActaNacimientoPHijo.get(),ActaNacimientoSHijo.get(),Prefectura.get()))
+    # ACTA DIVORCIO NUMERO
+    
+    numActaLabel = tk.Label (frameInicio, text = "Num Acta Divorcio: ")
+    numActaLabel.configure (font = ("roboto", 10, "bold"), fg = "WHITE", background = "#209cb4")
+    numActaLabel.place (x = 780, y = 90)
+
+    numActaEntry = tk.Entry (frameInicio, relief="flat",textvariable = numActaDivorcio)
+    numActaEntry.place (x = 910, y = 93)
+
+    ActaLabel = tk.Label (frameInicio, text = "Solo para actualizar ")
+    ActaLabel.configure (font = ("roboto", 9, "bold"), fg = "WHITE", background = "#209cb4")
+    ActaLabel.place (x = 910, y = 65)
+    
+    # BOTON AGREGAR
+
+    botonAgregarActaDivorcio = tk.Button (frameInicio, text = "Guardar", height = 1, width = 9,relief="flat", command = lambda: funciones.guardarActaDivorcio(NumActaMatrimonio.get(),CedulaPrimerEsposo.get(),DireccionPrimerEsposo.get(),CedulaSegundoEsposo.get(),DireccionSegundoEsposo.get(), CedulaAbogadoPE.get(),CedulaAbogadoSE.get(),ActaNacimientoPHijo.get(),ActaNacimientoSHijo.get(),Prefectura.get()))
     botonAgregarActaDivorcio.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonAgregarActaDivorcio.place (x = round(1057/2), y = 280)
+    botonAgregarActaDivorcio.place (x = 565, y = 260)
+
+    # BOTON ACTUALIZAR 
+
+    botonActualizar = tk.Button (frameInicio, text = "Actualizar Datos", height = 1, width = 14,relief="flat", command = lambda: funciones.actualizarActaDivorcio(NumActaMatrimonio.get(),CedulaPrimerEsposo.get(),DireccionPrimerEsposo.get(),CedulaSegundoEsposo.get(),DireccionSegundoEsposo.get(), CedulaAbogadoPE.get(),CedulaAbogadoSE.get(),ActaNacimientoPHijo.get(),ActaNacimientoSHijo.get(),Prefectura.get(),numActaDivorcio.get()))
+    botonActualizar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonActualizar.place (x = 655, y = 260)
+
+    # REINICIAR CAMPOS
+
+    botonReiniciar = tk.Button (frameInicio, text = "Reiniciar Campos", height = 1, width = 14,relief="flat", command = lambda: reiniciarCampos())
+    botonReiniciar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonReiniciar.place (x = 785, y = 260)
+
+    # MOSTRAR DATOS
+
+    boton = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat", command = lambda: MostrarDatosADi(frameInicio))
+    boton.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    boton.place (x = 915, y = 260)
 
 def actaDefuncion ():
+
+    def reiniciarCampos():
+
+        ActaDifunto.set(0)
+        generoDifunto.set("")
+        EstadoCivilDifunto.set("")
+        FechaDefuncionDifunto.set("")
+        HoraDefuncionDifunto.set("")
+        LugarDefuncionDifunto.set("")
+        CausaDeMuerte.set("")
+        CedulaInformante.set(0)
+        RelacionInformante.set("")
+        numAD.set(0)
 
     ActaDifunto = IntVar()
     generoDifunto = StringVar()
@@ -902,7 +1086,7 @@ def actaDefuncion ():
     CausaDeMuerte = StringVar()
     CedulaInformante = IntVar()
     RelacionInformante = StringVar()
-
+    numAD = IntVar()
     # NO TOCAR 
     
     frameInicio = tk.Frame(root, background = "#209cb4", height = 656, width = 1057)
@@ -992,6 +1176,7 @@ def actaDefuncion ():
     FormatoHLabel.configure(font = ("roboto", 8, "bold"), fg ="WHITE", background="#209cb4")
     FormatoHLabel.place (x = 902, y = 203)
 
+
     #FECHA EXPEDICION ACTA  
 
     generoLabel = tk.Label (frameInicio, text = "Genero Difunto: ")
@@ -1001,15 +1186,40 @@ def actaDefuncion ():
     generoOpcion = ttk.Combobox (frameInicio,values = ["Hombre", "Mujer", "No-Binario"], width=17,textvariable=generoDifunto)
     generoOpcion.place(x = 555, y = 173)
 
+    numActaLabel = tk.Label (frameInicio, text = "Num Acta Defuncion: ")
+    numActaLabel.configure (font = ("roboto", 12, "bold"), fg = "WHITE", background = "#209cb4")
+    numActaLabel.place (x = 57, y = 210)
+
+    numActaEntry = tk.Entry (frameInicio, relief="flat",textvariable = numAD)
+    numActaEntry.place (x = 225, y = 213)
+
+    ActaLabel = tk.Label (frameInicio, text = "Solo para actualizar ")
+    ActaLabel.configure (font = ("roboto", 9, "bold"), fg = "WHITE", background = "#209cb4")
+    ActaLabel.place (x = 225, y = 233)
+
     # GUARDAR DATOS
 
-    botonAgregarActaDefuncion = tk.Button (frameInicio, text = "Guardar", height = 1, width = 7,relief="flat", command = lambda: funciones.guardarActaDefuncion(ActaDifunto.get(), generoDifunto.get(), EstadoCivilDifunto.get(), FechaDefuncionDifunto.get(), HoraDefuncionDifunto.get(), LugarDefuncionDifunto.get(), CausaDeMuerte.get(),CedulaInformante.get(),RelacionInformante.get()))
+    botonAgregarActaDefuncion = tk.Button (frameInicio, text = "Guardar", height = 1, width = 9,relief="flat", command = lambda: funciones.guardarActaDefuncion(ActaDifunto.get(), generoDifunto.get(), EstadoCivilDifunto.get(), FechaDefuncionDifunto.get(), HoraDefuncionDifunto.get(), LugarDefuncionDifunto.get(), CausaDeMuerte.get(),CedulaInformante.get(),RelacionInformante.get()))
     botonAgregarActaDefuncion.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonAgregarActaDefuncion.place (x = round(1057/2), y = 240)           
+    botonAgregarActaDefuncion.place (x = 565, y = 240)           
     
+    # BOTON ACTUALIZAR 
+
+    botonActualizar = tk.Button (frameInicio, text = "Actualizar Datos", height = 1, width = 14,relief="flat", command = lambda: funciones.actualizarActaDefuncion(ActaDifunto.get(), generoDifunto.get(), EstadoCivilDifunto.get(), FechaDefuncionDifunto.get(), HoraDefuncionDifunto.get(), LugarDefuncionDifunto.get(), CausaDeMuerte.get(),CedulaInformante.get(),RelacionInformante.get(),numAD.get()))
+    botonActualizar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonActualizar.place (x = 655, y = 240)
+
+    # REINICIAR CAMPOS
+
+    botonReiniciar = tk.Button (frameInicio, text = "Reiniciar Campos", height = 1, width = 14,relief="flat", command = lambda: reiniciarCampos())
+    botonReiniciar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonReiniciar.place (x = 785, y = 240)
+
+    # MOSTRAR DATOS
+
     botonMostrarAD = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat", command = lambda: MostrarDatosAD(frameInicio))
     botonMostrarAD.configure (font = ("roboto", 10, "bold"), fg = "WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
-    botonMostrarAD.place (x = 300, y = 240)
+    botonMostrarAD.place (x = 915, y = 240)
   
 # Configuracion Ventana
 
@@ -1077,4 +1287,3 @@ buttonActaDefuncion.configure(height = 126, width = 130, font=("roboto", 10, "no
 buttonActaDefuncion.grid(row = 4,column = 0)
 
 root.mainloop()
-
