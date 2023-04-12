@@ -1,0 +1,18 @@
+Numero Acta - Nombres - Apellidos - Fecha Nacimiento - Hora Nacimiento - Lugar Nacimiento - Cedula Padre - Nombres Padre - Apellidos Padre - Cedula Madre - Nombres Madre - Apellidos Madre - Datos Registro Civil
+
+#9, Dasdasd, Asdasd, 1997-10-01, 1:01:01, Sefsefsef, Masculino, 23423, Dsefsefse, Sefsef, 234234, Fsef, Sefsef, Registro Civil Parroquial Chiquinquirá, Zulia, Maracaibo, Chiquinquirá, Calle 95 del saladillo detrás de panorama., Carlos, Rodriguez
+
+#10, Fsfseefes, Fsefsef, 1998-09-16, 5:26:50, Dawd, Femenino, 2342343, Dawdawdaw, Dawdawd, 234234, Awdaw, Awdaw, Registro Civil Parroquial Chiquinquirá, Zulia, Maracaibo, Chiquinquirá, Calle 95 del saladillo detrás de panorama., Carlos, Rodriguez
+
+#11, Alanis Daniela, Salazar Pereira, 2001-11-15, 1:00:00, Clinica Falcon, Masculino, 5055319, Francisco Jose, Salazar Vilchez, 13004082, Veronica Yanitza, Pereira Delgado, Registro Civil Olegario Villalobos, Zulia, Maracaibo, Olegario Villalobos, Plaza de la República, av. 78 Dr. Portillo, calle 77 (detrás de la concha acústica), Andres, Gonzalez
+
+#12, Veronica Yanitza, Pereira Delgado, 2001-11-15, 1:00:00, General Del Sur, Femenino, 123456, Pedro, Pereira, 654321, Lesvia, Delgado, Registro Civil Olegario Villalobos, Zulia, Maracaibo, Olegario Villalobos, Plaza de la República, av. 78 Dr. Portillo, calle 77 (detrás de la concha acústica), Andres, Gonzalez
+
+#13, Francisco Jose, Salazar Vilchez, 2001-11-15, 1:00:00, General Del Sur, Masculino, 123456, Pedro, Pereira, 654321, Lesvia, Delgado, Registro Civil Olegario Villalobos, Zulia, Maracaibo, Olegario Villalobos, Plaza de la República, av. 78 Dr. Portillo, calle 77 (detrás de la concha acústica), Andres, Gonzalez
+
+#14, No Tiene, No Tiene, 1000-01-01, 1:01:01, No Tiene, Masculino, 1, No Tiene, No Tiene, 2, No Tiene, No Tiene, Registro Civil Parroquial Coquivacoa , Zulia, Maracaibo, Coquivacoa, Av. 6 entre calles 54B y 55 urbanización zapara, entre los edificios zapara y el CDI, Jose, Perez
+
+#21, Awdawd, Awdawd, 1997-01-01, 1:01:01, Awdawd, Femenino, 123123, Awdawd, Awdaw, 231231, Dawda, Daw, Registro Civil Parroquial Chiquinquirá, Zulia, Maracaibo, Chiquinquirá, Calle 95 del saladillo detrás de panorama., Carlos, Rodriguez
+
+#22, Sefsefsef, Sefsefsef, 1997-10-01, 1:01:01, Rgdrg, Femenino, 534534, Grgdrg, Drgdrgd, 142, Drgdrgd, Rgdrgd, Registro Civil Parroquial Chiquinquirá, Zulia, Maracaibo, Chiquinquirá, Calle 95 del saladillo detrás de panorama., Carlos, Rodriguez
+

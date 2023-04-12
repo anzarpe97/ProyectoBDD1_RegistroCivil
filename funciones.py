@@ -2,6 +2,8 @@ from tkinter import messagebox as MessageBox
 from tkinter import *
 from DBC import DAO
 
+from io import open
+
 consul = DAO()    
 
 # CONSULTA VERIFICAR DATOS
@@ -1417,9 +1419,42 @@ def actualizarActaDefuncion(a_nacimiento_fallecido, sexo_fallecido, estado_civil
         # HACER CONSULTA
 
         if flag == True:
-             
-            DatosActaDefuncion = [a_nacimiento_fallecido, edad_fallecido, sexo_fallecido, estado_civil_f, fecha_defuncion, hora_defuncion, lugar_defuncion, causa_muerte, c_informante, relacion_informante,numActa]
+                                #a_nacimiento_fallecido, sexo_fallecido, estado_civil_f, fecha_defuncion, hora_defuncion, lugar_defuncion, causa_muerte, c_informante, relacion_informante,numActa#
+            DatosActaDefuncion = [a_nacimiento_fallecido, sexo_fallecido, estado_civil_f, fecha_defuncion, hora_defuncion, lugar_defuncion, causa_muerte, c_informante, relacion_informante,numActa]
      
             consul.actaDivorcioUpdate(DatosActaDefuncion)
             
             MessageBox.showinfo(message = "Resgistro Actualizado satisfactoriamente.", title = "Registro Civil")
+
+def generarReporteActaNacimiento ():
+
+    datos = consultarActaNacimiento ()
+
+    reporteActaNacimiento = open ("reportes/ActaNacimientoReporte.txt" , "w")
+
+    reporteActaNacimiento.write("Numero Acta - Nombres - Apellidos - Fecha Nacimiento - Hora Nacimiento - Lugar Nacimiento - Cedula Padre - Nombres Padre - Apellidos Padre - Cedula Madre - Nombres Madre - Apellidos Madre - Datos Registro Civil\n\n")
+    #11, Alanis Daniela, Salazar Pereira, 2001-11-15, 1:00:00, Clinica Falcon, Masculino, 5055319, Francisco Jose, Salazar Vilchez, 13004082, Veronica Yanitza, Pereira Delgado, Registro Civil Olegario Villalobos, Zulia, Maracaibo, Olegario Villalobos, Plaza de la República, av. 78 Dr. Portillo, calle 77 (detrás de la concha acústica), Andres, Gonzalez
+    for x in datos:
+        
+        reporteActaNacimiento.write("#"+str(x[0]) + ", " + x[1] + ", " + x[2]  + ", " + str(x[3]) + ", " + str(x[4]) +", " + x[5]+", " + x[6] + ", " + str(x[7]) +   ", " + x[8] + ", " + x[9] + ", " + str(x[10]) + ", " + x[11] +", " + x[12] + ", " + x[13] +", " + x[14] +", " + x[15] +", " + x[16] +", " + x[17] +", " + x[18] +", " + x[19] +"\n\n")
+        
+    reporteActaNacimiento.close()
+
+    MessageBox.showwarning("Registro Civil", "Reporte Generado Satisfactoriamente")
+
+def generarReporteCedula ():
+
+    datos = consultarCedulas ()
+
+    reporteActaNacimiento = open ("reportes/CedulaReporte.txt" , "w")
+
+    reporteActaNacimiento.write("Numero Cedula - Nombres - Apellidos - Estado Civil - Sexo - Fecha Nacimiento - Fecha Emision - Nombres Padre - Fecha Vencimiento - Nacionalidad\n\n")
+  
+    for x in datos:
+        
+        reporteActaNacimiento.write("CI: "+ str(x[0]) + ", " + x[1] + ", " + x[2]  + ", " + x[3] + ", " + x[4] +", " + str(x[5])+", " + str(x[6]) + ", " + str(x[7]) +   ", " + str(x[8])  + "\n\n")
+                                            #c.n_cedula,     c.nombres,    c.apellidos,   c.estado_civil, c.sexo,  a.fecha_nacimiento, c.fecha_emision, c.fecha_vencimiento, c.nacionalidad
+    reporteActaNacimiento.close()
+    
+    MessageBox.showwarning("Registro Civil", "Reporte Generado Satisfactoriamente")
+

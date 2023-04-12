@@ -564,6 +564,12 @@ def actaNacimiento ():
     botonMostrar.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
     botonMostrar.place (x = 915, y = 315)
 
+    # REPORTE DATOS
+
+    botonReporte = tk.Button (frameInicio, text = "Genera Reporte", height = 1, width = 14,relief="flat", command = lambda: funciones.generarReporteActaNacimiento())
+    botonReporte.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonReporte.place (x = 20, y = 315)
+
 def cedula ():
 
     def reiniciarCampos():
@@ -698,6 +704,12 @@ def cedula ():
     botonConsultaCedula = tk.Button (frameInicio, text = "Mostrar Datos", height = 1, width = 12,relief="flat",command = lambda: MostrarDatosC(frameInicio))
     botonConsultaCedula.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground="#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
     botonConsultaCedula.place (x = 915, y = 225)
+
+    # REPORTE DATOS
+
+    botonReporte = tk.Button (frameInicio, text = "Genera Reporte", height = 1, width = 14,relief="flat", command = lambda: funciones.generarReporteCedula())
+    botonReporte.configure (font = ("roboto", 10, "bold"), fg="WHITE", activebackground = "#71acb7", activeforeground="WHITE", background="WHITE",foreground="#209cb4")
+    botonReporte.place (x = 20, y = 225)
 
 def actaMatrimonio ():
 

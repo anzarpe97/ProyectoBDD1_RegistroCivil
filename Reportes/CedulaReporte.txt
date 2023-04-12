@@ -1,0 +1,12 @@
+Numero Cedula - Nombres - Apellidos - Estado Civil - Sexo - Fecha Nacimiento - Fecha Emision - Nombres Padre - Fecha Vencimiento - Nacionalidad
+
+CI: 5055319, Francisco Jose, Salazar Vilchez, Soltero/a, Hombre, 2001-11-15, 2014-11-26, 2024-11-26, Venezolano/a
+
+CI: 13004082, Veronica Yanitza, Pereira Delgado, Soltero/a, Mujer, 2001-11-15, 2014-11-26, 2024-11-26, Venezolano/a
+
+CI: 26456380, Anderson Francisco, Salazar Pereira, Soltero/a, Mujer, 1997-10-01, 2014-11-26, 2024-11-26, Venezolano/a
+
+CI: 26456381, Adrian Francisco, Salazar Pereira, Soltero/a, Hombre, 1998-09-16, 2014-11-26, 2024-11-26, Venezolano/a
+
+CI: 29980263, Alanis Daniela, Salazar Pereira, Soltero/a, Mujer, 2001-11-15, 2014-11-26, 2024-11-26, Venezolano/a
+
